@@ -9,10 +9,10 @@ class ListView {
     }
 
     addEvent(event) {
-        if (!event || !event.title) return;
+        if (!event || !event.title || !event.location || !event.date) return;
         
         const row = document.createElement('tr');
-        const dateStr = event.date ? event.date.toLocaleDateString('ja-JP', {
+        const dateStr = event.date.toLocaleDateString('ja-JP', {
             year: 'numeric',
             month: '2-digit',
             day: '2-digit',
