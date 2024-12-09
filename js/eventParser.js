@@ -32,7 +32,15 @@ class EventParser {
 
     static parseEventSection(section) {
         const lines = section.trim().split('\n');
-        const title = lines[0].replace('# ', '').trim();
+        let title = '';
+        
+        // Find the first line that starts with '# ' for the event title
+        for (const line of lines) {
+            if (line.startsWith('# ')) {
+                title = line.replace('# ', '').trim();
+                break;
+            }
+        }
         
         const event = {
             title: title,
