@@ -2,7 +2,12 @@ class EventParser {
     static async loadEvents() {
         const timestamp = new Date().getTime();
         const response = await fetch(`all-events.md?t=${timestamp}`);
-        const text = await response.text();
+        let text = await response.text();
+        
+        // 改行コードを LF に統一
+        text = text.replace(/\r\n/g, '\n');
+        console.log('Normalized line endings');
+        
         return {
             title: this.parseTitle(text),
             events: this.parseMarkdown(text)
@@ -27,7 +32,7 @@ class EventParser {
         const events = [];
         
         // Split by horizontal rule and filter out empty sections
-        const sections = markdown.split('---').map(section => section.trim()).filter(Boolean);
+        const sections = markdown.split(' - - - ').map(section => section.trim()).filter(Boolean);
         
         console.log('Total sections found:', sections.length);
         
