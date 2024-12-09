@@ -19,8 +19,9 @@ class EventParser {
         const events = [];
         const sections = markdown.split('---').filter(section => section.trim());
         
-        for (const section of sections) {
-            const event = this.parseEventSection(section);
+        // Skip the first section as it contains the document title
+        for (let i = 1; i < sections.length; i++) {
+            const event = this.parseEventSection(sections[i]);
             if (event.title && event.coordinates !== '未設定') {
                 events.push(event);
             }
