@@ -10,7 +10,10 @@ class EventApp {
 
     async loadEvents() {
         try {
-            this.events = await EventParser.loadEvents();
+            const data = await EventParser.loadEvents();
+            this.events = data.events;
+            document.querySelector('.navbar-brand').textContent = data.title;
+            document.title = data.title;
             this.updateView();
         } catch (error) {
             console.error('イベントの読み込みに失敗しました:', error);

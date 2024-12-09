@@ -3,7 +3,16 @@ class EventParser {
         const timestamp = new Date().getTime();
         const response = await fetch(`all-events.md?t=${timestamp}`);
         const text = await response.text();
-        return this.parseMarkdown(text);
+        return {
+            title: this.parseTitle(text),
+            events: this.parseMarkdown(text)
+        };
+    }
+
+    static parseTitle(markdown) {
+        const lines = markdown.split('\n');
+        const titleLine = lines.find(line => line.startsWith('# '));
+        return titleLine ? titleLine.replace('# ', '').trim() : 'イベント一覧';
     }
 
     static parseMarkdown(markdown) {
