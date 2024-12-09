@@ -4,24 +4,31 @@ class EventParser {
         const response = await fetch(`all-events.md?t=${timestamp}`);
         let text = await response.text();
         
+        let debugInfo = [];
+        debugInfo.push('=== Start Processing ===');
+        
         // 改行コードを LF に統一
         text = text.replace(/\r\n/g, '\n');
-        console.log('=== Start Processing ===');
-        console.log('1. Normalized line endings');
+        debugInfo.push('1. Normalized line endings');
         
-        return {
-            title: this.parseTitle(text),
-            events: this.parseMarkdown(text)
+        const result = {
+            title: this.parseTitle(text, debugInfo),
+            events: this.parseMarkdown(text, debugInfo)
         };
+        
+        // デバッグ情報をポップアップ表示
+        alert(debugInfo.join('\n'));
+        
+        return result;
     }
 
-    static parseTitle(markdown) {
+    static parseTitle(markdown, debugInfo) {
         // Split the markdown into sections and get the first section
         const sections = markdown.split('---').map(section => section.trim()).filter(Boolean);
-        console.log('2. Split into sections:', sections.length, 'sections found');
+        debugInfo.push(`2. Split into sections: ${sections.length} sections found`);
         
         if (sections.length === 0) {
-            console.log('No sections found, using default title');
+            debugInfo.push('No sections found, using default title');
             return 'イベント一覧';
         }
         
@@ -30,17 +37,17 @@ class EventParser {
         const lines = firstSection.split('\n');
         const titleLine = lines.find(line => line.startsWith('# '));
         
-        console.log('3. Found title:', titleLine ? titleLine : 'No title found');
+        debugInfo.push(`3. Found title: ${titleLine ? titleLine : 'No title found'}`);
         return titleLine ? titleLine.replace('# ', '').trim() : 'イベント一覧';
     }
 
-    static parseMarkdown(markdown) {
+    static parseMarkdown(markdown, debugInfo) {
         const events = [];
         
         // Split by horizontal rule and filter out empty sections
         const sections = markdown.split('---').map(section => section.trim()).filter(Boolean);
         
-        console.log('Total sections found:', sections.length);
+        debugInfo.push(`4. Total sections found: ${sections.length}`);
         
         // Skip the first section (metadata) and process the rest
         for (let i = 1; i < sections.length; i++) {
@@ -50,17 +57,17 @@ class EventParser {
             // Check if this is an event section (starts with ## )
             const titleLine = lines.find(line => line.trim().startsWith('## '));
             if (titleLine) {
-                console.log('Processing event section:', titleLine.trim());
+                debugInfo.push(`5. Processing event section: ${titleLine.trim()}`);
                 const event = this.parseEventSection(section);
                 if (event && event.title && event.coordinates) {
                     events.push(event);
                 }
             } else {
-                console.log('Skipping non-event section:', section.substring(0, 50) + '...');
+                debugInfo.push(`5. Skipping non-event section: ${section.substring(0, 50)}...`);
             }
         }
         
-        console.log('Total events parsed:', events.length);
+        debugInfo.push(`6. Total events parsed: ${events.length}`);
         return events;
     }
 
