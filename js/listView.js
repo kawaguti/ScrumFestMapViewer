@@ -29,7 +29,7 @@ class ListView {
         `;
 
         row.querySelector('.show-details').addEventListener('click', () => {
-            const content = document.getElementById('eventContent');
+            const content = document.getElementById('listEventContent');
             let html = `
                 <h4>${event.title}</h4>
                 <p><strong>開催地:</strong> ${event.location || ''}</p>
@@ -51,13 +51,12 @@ class ListView {
     }
 
     show() {
-        document.getElementById('mapContainer').classList.add('d-none');
-        document.getElementById('eventDetails').classList.add('d-none');
-        this.container.classList.remove('d-none');
+        document.getElementById('mapView').classList.add('d-none');
+        document.getElementById('listView').classList.remove('d-none');
     }
 
     hide() {
-        this.container.classList.add('d-none');
-        document.getElementById('eventDetails').classList.remove('d-none');
+        document.getElementById('listView').classList.add('d-none');
+        document.getElementById('mapView').classList.remove('d-none');
     }
 }

@@ -32,34 +32,40 @@
     </nav>
 
     <div class="container-fluid h-100">
-        <div class="row h-100">
-            <div class="col-md-8 h-100" id="mapContainer">
-                <div id="map"></div>
-            </div>
-            <div class="col-md-4 h-100">
-                <div id="eventDetails" class="p-3">
-                    <h3>イベント詳細</h3>
-                    <div id="eventContent">
-                        イベントを選択してください
+        <div id="mapView">
+            <div class="row h-100">
+                <div class="col-md-8 h-100" id="mapContainer">
+                    <div id="map"></div>
+                </div>
+                <div class="col-md-4 h-100">
+                    <div id="eventDetails" class="p-3">
+                        <h3>イベント詳細</h3>
+                        <div id="eventContent">
+                            イベントを選択してください
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         
-        <div id="listContainer" class="row d-none">
-            <div class="col-12">
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>イベント名</th>
-                                <th>開催地</th>
-                                <th>開催日</th>
-                                <th>詳細</th>
-                            </tr>
-                        </thead>
-                        <tbody id="eventList"></tbody>
-                    </table>
+        <div id="listView" class="d-none">
+            <div class="table-responsive mt-3">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>イベント名</th>
+                            <th>開催地</th>
+                            <th>開催日</th>
+                            <th>詳細</th>
+                        </tr>
+                    </thead>
+                    <tbody id="eventList"></tbody>
+                </table>
+            </div>
+            <div id="listEventDetails" class="mt-3">
+                <h3>イベント詳細</h3>
+                <div id="listEventContent">
+                    イベントを選択してください
                 </div>
             </div>
         </div>
