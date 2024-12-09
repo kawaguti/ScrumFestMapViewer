@@ -63,16 +63,18 @@ class MapView {
         const events = this.eventGroups.get(coordKey);
         if (!events || events.length === 0) return;
 
+        // イベントデータをグローバルに保存
+        if (!window.eventDetailsMap) {
+            window.eventDetailsMap = new Map();
+        }
+
         let content = '<div class="list-group">';
-        events.forEach(event => {
+        events.forEach((event, index) => {
+            const eventId = `${coordKey}-${index}`;
+            window.eventDetailsMap.set(eventId, event);
+            
             content += `
-                <a href="#" class="list-group-item list-group-item-action" onclick="event.preventDefault(); this.showEventDetails(${JSON.stringify({
-                    title: event.title,
-                    location: event.location,
-                    date: event.date,
-                    description: event.description,
-                    website: event.website
-                }).replace(/'/g, "\\'")})">
+                <a href="javascript:void(0)" class="list-group-item list-group-item-action" data-event-id="${eventId}">
                     <div class="d-flex w-100 justify-content-between">
                         <h6 class="mb-1">${event.title}</h6>
                         <small>${event.date ? new Date(event.date).toLocaleDateString('ja-JP') : ''}</small>
@@ -82,10 +84,24 @@ class MapView {
         });
         content += '</div>';
 
-        L.popup()
+        const popup = L.popup()
             .setLatLng(events[0].coordinates)
             .setContent(content)
             .openOn(this.map);
+
+        // ポップアップが開いた後にイベントリスナーを追加
+        setTimeout(() => {
+            const links = document.querySelectorAll('.leaflet-popup-content .list-group-item');
+            links.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const eventId = e.currentTarget.dataset.eventId;
+                    const event = window.eventDetailsMap.get(eventId);
+                    if (event) {
+                        this.showEventDetails(event);
+                    }
+                });
+            });
+        }, 0);
     }
 
     showEventDetails(event) {
