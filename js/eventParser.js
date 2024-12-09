@@ -46,7 +46,12 @@ class EventParser {
                     event.coordinates = [lat, lng];
                 }
             } else if (line.startsWith('- 開催日:')) {
-                event.date = new Date(line.replace('- 開催日:', '').trim());
+                const dateStr = line.replace('- 開催日:', '').trim();
+                const match = dateStr.match(/(\d{4})年(\d{2})月(\d{2})日/);
+                if (match) {
+                    const [_, year, month, day] = match;
+                    event.date = new Date(year, month - 1, day);
+                }
             } else if (line.startsWith('- Webサイト:')) {
                 event.website = line.replace('- Webサイト:', '').trim();
             } else if (line.startsWith('- 説明:')) {
