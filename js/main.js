@@ -76,6 +76,7 @@ class EventApp {
         // Update map
         this.mapView.clearMarkers();
         filteredEvents.forEach(event => this.mapView.addMarker(event));
+        this.mapView.fitMapToMarkers(); // 全マーカーが見えるように地図を調整
 
         // Update list
         this.listView.clearList();

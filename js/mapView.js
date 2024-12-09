@@ -1,6 +1,6 @@
 class MapView {
     constructor() {
-        this.map = L.map('map').setView([35.0, 137.0], 4);
+        this.map = L.map('map');
         this.markers = L.layerGroup();
         this.eventGroups = new Map(); // 座標ごとのイベントグループを管理
         
@@ -9,6 +9,17 @@ class MapView {
         }).addTo(this.map);
         
         this.markers.addTo(this.map);
+
+        // 日本全体が見えるデフォルト表示
+        this.map.setView([37.0, 137.0], 5);
+    }
+
+    fitMapToMarkers() {
+        const markers = this.markers.getLayers();
+        if (markers.length > 0) {
+            const group = L.featureGroup(markers);
+            this.map.fitBounds(group.getBounds().pad(0.1)); // 10%のパディングを追加
+        }
     }
 
     clearMarkers() {
