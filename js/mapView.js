@@ -66,7 +66,13 @@ class MapView {
         let content = '<div class="list-group">';
         events.forEach(event => {
             content += `
-                <a href="#" class="list-group-item list-group-item-action" onclick="event.preventDefault(); window.mapView.showEventDetails(${JSON.stringify(event)})">
+                <a href="#" class="list-group-item list-group-item-action" onclick="event.preventDefault(); window.mapView.showEventDetails({
+                    title: '${event.title}',
+                    location: '${event.location}',
+                    date: new Date('${event.date}'),
+                    description: '${event.description.replace(/'/g, "\\'")}',
+                    website: '${event.website}'
+                })">
                     <div class="d-flex w-100 justify-content-between">
                         <h6 class="mb-1">${event.title}</h6>
                         <small>${event.date ? new Date(event.date).toLocaleDateString('ja-JP') : ''}</small>

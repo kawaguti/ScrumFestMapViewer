@@ -28,6 +28,14 @@ html, body {
 }
 
 .table {
+.leaflet-popup-content-wrapper {
+    background-color: white;
+    color: black;
+}
+
+.leaflet-popup-tip {
+    background-color: white;
+}
     margin-top: 1rem;
 }
 
