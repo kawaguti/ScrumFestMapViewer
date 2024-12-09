@@ -18,14 +18,14 @@ class EventParser {
     static parseMarkdown(markdown) {
         const events = [];
         
-        // Find the index of the first event section (starts with '## ')
-        const firstEventIndex = markdown.indexOf('\n## ');
-        if (firstEventIndex === -1) {
+        // Find the first event section using regex to handle both LF and CRLF
+        const firstEventMatch = markdown.match(/\r?\n## /);
+        if (!firstEventMatch) {
             return events; // No events found
         }
         
         // Remove everything before the first event
-        const eventsContent = markdown.substring(firstEventIndex);
+        const eventsContent = markdown.substring(firstEventMatch.index);
         
         // Split by horizontal rule and filter out empty sections
         const sections = eventsContent.split('---').map(section => section.trim()).filter(Boolean);
