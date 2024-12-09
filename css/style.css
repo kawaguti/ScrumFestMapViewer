@@ -20,6 +20,11 @@ html, body {
     border-radius: 50%;
     text-align: center;
     color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 .table {
