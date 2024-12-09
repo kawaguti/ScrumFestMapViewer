@@ -24,6 +24,16 @@ class ListView {
             <td>${event.location || ''}</td>
             <td>${dateStr}</td>
             <td style="text-align: center">
+                ${event.website ? 
+                    `<a href="${event.website}" target="_blank" class="btn btn-sm btn-outline-primary">サイト</a>` : 
+                    ''}
+            </td>
+            <td style="text-align: center">
+                ${event.recordingUrl ? 
+                    `<a href="${event.recordingUrl}" target="_blank" class="btn btn-sm btn-outline-success">録画</a>` : 
+                    ''}
+            </td>
+            <td style="text-align: center">
                 <button class="btn btn-sm btn-outline-info show-details">詳細</button>
             </td>
         `;
