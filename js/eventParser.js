@@ -99,8 +99,8 @@ class EventParser {
                 }
             } else if (line.startsWith('- Webサイト:')) {
                 event.website = line.replace('- Webサイト:', '').trim();
-            } else if (line.startsWith('- 録画URL:')) {
-                event.recordingUrl = line.replace('- 録画URL:', '').trim();
+            } else if (line.startsWith('- 録画一覧:')) {
+                event.recordingUrl = line.replace('- 録画一覧:', '').trim();
             } else if (line.startsWith('- 説明:')) {
                 i++;
                 while (i < lines.length && !lines[i].trim().startsWith('-')) {
