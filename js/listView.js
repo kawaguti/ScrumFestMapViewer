@@ -20,6 +20,8 @@ class ListView {
         });
         
         row.innerHTML = `
+            <td>${event.title}</td>
+            <td>${event.location || ''}</td>
             <td>${dateStr}</td>
             <td style="text-align: center">
                 <button class="btn btn-sm btn-outline-info show-details">詳細</button>
