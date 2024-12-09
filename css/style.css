@@ -37,6 +37,16 @@ html, body {
     background-color: white;
 }
     margin-top: 1rem;
+.leaflet-popup-content .list-group-item {
+    background-color: white;
+    color: black;
+    border-color: #dee2e6;
+}
+
+.leaflet-popup-content .list-group-item:hover {
+    background-color: #f8f9fa;
+    color: black;
+}
 }
 
 @media (max-width: 768px) {
