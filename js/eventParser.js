@@ -40,7 +40,7 @@ class EventParser {
         let title = '';
         
         // Find the event title (line starting with '## ')
-        const titleLine = lines.find(line => line.trim().startsWith('## '));
+        const titleLine = lines.find(line => line.startsWith('## '));
         if (titleLine) {
             title = titleLine.replace('## ', '').trim();
         }
