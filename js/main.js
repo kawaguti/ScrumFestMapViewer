@@ -1,10 +1,10 @@
 class EventApp {
     constructor() {
+        this.events = [];
         this.mapView = new MapView();
         this.listView = new ListView();
-        this.events = [];
         
-        this.initializeViewControls();
+        this.setupEventListeners();
         this.loadEvents();
     }
 
@@ -23,49 +23,48 @@ class EventApp {
         }
     }
 
-    initializeViewControls() {
-        // 期間切り替え
-        document.getElementById('viewAll').addEventListener('click', () => {
-            document.getElementById('viewAll').classList.add('active');
+    setupEventListeners() {
+        document.getElementById('viewAll').addEventListener('click', (e) => {
             document.getElementById('viewYear').classList.remove('active');
+            e.target.classList.add('active');
             this.updateView();
         });
 
-        document.getElementById('viewYear').addEventListener('click', () => {
-            document.getElementById('viewYear').classList.add('active');
+        document.getElementById('viewYear').addEventListener('click', (e) => {
             document.getElementById('viewAll').classList.remove('active');
+            e.target.classList.add('active');
             this.updateView();
         });
 
-        // 表示方法切り替え
-        document.getElementById('viewMap').addEventListener('click', () => {
-            document.getElementById('viewMap').classList.add('active');
+        document.getElementById('viewMap').addEventListener('click', (e) => {
             document.getElementById('viewList').classList.remove('active');
+            e.target.classList.add('active');
             this.mapView.show();
+            this.listView.hide();
         });
 
-        document.getElementById('viewList').addEventListener('click', () => {
-            document.getElementById('viewList').classList.add('active');
+        document.getElementById('viewList').addEventListener('click', (e) => {
             document.getElementById('viewMap').classList.remove('active');
-            this.updateView();
+            e.target.classList.add('active');
             this.listView.show();
+            this.mapView.hide();
         });
     }
 
     updateView() {
         const showYearOnly = document.getElementById('viewYear').classList.contains('active');
-        const now = new Date();
-        const oneYearLater = new Date(now.getFullYear() + 1, now.getMonth(), now.getDate());
+        let filteredEvents = this.events;
 
-        const filteredEvents = this.events.filter(event => {
-            if (!event.date) return false;
-            
-            if (showYearOnly) {
-                const eventDate = new Date(event.date);
-                return eventDate >= now && eventDate <= oneYearLater;
-            }
-            return true;
-        });
+        if (showYearOnly) {
+            const now = new Date();
+            const oneYearLater = new Date();
+            oneYearLater.setFullYear(now.getFullYear() + 1);
+
+            filteredEvents = this.events.filter(event => {
+                if (!event.date) return false;
+                return event.date >= now && event.date <= oneYearLater;
+            });
+        }
 
         // Sort events by date
         filteredEvents.sort((a, b) => {
@@ -79,6 +78,10 @@ class EventApp {
         filteredEvents.forEach(event => this.mapView.addMarker(event));
 
         // Update list
+        this.listView.clearList();
+        filteredEvents.forEach(event => this.listView.addEvent(event));
+    }
+
     selectUpcomingEvent() {
         const now = new Date();
         
@@ -98,15 +101,8 @@ class EventApp {
         // 最も近い未来のイベントを選択
         if (futureEvents.length > 0) {
             const nextEvent = futureEvents[0];
-            // 地図表示の場合
-            if (!document.getElementById('listView').classList.contains('active')) {
-                this.mapView.showEventDetails(nextEvent);
-            }
+            this.mapView.showEventDetails(nextEvent);
         }
-    }
-
-        this.listView.clearList();
-        filteredEvents.forEach(event => this.listView.addEvent(event));
     }
 }
 
