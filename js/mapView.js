@@ -1,6 +1,6 @@
 class MapView {
     constructor() {
-        this.map = L.map('map').setView([38.0, 137.0], 5);
+        this.map = L.map('map').setView([35.0, 137.0], 4);
         this.markers = L.layerGroup();
         this.eventGroups = new Map(); // 座標ごとのイベントグループを管理
         
