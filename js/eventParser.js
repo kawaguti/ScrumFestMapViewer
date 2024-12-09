@@ -17,11 +17,16 @@ class EventParser {
 
     static parseMarkdown(markdown) {
         const events = [];
-        const sections = markdown.split('---').filter(section => section.trim());
+        const sections = markdown.split('---');
         
-        // Skip the first section as it contains the document title
-        for (let i = 1; i < sections.length; i++) {
-            const event = this.parseEventSection(sections[i]);
+        // Filter out empty sections and skip the first section (document title)
+        const eventSections = sections
+            .map(section => section.trim())
+            .filter(section => section.length > 0)
+            .slice(1);
+        
+        for (const section of eventSections) {
+            const event = this.parseEventSection(section);
             if (event.title && event.coordinates !== '未設定') {
                 events.push(event);
             }
@@ -34,12 +39,10 @@ class EventParser {
         const lines = section.trim().split('\n');
         let title = '';
         
-        // Find the first line that starts with '## ' for the event title
-        for (const line of lines) {
-            if (line.startsWith('## ')) {
-                title = line.replace('## ', '').trim();
-                break;
-            }
+        // Find the event title (line starting with '## ')
+        const titleLine = lines.find(line => line.trim().startsWith('## '));
+        if (titleLine) {
+            title = titleLine.replace('## ', '').trim();
         }
         
         const event = {
