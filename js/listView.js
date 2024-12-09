@@ -17,7 +17,7 @@ class ListView {
             month: '2-digit',
             day: '2-digit',
             weekday: 'short'
-        }) : '';
+        });
         
         row.innerHTML = `
             <td>${event.title}</td>
