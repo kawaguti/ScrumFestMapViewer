@@ -1,6 +1,6 @@
 #map {
-    height: 100%;
-    min-height: 400px;
+    height: 85vh;
+    min-height: 300px;
 }
 
 #eventDetails {
@@ -9,7 +9,7 @@
 }
 
 #mapContainer {
-    height: 140vh;
+    height: auto;
     padding: 0.5rem;
 }
 
@@ -51,11 +51,11 @@
 
 @media (max-width: 768px) {
     #map {
-        height: 105vh;
+        height: 70vh;
     }
     
     #eventDetails {
         height: auto;
-        max-height: calc(30vh - 1rem);
+        max-height: calc(25vh - 1rem);
     }
 }
