@@ -9,7 +9,7 @@
 }
 
 #mapContainer {
-    height: 95vh;
+    height: 140vh;
     padding: 0.5rem;
 }
 
@@ -51,7 +51,7 @@
 
 @media (max-width: 768px) {
     #map {
-        height: 70vh;
+        height: 105vh;
     }
     
     #eventDetails {
