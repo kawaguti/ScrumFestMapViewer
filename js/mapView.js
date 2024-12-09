@@ -132,7 +132,7 @@ class MapView {
         }
 
         if (event.recordingUrl) {
-            html += `<p><strong>録画URL:</strong><br><a href="${event.recordingUrl}" target="_blank">${event.recordingUrl}</a></p>`;
+            html += `<p><strong>録画一覧:</strong><br><a href="${event.recordingUrl}" target="_blank">${event.recordingUrl}</a></p>`;
         }
 
         content.innerHTML = html;
