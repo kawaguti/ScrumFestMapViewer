@@ -121,6 +121,11 @@ class MapView {
         }
 
         content.innerHTML = html;
+
+        // 選択されたイベントの位置に地図を移動
+        if (event.coordinates && Array.isArray(event.coordinates)) {
+            this.map.setView(event.coordinates, 6);
+        }
     }
 
     show() {
