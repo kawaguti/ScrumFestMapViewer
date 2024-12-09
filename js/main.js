@@ -51,8 +51,11 @@ class EventApp {
         const oneYearLater = new Date(now.getFullYear() + 1, now.getMonth(), now.getDate());
 
         const filteredEvents = this.events.filter(event => {
+            if (!event.date) return false;
+            
             if (showYearOnly) {
-                return event.date >= now && event.date <= oneYearLater;
+                const eventDate = new Date(event.date);
+                return eventDate >= now && eventDate <= oneYearLater;
             }
             return true;
         });
