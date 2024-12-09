@@ -10,8 +10,16 @@ class EventParser {
     }
 
     static parseTitle(markdown) {
-        const lines = markdown.split('\n');
+        // Split the markdown into sections and get the first section
+        const sections = markdown.split('---').map(section => section.trim()).filter(Boolean);
+        if (sections.length === 0) return 'イベント一覧';
+        
+        // Get the first section and look for the title
+        const firstSection = sections[0];
+        const lines = firstSection.split('\n');
         const titleLine = lines.find(line => line.startsWith('# '));
+        
+        console.log('Found title line:', titleLine);
         return titleLine ? titleLine.replace('# ', '').trim() : 'イベント一覧';
     }
 
@@ -23,15 +31,10 @@ class EventParser {
         
         console.log('Total sections found:', sections.length);
         
-        // Process each section
-        for (const section of sections) {
+        // Skip the first section (metadata) and process the rest
+        for (let i = 1; i < sections.length; i++) {
+            const section = sections[i];
             const lines = section.split('\n');
-            
-            // Skip metadata section (starts with # イベント一覧)
-            if (lines.some(line => line.trim() === '# イベント一覧')) {
-                console.log('Skipping metadata section');
-                continue;
-            }
             
             // Check if this is an event section (starts with ## )
             const titleLine = lines.find(line => line.trim().startsWith('## '));
@@ -42,7 +45,7 @@ class EventParser {
                     events.push(event);
                 }
             } else {
-                console.log('Skipping non-event section');
+                console.log('Skipping non-event section:', section.substring(0, 50) + '...');
             }
         }
         
