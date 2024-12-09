@@ -6,7 +6,8 @@ class EventParser {
         
         // 改行コードを LF に統一
         text = text.replace(/\r\n/g, '\n');
-        console.log('Normalized line endings');
+        console.log('=== Start Processing ===');
+        console.log('1. Normalized line endings');
         
         return {
             title: this.parseTitle(text),
@@ -17,14 +18,19 @@ class EventParser {
     static parseTitle(markdown) {
         // Split the markdown into sections and get the first section
         const sections = markdown.split('---').map(section => section.trim()).filter(Boolean);
-        if (sections.length === 0) return 'イベント一覧';
+        console.log('2. Split into sections:', sections.length, 'sections found');
+        
+        if (sections.length === 0) {
+            console.log('No sections found, using default title');
+            return 'イベント一覧';
+        }
         
         // Get the first section and look for the title
         const firstSection = sections[0];
         const lines = firstSection.split('\n');
         const titleLine = lines.find(line => line.startsWith('# '));
         
-        console.log('Found title line:', titleLine);
+        console.log('3. Found title:', titleLine ? titleLine : 'No title found');
         return titleLine ? titleLine.replace('# ', '').trim() : 'イベント一覧';
     }
 
@@ -32,7 +38,7 @@ class EventParser {
         const events = [];
         
         // Split by horizontal rule and filter out empty sections
-        const sections = markdown.split(' - - - ').map(section => section.trim()).filter(Boolean);
+        const sections = markdown.split('---').map(section => section.trim()).filter(Boolean);
         
         console.log('Total sections found:', sections.length);
         
