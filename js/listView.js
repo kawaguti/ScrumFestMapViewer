@@ -30,8 +30,10 @@ class ListView {
 
         row.querySelector('.show-details').addEventListener('click', () => {
             const content = document.getElementById('listEventContent');
+            const modalTitle = document.getElementById('eventDetailModalLabel');
+            modalTitle.textContent = event.title;
+            
             let html = `
-                <h4>${event.title}</h4>
                 <p><strong>開催地:</strong> ${event.location || ''}</p>
                 <p><strong>開催日:</strong> ${dateStr}</p>
             `;
@@ -45,6 +47,9 @@ class ListView {
             }
 
             content.innerHTML = html;
+            
+            const modal = new bootstrap.Modal(document.getElementById('eventDetailModal'));
+            modal.show();
         });
 
         this.tbody.appendChild(row);
