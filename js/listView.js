@@ -46,6 +46,10 @@ class ListView {
                 html += `<p><strong>Webサイト:</strong><br><a href="${event.website}" target="_blank">${event.website}</a></p>`;
             }
 
+            if (event.recordingUrl) {
+                html += `<p><strong>録画一覧:</strong><br><a href="${event.recordingUrl}" target="_blank">${event.recordingUrl}</a></p>`;
+            }
+
             content.innerHTML = html;
             
             const modal = new bootstrap.Modal(document.getElementById('eventDetailModal'));
