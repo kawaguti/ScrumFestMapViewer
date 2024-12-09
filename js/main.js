@@ -41,6 +41,7 @@ class EventApp {
         document.getElementById('viewList').addEventListener('click', () => {
             document.getElementById('viewList').classList.add('active');
             document.getElementById('viewMap').classList.remove('active');
+            this.updateView();
             this.listView.show();
         });
     }
