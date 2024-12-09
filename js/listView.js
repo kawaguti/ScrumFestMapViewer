@@ -51,11 +51,13 @@ class ListView {
     }
 
     show() {
-        this.container.classList.remove('d-none');
         document.getElementById('mapContainer').classList.add('d-none');
+        document.getElementById('eventDetails').classList.add('d-none');
+        this.container.classList.remove('d-none');
     }
 
     hide() {
         this.container.classList.add('d-none');
+        document.getElementById('eventDetails').classList.remove('d-none');
     }
 }
