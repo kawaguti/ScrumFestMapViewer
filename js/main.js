@@ -61,7 +61,11 @@ class EventApp {
         });
 
         // Sort events by date
-        filteredEvents.sort((a, b) => a.date - b.date);
+        filteredEvents.sort((a, b) => {
+            if (!a.date) return 1;
+            if (!b.date) return -1;
+            return a.date.getTime() - b.date.getTime();
+        });
 
         // Update map
         this.mapView.clearMarkers();
