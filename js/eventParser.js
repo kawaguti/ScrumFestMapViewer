@@ -23,18 +23,26 @@ class EventParser {
         
         console.log('Total sections found:', sections.length);
         
-        // Process each section that contains an event
+        // Process each section
         for (const section of sections) {
             const lines = section.split('\n');
-            // Check if any line starts with '## ' (event title)
-            const hasEventTitle = lines.some(line => line.trim().startsWith('## '));
             
-            if (hasEventTitle) {
-                console.log('Processing section with title:', lines.find(line => line.trim().startsWith('## ')));
+            // Skip metadata section (starts with # イベント一覧)
+            if (lines.some(line => line.trim() === '# イベント一覧')) {
+                console.log('Skipping metadata section');
+                continue;
+            }
+            
+            // Check if this is an event section (starts with ## )
+            const titleLine = lines.find(line => line.trim().startsWith('## '));
+            if (titleLine) {
+                console.log('Processing event section:', titleLine.trim());
                 const event = this.parseEventSection(section);
                 if (event && event.title && event.coordinates) {
                     events.push(event);
                 }
+            } else {
+                console.log('Skipping non-event section');
             }
         }
         
