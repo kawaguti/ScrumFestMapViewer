@@ -31,13 +31,6 @@ class EventParser {
             }
         }
         
-        for (const section of sections) {
-            const event = this.parseEventSection(section);
-            if (event && event.title && event.coordinates) {
-                events.push(event);
-            }
-        }
-        
         return events;
     }
 
