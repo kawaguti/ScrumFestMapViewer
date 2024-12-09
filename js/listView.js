@@ -9,12 +9,20 @@ class ListView {
     }
 
     addEvent(event) {
+        if (!event || !event.title) return;
+        
         const row = document.createElement('tr');
+        const dateStr = event.date ? event.date.toLocaleDateString('ja-JP', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            weekday: 'short'
+        }) : '';
         
         row.innerHTML = `
             <td>${event.title}</td>
-            <td>${event.location}</td>
-            <td>${event.date.toLocaleDateString('ja-JP')}</td>
+            <td>${event.location || ''}</td>
+            <td>${dateStr}</td>
             <td>
                 <button class="btn btn-sm btn-outline-info show-details">詳細</button>
             </td>
@@ -24,8 +32,8 @@ class ListView {
             const content = document.getElementById('eventContent');
             let html = `
                 <h4>${event.title}</h4>
-                <p><strong>開催地:</strong> ${event.location}</p>
-                <p><strong>開催日:</strong> ${event.date.toLocaleDateString('ja-JP')}</p>
+                <p><strong>開催地:</strong> ${event.location || ''}</p>
+                <p><strong>開催日:</strong> ${dateStr}</p>
             `;
 
             if (event.description) {
