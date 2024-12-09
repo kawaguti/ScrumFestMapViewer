@@ -131,6 +131,10 @@ class MapView {
             html += `<p><strong>Webサイト:</strong><br><a href="${event.website}" target="_blank">${event.website}</a></p>`;
         }
 
+        if (event.recordingUrl) {
+            html += `<p><strong>録画URL:</strong><br><a href="${event.recordingUrl}" target="_blank">${event.recordingUrl}</a></p>`;
+        }
+
         content.innerHTML = html;
 
         // 選択されたイベントの位置に地図を移動
