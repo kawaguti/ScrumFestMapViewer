@@ -1,0 +1,38 @@
+html, body {
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+#map {
+    height: calc(100vh - 56px);
+    width: 100%;
+}
+
+#eventDetails {
+    height: calc(100vh - 56px);
+    overflow-y: auto;
+}
+
+.event-marker {
+    background-color: var(--bs-primary);
+    border: 2px solid white;
+    border-radius: 50%;
+    text-align: center;
+    color: white;
+}
+
+.table {
+    margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+    #map {
+        height: 50vh;
+    }
+    
+    #eventDetails {
+        height: auto;
+        max-height: 50vh;
+    }
+}
