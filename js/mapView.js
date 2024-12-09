@@ -47,13 +47,12 @@ class MapView {
     }
 
     show() {
-        document.getElementById('mapContainer').classList.remove('d-none');
-        document.getElementById('eventDetails').classList.remove('d-none');
-        document.getElementById('listContainer').classList.add('d-none');
+        document.getElementById('mapView').classList.remove('d-none');
+        document.getElementById('listView').classList.add('d-none');
         this.map.invalidateSize();
     }
 
     hide() {
-        document.getElementById('mapContainer').classList.add('d-none');
+        document.getElementById('mapView').classList.add('d-none');
     }
 }
