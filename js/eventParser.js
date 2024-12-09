@@ -17,12 +17,21 @@ class EventParser {
 
     static parseMarkdown(markdown) {
         const events = [];
-        // Split by horizontal rule and filter out empty sections
-        const sections = markdown.split('---').map(section => section.trim()).filter(Boolean);
         
-        // Process each section after the first one (which contains the document title)
-        for (let i = 1; i < sections.length; i++) {
-            const event = this.parseEventSection(sections[i]);
+        // Find the index of the first event section (starts with '## ')
+        const firstEventIndex = markdown.indexOf('\n## ');
+        if (firstEventIndex === -1) {
+            return events; // No events found
+        }
+        
+        // Remove everything before the first event
+        const eventsContent = markdown.substring(firstEventIndex);
+        
+        // Split by horizontal rule and filter out empty sections
+        const sections = eventsContent.split('---').map(section => section.trim()).filter(Boolean);
+        
+        for (const section of sections) {
+            const event = this.parseEventSection(section);
             if (event && event.title && event.coordinates) {
                 events.push(event);
             }
