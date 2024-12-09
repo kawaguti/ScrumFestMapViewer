@@ -59,8 +59,11 @@ class EventParser {
             if (titleLine) {
                 debugInfo.push(`5. Processing event section: ${titleLine.trim()}`);
                 const event = this.parseEventSection(section);
-                if (event && event.title && event.coordinates) {
+                if (event && event.title && event.coordinates && event.location && event.date) {
                     events.push(event);
+                    debugInfo.push(`   - Added event: ${event.title}`);
+                } else {
+                    debugInfo.push(`   - Skipped event due to missing required fields: ${event ? event.title : 'Unknown'}`);
                 }
             } else {
                 debugInfo.push(`5. Skipping non-event section: ${section.substring(0, 50)}...`);
