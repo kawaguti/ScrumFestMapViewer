@@ -21,9 +21,16 @@ class EventParser {
         // Split by horizontal rule and filter out empty sections
         const sections = markdown.split('---').map(section => section.trim()).filter(Boolean);
         
-        // Skip sections that don't start with '## ' (event titles)
+        console.log('Total sections found:', sections.length);
+        
+        // Process each section that contains an event
         for (const section of sections) {
-            if (section.includes('## ')) {
+            const lines = section.split('\n');
+            // Check if any line starts with '## ' (event title)
+            const hasEventTitle = lines.some(line => line.trim().startsWith('## '));
+            
+            if (hasEventTitle) {
+                console.log('Processing section with title:', lines.find(line => line.trim().startsWith('## ')));
                 const event = this.parseEventSection(section);
                 if (event && event.title && event.coordinates) {
                     events.push(event);
@@ -31,6 +38,7 @@ class EventParser {
             }
         }
         
+        console.log('Total events parsed:', events.length);
         return events;
     }
 
