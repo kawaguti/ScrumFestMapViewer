@@ -52,29 +52,25 @@ class EventApp {
     }
 
     updateView() {
-        const showYearOnly = document.getElementById('viewYear').classList.contains('active');
+        const isFutureEvents = document.getElementById('viewYear').classList.contains('active');
+        const now = new Date();
         let filteredEvents = this.events;
 
-        if (showYearOnly) {
-            const now = new Date();
-            const oneYearLater = new Date();
-            oneYearLater.setFullYear(now.getFullYear() + 1);
-
-            filteredEvents = this.events.filter(event => {
-                if (!event.date) return false;
-                return event.date >= now && event.date <= oneYearLater;
-            });
-        }
+        // Filter events based on whether they are past or future
+        filteredEvents = this.events.filter(event => {
+            if (!event.date) return false;
+            return isFutureEvents ? event.date >= now : event.date < now;
+        });
 
         // Sort events by date
-        // For one year view: ascending order (past first)
-        // For all events view: descending order (future first)
+        // For future events: ascending order (closest future date first)
+        // For past events: descending order (most recent past first)
         filteredEvents.sort((a, b) => {
             if (!a.date) return 1;
             if (!b.date) return -1;
-            return showYearOnly
-                ? a.date.getTime() - b.date.getTime()  // ascending for one year view
-                : b.date.getTime() - a.date.getTime(); // descending for all events
+            return isFutureEvents
+                ? a.date.getTime() - b.date.getTime()  // ascending for future events
+                : b.date.getTime() - a.date.getTime(); // descending for past events
         });
 
         // Update map
