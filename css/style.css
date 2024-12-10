@@ -57,11 +57,11 @@
 
 @media (max-width: 768px) {
     #map {
-        height: 70vh;
+        height: 50vh;
     }
     
     #eventDetails {
         height: auto;
-        max-height: calc(25vh - 1rem);
+        max-height: calc(45vh - 1rem);
     }
 }
