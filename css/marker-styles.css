@@ -1,10 +1,15 @@
 .marker-container {
     position: relative;
+    /* マーカーの基準点を設定 - アニメーションの中心点 */
     transform-origin: center bottom;
+    /* クリック領域の最適化 */
     cursor: pointer;
+    /* z-indexの管理 - マーカーを他の要素より前面に */
     z-index: 1000;  /* 通常のマーカー */
+    /* マーカーのサイズを保持 */
     width: 30px;
     height: 42px;
+    /* マーカーの位置を微調整 */
     margin-left: -15px;  /* width/2 でセンタリング */
     margin-top: -42px;   /* height でオフセット */
 }
@@ -18,21 +23,22 @@
 }
 
 .marker-pin-google {
-    width: 30px;
-    height: 42px;
+    width: 30px;      /* マーカー全体の幅 */
+    height: 42px;     /* マーカー全体の高さ */
     position: relative;
-    transform-origin: bottom;
+    transform-origin: bottom;  /* アニメーションの基準点 */
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    will-change: transform;
+    will-change: transform;  /* パフォーマンス最適化 */
 }
 
+/* マーカーヘッド（円形部分） */
 .marker-head {
     position: absolute;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 24px;
-    height: 24px;
+    width: 20px;      /* 円形部分の直径 */
+    height: 20px;     /* 円形部分の直径 */
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -41,36 +47,43 @@
     font-size: 13px;
     font-weight: bold;
     border: 2px solid white;
+    /* 影の追加による立体感 */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     transition: box-shadow 0.2s ease-out;
+    will-change: box-shadow;  /* シャドウアニメーションの最適化 */
 }
 
+/* マーカーテール（三角形部分） */
 .marker-tail {
     position: absolute;
-    top: 18px;
+    top: 15px;        /* ヘッドとの位置調整 */
     left: 50%;
     transform: translateX(-50%);
-    width: 14px;
-    height: 24px;
+    width: 12px;      /* 三角形の基底幅 */
+    height: 27px;     /* 三角形の高さ */
     clip-path: polygon(50% 100%, 0 0, 100% 0);
+    /* 影の追加による立体感 */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.2s ease-out;
+    will-change: box-shadow;  /* シャドウアニメーションの最適化 */
 }
 
-/* イベントの状態による色分け */
+/* イベント状態による色分け */
 .future-event .marker-head,
 .future-event .marker-tail {
     background-color: #4285F4;
+    /* アクティブな状態を示す明るい色 */
 }
 
 .past-event .marker-head,
 .past-event .marker-tail {
     background-color: #757575;
+    /* 非アクティブな状態を示す暗い色 */
 }
 
 /* ホバー時のアニメーション */
 .marker-pin-google:hover {
-    transform: scale(1.1) translateY(-2px);
+    transform: scale(1.1) translateY(-2px);  /* 少し上に浮かせる */
     transition: all 0.2s ease-out;
 }
 
@@ -84,6 +97,30 @@
 
 /* クリック時のアニメーション */
 .marker-pin-google:active {
-    transform: scale(0.95) translateY(1px);
+    transform: scale(0.95) translateY(1px);  /* 少し下げる */
     transition: all 0.1s ease-out;
+}
+
+/* クラスタリング時のスタイル */
+.marker-container.cluster .marker-head {
+    width: 24px;      /* クラスター時は少し大きく */
+    height: 24px;
+}
+
+/* モバイル対応 */
+@media (max-width: 767px) {
+    .marker-container {
+        transform-origin: center bottom;
+    }
+    
+    .marker-head {
+        width: 18px;  /* モバイルでは少し小さく */
+        height: 18px;
+        font-size: 12px;
+    }
+    
+    .marker-tail {
+        width: 10px;
+        height: 24px;
+    }
 }
