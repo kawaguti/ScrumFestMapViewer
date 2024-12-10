@@ -66,11 +66,15 @@ class EventApp {
             });
         }
 
-        // Sort events by date (descending order - future first)
+        // Sort events by date
+        // For one year view: ascending order (past first)
+        // For all events view: descending order (future first)
         filteredEvents.sort((a, b) => {
             if (!a.date) return 1;
             if (!b.date) return -1;
-            return b.date.getTime() - a.date.getTime();
+            return showYearOnly
+                ? a.date.getTime() - b.date.getTime()  // ascending for one year view
+                : b.date.getTime() - a.date.getTime(); // descending for all events
         });
 
         // Update map
