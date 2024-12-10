@@ -25,7 +25,7 @@ class MapView {
                 </div>`,
             iconSize: [30, 32],
             iconAnchor: [15, 32],    // テールの底部が開催位置を指すように調整
-            popupAnchor: [0, 10]    // サークル上部から下向きの吹き出しを表示
+            popupAnchor: [0, -22]    // サークルの中心から吹き出しが表示されるように調整
         });
     }
 
