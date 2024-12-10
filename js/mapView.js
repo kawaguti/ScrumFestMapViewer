@@ -49,7 +49,8 @@ class MapView {
                         <div class="marker-tail"></div>
                     </div>`,
                 iconSize: [30, 42],
-                iconAnchor: [15, 42]
+                iconAnchor: [15, 42],  // テールの底部が開催位置を指すように調整
+                popupAnchor: [0, -20]  // サークルから吹き出しが表示されるように調整
             });
 
             const markerObj = L.marker(event.coordinates, { icon: marker })
@@ -83,7 +84,8 @@ class MapView {
                         <div class="marker-tail"></div>
                     </div>`,
                 iconSize: [30, 42],
-                iconAnchor: [15, 42]
+                iconAnchor: [15, 42],  // テールの底部が開催位置を指すように調整
+                popupAnchor: [0, -20]  // サークルから吹き出しが表示されるように調整
             }));
         }
     }
