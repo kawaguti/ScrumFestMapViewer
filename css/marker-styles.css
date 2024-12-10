@@ -124,3 +124,34 @@
         height: 24px;
     }
 }
+
+/* ポップアップのスタイル */
+.leaflet-popup-content-wrapper {
+    padding: 8px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    background: white;
+}
+
+.leaflet-popup-tip {
+    /* 吹き出しの矢印部分 */
+    width: 12px;
+    height: 12px;
+    margin-top: -6px;  /* マーカーとの位置調整 */
+    background: white;
+}
+
+/* ポップアップのレスポンシブ対応 */
+@media (max-width: 768px) {
+    .leaflet-popup-content {
+        font-size: 14px;
+        max-width: 250px;
+    }
+}
+
+@media (min-width: 769px) {
+    .leaflet-popup-content {
+        font-size: 16px;
+        max-width: 300px;
+    }
+}

@@ -20,13 +20,13 @@ class MapView {
         return L.divIcon({
             className: containerClass,
             html: `
-                <div class="marker-pin-google ${eventClass}">
+                <div class="marker-pin-google ${eventClass}" role="button" aria-label="${count > 1 ? `この地域に${count}件のイベントがあります` : 'イベント'}">
                     <div class="marker-head">${count > 1 ? count : ''}</div>
                     <div class="marker-tail"></div>
                 </div>`,
             iconSize: [30, 42],
             iconAnchor: [15, 42],    // テールの底部が開催位置を指すように調整
-            popupAnchor: [0, -36]    // サークルの上端から吹き出しが表示されるように調整
+            popupAnchor: [0, -42]    // マーカーの上部から吹き出しが表示されるように調整
         });
     }
 
