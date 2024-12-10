@@ -110,8 +110,18 @@ class MapView {
         });
         content += '</div>';
 
-        const popup = L.popup()
-            .setLatLng(events[0].coordinates)
+        // マーカーの座標からポップアップの表示位置を計算
+        const markerLatLng = L.latLng(events[0].coordinates);
+        const popupLatLng = L.latLng(
+            markerLatLng.lat + 0.0008, // 緯度を少し上にずらす
+            markerLatLng.lng
+        );
+        
+        const popup = L.popup({
+            closeButton: true,
+            offset: [0, 0]  // オフセットをリセット
+        })
+            .setLatLng(popupLatLng)
             .setContent(content)
             .openOn(this.map);
 
