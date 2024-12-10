@@ -136,7 +136,7 @@ class MapView {
         `;
 
         if (event.description) {
-            html += `<p class="mt-3"><strong>説明:</strong><br>${marked.parse(event.description)}</p>`;
+            html += `<p class="mt-3">${marked.parse(event.description)}</p>`;
         }
 
         content.innerHTML = html;
