@@ -48,12 +48,15 @@
     background-color: white;
     color: black;
     border: none;
-    padding: 8px 0;
+    padding: 8px 12px;
+    margin-bottom: 4px;
+    border-radius: 4px;
 }
 
 .leaflet-popup-content .list-group-item:hover {
-    background-color: #f8f9fa;
+    background-color: #f0f0f0;
     color: black;
+    text-decoration: none;
 }
 
 @media (max-width: 768px) {

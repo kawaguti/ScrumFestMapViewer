@@ -91,9 +91,11 @@ class MapView {
             content += `
                 <a href="javascript:void(0)" class="list-group-item list-group-item-action" data-event-id="${eventId}">
                     <div class="mb-1">
-                        <h6 class="mb-1">${event.title}</h6>
-                        <small>${event.date ? new Date(event.date).toLocaleDateString('ja-JP') : ''}</small><br>
-                        <small>${event.location}</small>
+                        <h6 class="mb-0">${event.title}</h6>
+                        <div class="mt-1">
+                            <small class="me-2">${event.date ? new Date(event.date).toLocaleDateString('ja-JP') : ''}</small>
+                            <small>${event.location}</small>
+                        </div>
                     </div>
                 </a>`;
         });
