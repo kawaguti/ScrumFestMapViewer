@@ -115,14 +115,10 @@ class MapView {
 
         // マーカーの座標からポップアップの表示位置を計算
         const markerLatLng = L.latLng(events[0].coordinates);
-        const popupLatLng = L.latLng(
-            markerLatLng.lat + 0.002, // 緯度をサークルの上に十分な余白を持たせて配置
-            markerLatLng.lng
-        );
         
         const popup = L.popup({
             closeButton: true,
-            offset: [0, 0],
+            offset: [0, -32], // マーカーの上部からサークル1個分（20px）+余白（12px）上にオフセット
             className: 'custom-popup',
             maxWidth: window.innerWidth <= 768 ? 250 : 300,
             autoPan: true,
