@@ -38,6 +38,15 @@
 .leaflet-popup-content-wrapper {
     background-color: white;
     color: black;
+    position: relative;
+}
+
+.multi-event-popup {
+    margin-top: -8px;  /* 複数イベント時は少し上にずらす */
+}
+
+.single-event-popup {
+    margin-top: -4px;  /* 単一イベント時の微調整 */
 }
 
 .leaflet-popup-tip {
