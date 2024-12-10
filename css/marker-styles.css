@@ -2,6 +2,9 @@
     position: relative;
     width: 30px;
     height: 42px;
+    transform-origin: center bottom;
+    margin-left: -15px;  /* width/2 でセンタリング */
+    margin-top: -42px;   /* height でオフセット */
 }
 
 .marker-pin-google {
@@ -34,7 +37,7 @@
     left: 50%;
     transform: translateX(-50%);
     width: 12px;
-    height: 16px;
+    height: 27px;
     background-color: #4285F4;
     clip-path: polygon(50% 100%, 0 0, 100% 0);
 }
