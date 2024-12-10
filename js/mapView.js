@@ -14,6 +14,21 @@ class MapView {
         this.map.setView([37.0, 137.0], 5);
     }
 
+    createMarkerIcon(count, isPastEvent) {
+        const eventClass = isPastEvent ? 'past-event' : 'future-event';
+        return L.divIcon({
+            className: 'marker-container',
+            html: `
+                <div class="marker-pin-google ${eventClass}">
+                    <div class="marker-head">${count > 1 ? count : ''}</div>
+                    <div class="marker-tail"></div>
+                </div>`,
+            iconSize: [30, 42],
+            iconAnchor: [15, 42],    // テールの底部が開催位置を指すように調整
+            popupAnchor: [0, -35]    // サークルから吹き出しが表示されるように調整
+        });
+    }
+
     fitMapToMarkers() {
         const markers = this.markers.getLayers();
         if (markers.length > 0) {
@@ -40,26 +55,15 @@ class MapView {
         if (this.eventGroups.get(coordKey).length === 1) {
             const count = this.eventGroups.get(coordKey).length;
             const isPastEvent = new Date() > this.eventGroups.get(coordKey)[0].date;
-            const eventClass = isPastEvent ? 'past-event' : 'future-event';
-            const marker = L.divIcon({
-                className: 'marker-container',
-                html: `
-                    <div class="marker-pin-google ${eventClass}">
-                        <div class="marker-head">${count > 1 ? count : ''}</div>
-                        <div class="marker-tail"></div>
-                    </div>`,
-                iconSize: [30, 42],
-                iconAnchor: [15, 42],  // テールの底部が開催位置を指すように調整
-                popupAnchor: [0, -20]  // サークルから吹き出しが表示されるように調整
+            
+            const markerObj = L.marker(event.coordinates, { 
+                icon: this.createMarkerIcon(count, isPastEvent)
+            }).on('click', () => {
+                this.showGroupedEvents(coordKey);
+                if (this.eventGroups.get(coordKey).length === 1) {
+                    this.showEventDetails(this.eventGroups.get(coordKey)[0]);
+                }
             });
-
-            const markerObj = L.marker(event.coordinates, { icon: marker })
-                .on('click', () => {
-                    this.showGroupedEvents(coordKey);
-                    if (this.eventGroups.get(coordKey).length === 1) {
-                        this.showEventDetails(this.eventGroups.get(coordKey)[0]);
-                    }
-                });
 
             this.markers.addLayer(markerObj);
         } else {
@@ -71,22 +75,11 @@ class MapView {
     updateMarkerCount(coordKey) {
         const markers = this.markers.getLayers();
         const marker = markers.find(m => m.getLatLng().lat === parseFloat(coordKey.split(',')[0]) && 
-                                       m.getLatLng().lng === parseFloat(coordKey.split(',')[1]));
+                                    m.getLatLng().lng === parseFloat(coordKey.split(',')[1]));
         if (marker) {
             const count = this.eventGroups.get(coordKey).length;
             const isPastEvent = new Date() > this.eventGroups.get(coordKey)[0].date;
-            const eventClass = isPastEvent ? 'past-event' : 'future-event';
-            marker.setIcon(L.divIcon({
-                className: 'marker-container',
-                html: `
-                    <div class="marker-pin-google ${eventClass}">
-                        <div class="marker-head">${count > 1 ? count : ''}</div>
-                        <div class="marker-tail"></div>
-                    </div>`,
-                iconSize: [30, 42],
-                iconAnchor: [15, 42],  // テールの底部が開催位置を指すように調整
-                popupAnchor: [0, -20]  // サークルから吹き出しが表示されるように調整
-            }));
+            marker.setIcon(this.createMarkerIcon(count, isPastEvent));
         }
     }
 
