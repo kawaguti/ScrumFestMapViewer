@@ -23,9 +23,9 @@ class MapView {
                     <div class="marker-head">${count > 1 ? count : ''}</div>
                     <div class="marker-tail"></div>
                 </div>`,
-            iconSize: [30, 42],      // マーカー全体の高さ
-            iconAnchor: [15, 42],    // マーカーの底部を基準点に
-            popupAnchor: [0, -44]    // ポップアップの位置（マーカーの上部から12px上）
+            iconSize: [30, 31],      // マーカー全体の高さ（ヘッド20px + テール16px - 重なり5px）
+            iconAnchor: [15, 31],    // マーカーの底部を基準点に
+            popupAnchor: [0, -32]    // ポップアップの位置（マーカーの上部から12px上）
         });
     }
 
