@@ -48,8 +48,8 @@ class MapView {
                         <div class="marker-head">${count > 1 ? count : ''}</div>
                         <div class="marker-tail"></div>
                     </div>`,
-                iconSize: [30, 42],
-                iconAnchor: [15, 42]
+                iconSize: [30, 32],
+                iconAnchor: [15, 20]
             });
 
             const markerObj = L.marker(event.coordinates, { icon: marker })
@@ -82,8 +82,8 @@ class MapView {
                         <div class="marker-head">${count > 1 ? count : ''}</div>
                         <div class="marker-tail"></div>
                     </div>`,
-                iconSize: [30, 42],
-                iconAnchor: [15, 42]
+                iconSize: [30, 32],
+                iconAnchor: [15, 20]
             }));
         }
     }
