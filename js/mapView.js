@@ -25,7 +25,7 @@ class MapView {
                 </div>`,
             iconSize: [30, 31],      // マーカー全体の高さ（ヘッド20px + テール16px - 重なり5px）
             iconAnchor: [15, 31],    // マーカーの底部を基準点に
-            popupAnchor: [0, -28]    // ポップアップの位置（マーカーの上部から8px上）
+            popupAnchor: [0, -24]    // ポップアップの位置（マーカーの円部分に少し重なるように）
         });
     }
 
@@ -116,7 +116,7 @@ class MapView {
         // ポップアップの表示位置を計算
         const popup = L.popup({
             closeButton: true,
-            offset: L.point(0, -32),  // マーカーのヘッド上部から12px上にオフセット
+            offset: L.point(0, -24),  // マーカーの円部分に少し重なるように
             className: events.length > 1 ? 'multi-event-popup' : 'single-event-popup'
         })
             .setLatLng(markerLatLng)
