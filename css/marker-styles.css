@@ -30,11 +30,11 @@
 
 .marker-tail {
     position: absolute;
-    top: 18px;
+    top: 15px;
     left: 50%;
     transform: translateX(-50%);
     width: 12px;
-    height: 24px;
+    height: 16px;
     background-color: #4285F4;
     clip-path: polygon(50% 100%, 0 0, 100% 0);
 }
