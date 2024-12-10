@@ -1,20 +1,21 @@
 .event-marker.single-event .marker-pin {
-    width: 30px;
-    height: 42px;
+    width: 20px;
+    height: 34px;
     border-radius: 50% 50% 50% 0;
-    background: #c31432;
+    background: #ea4335;
     position: absolute;
     transform: rotate(-45deg);
     left: 50%;
     top: 50%;
-    margin: -20px 0 0 -20px;
+    margin: -15px 0 0 -15px;
     animation: bounce 0.5s ease-out;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 .event-marker.single-event .marker-pin::after {
     content: '';
-    width: 24px;
-    height: 24px;
+    width: 14px;
+    height: 14px;
     margin: 3px 0 0 3px;
     background: #fff;
     position: absolute;
