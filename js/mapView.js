@@ -123,20 +123,20 @@ class MapView {
         const content = document.getElementById('eventContent');
         let html = `
             <h4>${event.title}</h4>
-            <p><strong>開催地:</strong> ${event.location}</p>
-            <p><strong>開催日:</strong> ${event.date.toLocaleDateString('ja-JP')}</p>
+            <p>${event.location}</p>
+            <p>${event.date.toLocaleDateString('ja-JP')}</p>
+            <div class="mt-2">
+                ${event.website ? 
+                    `<a href="${event.website}" target="_blank" class="btn btn-sm btn-outline-primary me-2">サイト</a>` : 
+                    ''}
+                ${event.recordingUrl ? 
+                    `<a href="${event.recordingUrl}" target="_blank" class="btn btn-sm btn-outline-success">録画</a>` : 
+                    ''}
+            </div>
         `;
 
         if (event.description) {
-            html += `<p><strong>説明:</strong><br>${marked.parse(event.description)}</p>`;
-        }
-
-        if (event.website) {
-            html += `<p><strong>Webサイト:</strong><br><a href="${event.website}" target="_blank">${event.website}</a></p>`;
-        }
-
-        if (event.recordingUrl) {
-            html += `<p><strong>録画一覧:</strong><br><a href="${event.recordingUrl}" target="_blank">${event.recordingUrl}</a></p>`;
+            html += `<p class="mt-3"><strong>説明:</strong><br>${marked.parse(event.description)}</p>`;
         }
 
         content.innerHTML = html;
