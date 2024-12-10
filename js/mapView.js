@@ -114,12 +114,16 @@ class MapView {
         const markerLatLng = L.latLng(events[0].coordinates);
         // ズームレベルに応じて動的にオフセットを計算
         const zoomLevel = this.map.getZoom();
-        const baseOffset = 0.002;  // 基本オフセット値
-        const zoomFactor = Math.pow(2, 16 - zoomLevel);  // ズームレベルに応じた係数
+        const baseOffset = 0.0005;  // より小さな基本オフセット値
+        const zoomFactor = Math.pow(2, 13 - zoomLevel);  // 調整されたズーム係数
         const dynamicOffset = baseOffset * zoomFactor;
         
+        // イベント数に応じて微調整（複数イベントの場合は少し上に）
+        const eventCount = events.length;
+        const eventAdjustment = eventCount > 1 ? 1.2 : 1;
+        
         const popupLatLng = L.latLng(
-            markerLatLng.lat + dynamicOffset, // ズームレベルに応じた動的なオフセット
+            markerLatLng.lat + (dynamicOffset * eventAdjustment), // イベント数を考慮した調整
             markerLatLng.lng
         );
         
