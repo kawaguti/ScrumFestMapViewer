@@ -38,10 +38,10 @@
 /* イベントの状態による色分け */
 .future-event .marker-head,
 .future-event .marker-tail {
-    background-color: hsl(var(--primary));
+    background-color: #4285F4;
 }
 
 .past-event .marker-head,
 .past-event .marker-tail {
-    background-color: hsl(var(--muted));
+    background-color: #757575;
 }
