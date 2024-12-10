@@ -1,7 +1,5 @@
 .marker-container {
     position: relative;
-    width: 30px;
-    height: 42px;
 }
 
 .marker-pin-google {
@@ -19,7 +17,6 @@
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background-color: #4285F4;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -34,18 +31,17 @@
     left: 50%;
     transform: translateX(-50%);
     width: 12px;
-    height: 16px;
-    background-color: #4285F4;
+    height: 27px;
     clip-path: polygon(50% 100%, 0 0, 100% 0);
 }
 
 /* イベントの状態による色分け */
 .future-event .marker-head,
 .future-event .marker-tail {
-    background-color: #4285F4;
+    background-color: hsl(var(--primary));
 }
 
 .past-event .marker-head,
 .past-event .marker-tail {
-    background-color: #757575;
+    background-color: hsl(var(--muted));
 }

@@ -23,9 +23,9 @@ class MapView {
                     <div class="marker-head">${count > 1 ? count : ''}</div>
                     <div class="marker-tail"></div>
                 </div>`,
-            iconSize: [30, 32],
-            iconAnchor: [15, 32],    // テールの底部が開催位置を指すように調整
-            popupAnchor: [0, -30]    // サークルの上端から吹き出しが表示されるように調整
+            iconSize: [30, 42],
+            iconAnchor: [15, 42],    // テールの底部が開催位置を指すように調整
+            popupAnchor: [0, -40]    // サークルの上端から吹き出しが表示されるように調整
         });
     }
 
