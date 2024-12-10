@@ -45,7 +45,7 @@ class MapView {
                 className: 'marker-container',
                 html: `
                     <div class="marker-pin-google ${eventClass}">
-                        <div class="marker-head">${count}</div>
+                        <div class="marker-head">${count > 1 ? count : ''}</div>
                         <div class="marker-tail"></div>
                     </div>`,
                 iconSize: [30, 42],
@@ -79,7 +79,7 @@ class MapView {
                 className: 'marker-container',
                 html: `
                     <div class="marker-pin-google ${eventClass}">
-                        <div class="marker-head">${count}</div>
+                        <div class="marker-head">${count > 1 ? count : ''}</div>
                         <div class="marker-tail"></div>
                     </div>`,
                 iconSize: [30, 42],
