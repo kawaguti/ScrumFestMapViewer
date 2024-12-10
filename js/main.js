@@ -96,11 +96,11 @@ class EventApp {
             return event.date >= now;
         });
         
-        // 日付で降順ソート（未来が先）
+        // 日付で昇順ソート（過去が先）で、現在日時に最も近い未来のイベントを選択
         futureEvents.sort((a, b) => {
             if (!a.date) return 1;
             if (!b.date) return -1;
-            return b.date.getTime() - a.date.getTime();
+            return a.date.getTime() - b.date.getTime();
         });
         
         // 最も近い未来のイベントを選択
