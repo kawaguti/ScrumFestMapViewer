@@ -7,6 +7,7 @@
     height: 42px;
     position: relative;
     transform-origin: bottom;
+    filter: drop-shadow(0 2px 2px rgba(0,0,0,0.2));
 }
 
 .marker-head {
@@ -14,24 +15,26 @@
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
-    font-size: 12px;
-    border: 2px solid #fff;
+    font-size: 13px;
+    font-weight: bold;
+    border: 2px solid white;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
 
 .marker-tail {
     position: absolute;
-    top: 15px;
+    top: 18px;
     left: 50%;
     transform: translateX(-50%);
-    width: 12px;
-    height: 27px;
+    width: 14px;
+    height: 24px;
     clip-path: polygon(50% 100%, 0 0, 100% 0);
 }
 
