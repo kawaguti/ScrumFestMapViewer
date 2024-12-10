@@ -1,34 +1,32 @@
 .event-marker.single-event .marker-pin {
-    width: 27px;
-    height: 43px;
+    width: 30px;
+    height: 42px;
     border-radius: 50% 50% 50% 0;
-    background: #ea4335;
+    background: #c31432;
     position: absolute;
     transform: rotate(-45deg);
     left: 50%;
     top: 50%;
-    margin: -20px 0 0 -15px;
+    margin: -20px 0 0 -20px;
     animation: bounce 0.5s ease-out;
-    box-shadow: 0 3px 5px rgba(0,0,0,0.4);
 }
 
 .event-marker.single-event .marker-pin::after {
     content: '';
-    width: 18px;
-    height: 18px;
-    margin: 4.5px 0 0 4.5px;
+    width: 24px;
+    height: 24px;
+    margin: 3px 0 0 3px;
     background: #fff;
     position: absolute;
     border-radius: 50%;
 }
 
 .event-marker.multiple-events {
-    background: #1a73e8;
+    background: #c31432;
     border: 2px solid #fff;
     border-radius: 50%;
     color: #fff;
     text-align: center;
-    font-weight: bold;
     box-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 

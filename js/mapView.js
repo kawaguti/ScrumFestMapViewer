@@ -43,8 +43,8 @@ class MapView {
                 ? L.divIcon({
                     className: 'event-marker single-event',
                     html: `<div class="marker-pin"></div>`,
-                    iconSize: [40, 56],
-                    iconAnchor: [20, 56]
+                    iconSize: [30, 42],
+                    iconAnchor: [15, 42]
                 })
                 : L.divIcon({
                     className: 'event-marker multiple-events',
