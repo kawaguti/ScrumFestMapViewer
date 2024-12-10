@@ -66,11 +66,11 @@ class EventApp {
             });
         }
 
-        // Sort events by date
+        // Sort events by date (descending order - future first)
         filteredEvents.sort((a, b) => {
             if (!a.date) return 1;
             if (!b.date) return -1;
-            return a.date.getTime() - b.date.getTime();
+            return b.date.getTime() - a.date.getTime();
         });
 
         // Update map
@@ -92,11 +92,11 @@ class EventApp {
             return event.date >= now;
         });
         
-        // 日付で昇順ソート
+        // 日付で降順ソート（未来が先）
         futureEvents.sort((a, b) => {
             if (!a.date) return 1;
             if (!b.date) return -1;
-            return a.date.getTime() - b.date.getTime();
+            return b.date.getTime() - a.date.getTime();
         });
         
         // 最も近い未来のイベントを選択
