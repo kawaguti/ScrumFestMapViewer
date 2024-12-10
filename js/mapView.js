@@ -113,7 +113,7 @@ class MapView {
         // マーカーの座標からポップアップの表示位置を計算
         const markerLatLng = L.latLng(events[0].coordinates);
         const popupLatLng = L.latLng(
-            markerLatLng.lat + 0.0008, // 緯度を少し上にずらす
+            markerLatLng.lat + 0.001, // 緯度をもう少し上にずらす
             markerLatLng.lng
         );
         
