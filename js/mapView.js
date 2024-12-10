@@ -23,9 +23,9 @@ class MapView {
                     <div class="marker-head">${count > 1 ? count : ''}</div>
                     <div class="marker-tail"></div>
                 </div>`,
-            iconSize: [30, 32],
-            iconAnchor: [15, 32],    // テールの底部が開催位置を指すように調整
-            popupAnchor: [0, -30]    // サークルの上端から吹き出しが表示されるように調整
+            iconSize: [30, 42],      // 仕様書に基づく高さの調整
+            iconAnchor: [15, 42],    // マーカーの底部を基準点に
+            popupAnchor: [0, -44]    // マーカーの上部から12px上にオフセット
         });
     }
 
@@ -112,8 +112,14 @@ class MapView {
 
         // マーカーの座標からポップアップの表示位置を計算
         const markerLatLng = L.latLng(events[0].coordinates);
+        // ズームレベルに応じて動的にオフセットを計算
+        const zoomLevel = this.map.getZoom();
+        const baseOffset = 0.002;  // 基本オフセット値
+        const zoomFactor = Math.pow(2, 16 - zoomLevel);  // ズームレベルに応じた係数
+        const dynamicOffset = baseOffset * zoomFactor;
+        
         const popupLatLng = L.latLng(
-            markerLatLng.lat + 0.002, // 緯度をサークルの上に十分な余白を持たせて配置
+            markerLatLng.lat + dynamicOffset, // ズームレベルに応じた動的なオフセット
             markerLatLng.lng
         );
         
