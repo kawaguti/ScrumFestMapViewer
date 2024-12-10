@@ -1,37 +1,16 @@
-/* マーカーコンテナの基本設定 */
 .marker-container {
     position: relative;
-    transform-origin: center bottom;
-    cursor: pointer;
     width: 30px;
     height: 42px;
-    margin-left: -15px;
-    margin-top: -42px;
-    /* z-indexの管理 */
-    z-index: 1000;
-    transition: z-index 0s 0.3s;
 }
 
-.marker-container:hover {
-    z-index: 1100;
-    transition: z-index 0s;
-}
-
-.marker-container.active {
-    z-index: 1200;
-}
-
-/* Googleマップ型マーカー */
 .marker-pin-google {
     width: 30px;
     height: 42px;
     position: relative;
     transform-origin: bottom;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    will-change: transform;
 }
 
-/* マーカーヘッド（円形部分） */
 .marker-head {
     position: absolute;
     top: 0;
@@ -41,35 +20,26 @@
     height: 20px;
     border-radius: 50%;
     background-color: #4285F4;
-    border: 2px solid white;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
-    font-size: 13px;
-    font-weight: bold;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    transition: box-shadow 0.2s ease-out;
-    will-change: box-shadow;
+    font-size: 12px;
+    border: 2px solid #fff;
 }
 
-/* マーカーテール（三角形部分） */
 .marker-tail {
     position: absolute;
-    top: 18px;
+    top: 15px;
     left: 50%;
     transform: translateX(-50%);
-    width: 8px;
-    height: 6px;
+    width: 12px;
+    height: 16px;
     background-color: #4285F4;
-    border: 2px solid white;
     clip-path: polygon(50% 100%, 0 0, 100% 0);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.2s ease-out;
-    will-change: box-shadow;
 }
 
-/* イベント状態による色分け */
+/* イベントの状態による色分け */
 .future-event .marker-head,
 .future-event .marker-tail {
     background-color: #4285F4;
@@ -78,97 +48,4 @@
 .past-event .marker-head,
 .past-event .marker-tail {
     background-color: #757575;
-}
-
-/* ホバー時のアニメーション */
-.marker-pin-google:hover {
-    transform: scale(1.1) translateY(-2px);
-    transition: all 0.2s ease-out;
-}
-
-.marker-pin-google:hover .marker-head {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.25);
-}
-
-.marker-pin-google:hover .marker-tail {
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.15);
-}
-
-/* クリック時のアニメーション */
-.marker-pin-google:active {
-    transform: scale(0.95) translateY(1px);
-    transition: all 0.1s ease-out;
-}
-
-/* クラスタリング時のスタイル */
-.marker-container.cluster .marker-head {
-    width: 24px;
-    height: 24px;
-}
-
-/* ポップアップのスタイル */
-.leaflet-popup-content-wrapper {
-    padding: 8px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    background: white;
-}
-
-.leaflet-popup-tip {
-    width: 12px;
-    height: 12px;
-    margin-top: -6px;
-    background: white;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-}
-
-.leaflet-popup-content {
-    margin: 0;
-    padding: 8px;
-}
-
-.leaflet-popup-content .list-group {
-    margin-bottom: 0;
-}
-
-.leaflet-popup-content .list-group-item {
-    padding: 8px 12px;
-    border: none;
-    border-radius: 4px;
-    transition: background-color 0.2s ease;
-}
-
-.leaflet-popup-content .list-group-item:hover {
-    background-color: #f8f9fa;
-    text-decoration: none;
-}
-
-/* レスポンシブ対応 */
-@media (max-width: 767px) {
-    .marker-container {
-        transform-origin: center bottom;
-    }
-    
-    .marker-head {
-        width: 18px;
-        height: 18px;
-        font-size: 12px;
-    }
-    
-    .marker-tail {
-        width: 6px;
-        height: 5px;
-    }
-
-    .leaflet-popup-content {
-        font-size: 14px;
-        max-width: 250px;
-    }
-}
-
-@media (min-width: 768px) {
-    .leaflet-popup-content {
-        font-size: 16px;
-        max-width: 300px;
-    }
 }

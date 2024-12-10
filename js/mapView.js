@@ -16,19 +16,16 @@ class MapView {
 
     createMarkerIcon(count, isPastEvent) {
         const eventClass = isPastEvent ? 'past-event' : 'future-event';
-        const containerClass = count > 1 ? 'marker-container cluster' : 'marker-container';
-        const ariaLabel = count > 1 ? `この地域に${count}件のイベントがあります` : 'イベント';
-        
         return L.divIcon({
-            className: containerClass,
+            className: 'marker-container',
             html: `
-                <div class="marker-pin-google ${eventClass}" role="button" aria-label="${ariaLabel}">
+                <div class="marker-pin-google ${eventClass}">
                     <div class="marker-head">${count > 1 ? count : ''}</div>
                     <div class="marker-tail"></div>
                 </div>`,
-            iconSize: [30, 42],      // マーカー全体のサイズ
-            iconAnchor: [15, 42],    // マーカーの位置（底部中央）
-            popupAnchor: [0, -64]    // ポップアップの位置（マーカー上部からサークル1個分+12px上）
+            iconSize: [30, 32],
+            iconAnchor: [15, 32],    // テールの底部が開催位置を指すように調整
+            popupAnchor: [0, -30]    // サークルの上端から吹き出しが表示されるように調整
         });
     }
 
@@ -122,11 +119,7 @@ class MapView {
         
         const popup = L.popup({
             closeButton: true,
-            offset: [0, 0],
-            className: 'custom-popup',
-            maxWidth: window.innerWidth <= 768 ? 250 : 300,
-            autoPan: true,
-            autoPanPadding: [50, 50]
+            offset: [0, 0]  // オフセットをリセット
         })
             .setLatLng(popupLatLng)
             .setContent(content)
