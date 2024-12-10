@@ -62,6 +62,7 @@
     width: 8px;
     height: 6px;
     background-color: #4285F4;
+    border: 2px solid white;
     clip-path: polygon(50% 100%, 0 0, 100% 0);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.2s ease-out;
