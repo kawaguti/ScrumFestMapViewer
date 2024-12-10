@@ -46,7 +46,13 @@ class MapView {
             });
 
             const markerObj = L.marker(event.coordinates, { icon: marker })
-                .on('click', () => this.showGroupedEvents(coordKey));
+                .on('click', () => {
+                    if (this.eventGroups.get(coordKey).length === 1) {
+                        this.showEventDetails(this.eventGroups.get(coordKey)[0]);
+                    } else {
+                        this.showGroupedEvents(coordKey);
+                    }
+                });
 
             this.markers.addLayer(markerObj);
         } else {
