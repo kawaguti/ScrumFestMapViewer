@@ -23,8 +23,8 @@ class MapView {
                     <div class="marker-head">${count > 1 ? count : ''}</div>
                     <div class="marker-tail"></div>
                 </div>`,
-            iconSize: [30, 47],      // マーカー全体の高さ（ヘッド20px + テール27px）
-            iconAnchor: [15, 47],    // 底部を基準点に（高さと同じ）
+            iconSize: [30, 42],      // マーカー全体の高さ（ヘッド20px + テール22px）
+            iconAnchor: [15, 42],    // 底部を基準点に（高さと同じ）
             popupAnchor: [0, -32]    // ヘッド上部から12px上に（-20px - 12px）
         });
     }
