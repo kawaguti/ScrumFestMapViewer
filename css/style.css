@@ -10,7 +10,13 @@
 
 #mapContainer {
     height: auto;
-    padding: 0.5rem;
+    padding: 0.5rem 1rem;
+}
+
+@media (max-width: 768px) {
+    #mapContainer {
+        padding: 0.5rem 1.5rem;
+    }
 }
 
 .event-marker {
