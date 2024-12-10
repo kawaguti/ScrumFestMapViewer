@@ -1,0 +1,36 @@
+.event-marker.single-event .marker-pin {
+    width: 30px;
+    height: 42px;
+    border-radius: 50% 50% 50% 0;
+    background: #c31432;
+    position: absolute;
+    transform: rotate(-45deg);
+    left: 50%;
+    top: 50%;
+    margin: -20px 0 0 -20px;
+    animation: bounce 0.5s ease-out;
+}
+
+.event-marker.single-event .marker-pin::after {
+    content: '';
+    width: 24px;
+    height: 24px;
+    margin: 3px 0 0 3px;
+    background: #fff;
+    position: absolute;
+    border-radius: 50%;
+}
+
+.event-marker.multiple-events {
+    background: #c31432;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    color: #fff;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+@keyframes bounce {
+    0% { transform: rotate(-45deg) translateY(-15px); }
+    100% { transform: rotate(-45deg) translateY(0); }
+}

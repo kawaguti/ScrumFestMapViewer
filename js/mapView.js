@@ -38,15 +38,27 @@ class MapView {
 
         // 同じ座標のイベントが既にマーカーとして存在する場合はスキップ
         if (this.eventGroups.get(coordKey).length === 1) {
-            const marker = L.divIcon({
-                className: 'event-marker',
-                html: `<div style="width: 20px; height: 20px; line-height: 20px;">${this.eventGroups.get(coordKey).length}</div>`,
-                iconSize: [20, 20]
-            });
+            const count = this.eventGroups.get(coordKey).length;
+            const marker = count === 1 
+                ? L.divIcon({
+                    className: 'event-marker single-event',
+                    html: `<div class="marker-pin"></div>`,
+                    iconSize: [30, 42],
+                    iconAnchor: [15, 42]
+                })
+                : L.divIcon({
+                    className: 'event-marker multiple-events',
+                    html: `<div style="width: 20px; height: 20px; line-height: 20px;">${count}</div>`,
+                    iconSize: [20, 20]
+                });
 
             const markerObj = L.marker(event.coordinates, { icon: marker })
                 .on('click', () => {
-                    this.showGroupedEvents(coordKey);
+                    if (count === 1) {
+                        this.showEventDetails(this.eventGroups.get(coordKey)[0]);
+                    } else {
+                        this.showGroupedEvents(coordKey);
+                    }
                 });
 
             this.markers.addLayer(markerObj);
