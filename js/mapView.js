@@ -1,17 +1,27 @@
 class MapView {
     constructor() {
         this.map = L.map('map');
-        this.markers = L.layerGroup();
-        this.eventGroups = new Map(); // 座標ごとのイベントグループを管理
-        
+        this.markers = L.layerGroup().addTo(this.map);
+        this.eventGroups = new Map();
+
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            attribution: '© OpenStreetMap contributors'
         }).addTo(this.map);
-        
-        this.markers.addTo(this.map);
 
         // 日本全体が見えるデフォルト表示
         this.map.setView([37.0, 137.0], 5);
+    }
+
+    isSameOrFutureDate(date) {
+        const today = new Date();
+        const eventDate = new Date(date);
+        
+        // 年月日のみを比較するため、時刻をリセット
+        today.setHours(0, 0, 0, 0);
+        eventDate.setHours(0, 0, 0, 0);
+        
+        // 当日または未来の日付の場合はtrue
+        return eventDate >= today;
     }
 
     createMarkerIcon(count, isPastEvent) {
@@ -54,7 +64,7 @@ class MapView {
         // 同じ座標のイベントが既にマーカーとして存在する場合はスキップ
         if (this.eventGroups.get(coordKey).length === 1) {
             const count = this.eventGroups.get(coordKey).length;
-            const isPastEvent = new Date() > this.eventGroups.get(coordKey)[0].date;
+            const isPastEvent = !this.isSameOrFutureDate(this.eventGroups.get(coordKey)[0].date);
             
             const markerObj = L.marker(event.coordinates, { 
                 icon: this.createMarkerIcon(count, isPastEvent)
@@ -78,7 +88,7 @@ class MapView {
                                     m.getLatLng().lng === parseFloat(coordKey.split(',')[1]));
         if (marker) {
             const count = this.eventGroups.get(coordKey).length;
-            const isPastEvent = new Date() > this.eventGroups.get(coordKey)[0].date;
+            const isPastEvent = !this.isSameOrFutureDate(this.eventGroups.get(coordKey)[0].date);
             marker.setIcon(this.createMarkerIcon(count, isPastEvent));
         }
     }
