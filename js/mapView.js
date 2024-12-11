@@ -33,9 +33,9 @@ class MapView {
                     <div class="marker-head">${count > 1 ? count : ''}</div>
                     <div class="marker-tail"></div>
                 </div>`,
-            iconSize: [30, 31],      // マーカー全体の高さ（ヘッド20px + テール16px - 重なり5px）
+            iconSize: [30, 31],      // マーカー全体の高さ
             iconAnchor: [15, 31],    // マーカーの底部を基準点に
-            popupAnchor: [0, -24]    // ポップアップの位置（マーカーの円部分に少し重なるように）
+            popupAnchor: [0, -24]    // ポップアップの位置
         });
     }
 
@@ -43,7 +43,7 @@ class MapView {
         const markers = this.markers.getLayers();
         if (markers.length > 0) {
             const group = L.featureGroup(markers);
-            this.map.fitBounds(group.getBounds().pad(0.1)); // 10%のパディングを追加
+            this.map.fitBounds(group.getBounds().pad(0.1));
         }
     }
 
@@ -126,7 +126,7 @@ class MapView {
         // ポップアップの表示位置を計算
         const popup = L.popup({
             closeButton: true,
-            offset: L.point(0, -24),  // マーカーの円部分に少し重なるように
+            offset: L.point(0, -24),
             className: events.length > 1 ? 'multi-event-popup' : 'single-event-popup'
         })
             .setLatLng(markerLatLng)
