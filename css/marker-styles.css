@@ -1,17 +1,19 @@
+
 .marker-container {
     position: relative;
     width: 30px;
-    height: 31px;
+    height: 42px;
     transform-origin: center bottom;
-    margin-left: -15px;  /* width/2 でセンタリング */
-    margin-top: -31px;   /* height でオフセット */
+    margin-left: -15px;
+    margin-top: -42px;
 }
 
 .marker-pin-google {
     width: 30px;
-    height: 31px;
+    height: 42px;
     position: relative;
     transform-origin: bottom;
+    transition: transform 0.2s ease-out;
 }
 
 .marker-head {
@@ -29,6 +31,7 @@
     color: white;
     font-size: 12px;
     border: 2px solid #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .marker-tail {
@@ -37,12 +40,12 @@
     left: 50%;
     transform: translateX(-50%);
     width: 12px;
-    height: 16px;
+    height: 27px;
     background-color: #4285F4;
     clip-path: polygon(50% 100%, 0 0, 100% 0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* イベントの状態による色分け */
 .future-event .marker-head,
 .future-event .marker-tail {
     background-color: #4285F4;
@@ -51,4 +54,12 @@
 .past-event .marker-head,
 .past-event .marker-tail {
     background-color: #757575;
+}
+
+.marker-pin-google:hover {
+    transform: scale(1.1) translateY(-2px);
+}
+
+.marker-pin-google:active {
+    transform: scale(0.95) translateY(1px);
 }
