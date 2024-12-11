@@ -24,8 +24,9 @@ class MapView {
         return eventDate >= today;
     }
 
-    createMarkerIcon(count, isPastEvent) {
-        const eventClass = isPastEvent ? 'past-event' : 'future-event';
+    createMarkerIcon(count, isFutureOrToday) {
+        // isFutureOrTodayがtrueの場合は青色（未来または当日のイベント）
+        const eventClass = isFutureOrToday ? 'future-event' : 'past-event';
         return L.divIcon({
             className: 'marker-container',
             html: `
@@ -33,9 +34,9 @@ class MapView {
                     <div class="marker-head">${count > 1 ? count : ''}</div>
                     <div class="marker-tail"></div>
                 </div>`,
-            iconSize: [30, 31],      // マーカー全体の高さ
-            iconAnchor: [15, 31],    // マーカーの底部を基準点に
-            popupAnchor: [0, -24]    // ポップアップの位置
+            iconSize: [30, 31],
+            iconAnchor: [15, 31],
+            popupAnchor: [0, -24]
         });
     }
 
@@ -64,10 +65,10 @@ class MapView {
         // 同じ座標のイベントが既にマーカーとして存在する場合はスキップ
         if (this.eventGroups.get(coordKey).length === 1) {
             const count = this.eventGroups.get(coordKey).length;
-            const isPastEvent = !this.isSameOrFutureDate(this.eventGroups.get(coordKey)[0].date);
+            const isFutureOrToday = this.isSameOrFutureDate(event.date);
             
             const markerObj = L.marker(event.coordinates, { 
-                icon: this.createMarkerIcon(count, isPastEvent)
+                icon: this.createMarkerIcon(count, isFutureOrToday)
             }).on('click', () => {
                 this.showGroupedEvents(coordKey);
                 if (this.eventGroups.get(coordKey).length === 1) {
@@ -88,8 +89,8 @@ class MapView {
                                     m.getLatLng().lng === parseFloat(coordKey.split(',')[1]));
         if (marker) {
             const count = this.eventGroups.get(coordKey).length;
-            const isPastEvent = !this.isSameOrFutureDate(this.eventGroups.get(coordKey)[0].date);
-            marker.setIcon(this.createMarkerIcon(count, isPastEvent));
+            const isFutureOrToday = this.isSameOrFutureDate(this.eventGroups.get(coordKey)[0].date);
+            marker.setIcon(this.createMarkerIcon(count, isFutureOrToday));
         }
     }
 
@@ -97,7 +98,6 @@ class MapView {
         const events = this.eventGroups.get(coordKey);
         if (!events || events.length === 0) return;
 
-        // イベントデータをグローバルに保存
         if (!window.eventDetailsMap) {
             window.eventDetailsMap = new Map();
         }
@@ -120,10 +120,8 @@ class MapView {
         });
         content += '</div>';
 
-        // マーカーの座標を取得
         const markerLatLng = L.latLng(events[0].coordinates);
         
-        // ポップアップの表示位置を計算
         const popup = L.popup({
             closeButton: true,
             offset: L.point(0, -24),
@@ -133,7 +131,6 @@ class MapView {
             .setContent(content)
             .openOn(this.map);
 
-        // ポップアップが開いた後にイベントリスナーを追加
         setTimeout(() => {
             const links = document.querySelectorAll('.leaflet-popup-content .list-group-item');
             links.forEach(link => {
@@ -170,7 +167,6 @@ class MapView {
 
         content.innerHTML = html;
 
-        // 選択されたイベントの位置に地図を移動
         if (event.coordinates && Array.isArray(event.coordinates)) {
             this.map.setView(event.coordinates, 6);
         }
