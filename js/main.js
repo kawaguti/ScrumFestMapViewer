@@ -59,7 +59,10 @@ class EventApp {
         // Filter events based on whether they are past or future
         filteredEvents = this.events.filter(event => {
             if (!event.date) return false;
-            return isFutureEvents ? event.date >= now : event.date < now;
+            // 当日は「これから」に分類されるように、日付の開始時刻で比較
+            const eventDate = new Date(event.date.getFullYear(), event.date.getMonth(), event.date.getDate());
+            const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+            return isFutureEvents ? eventDate >= today : eventDate < today;
         });
 
         // Sort events by date
@@ -89,7 +92,10 @@ class EventApp {
         // 未来のイベントをフィルタリング
         const futureEvents = this.events.filter(event => {
             if (!event.date) return false;
-            return event.date >= now;
+            // 当日は「これから」に分類されるように、日付の開始時刻で比較
+            const eventDate = new Date(event.date.getFullYear(), event.date.getMonth(), event.date.getDate());
+            const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+            return eventDate >= today;
         });
         
         // 日付で昇順ソート（過去が先）で、現在日時に最も近い未来のイベントを選択
