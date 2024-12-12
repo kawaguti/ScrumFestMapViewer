@@ -78,9 +78,7 @@
         max-height: calc(45vh - 1rem);
     }
 
-    .text-light.text-decoration-none {
-        display: none;
-    }
+    
 }
 
 .footer {
