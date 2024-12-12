@@ -1,10 +1,8 @@
 # スクラムフェスマップ
 
-作成日時: 2024年12月11日 16:36
+作成日時: 2024年12月12日 13:24
 
 ---
-
-
 
 ## スクラムフェス新潟2025 | Scrum Fest Niigata 2025
 
@@ -127,6 +125,7 @@ Regional Scrum Gathering Tokyo 2024 is a 13th annual Regional Gathering held in 
 に示唆に富む対話となるでしょう。また、将来的にマネージャーを目指している方や、
 自分の上司の行動について考えたいと思っている方にも、大いに参考になる内容です。
 - Webサイト: https://peatix.com/event/4225510/view
+- 録画一覧: https://youtu.be/jak-thlSx9w
 
 ---
 
