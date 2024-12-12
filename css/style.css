@@ -77,6 +77,10 @@
         height: auto;
         max-height: calc(45vh - 1rem);
     }
+
+    .btn-outline-light.markdown-download {
+        display: none;
+    }
 }
 
 .footer {
