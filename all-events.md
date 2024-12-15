@@ -1,6 +1,6 @@
 # スクラムフェスマップ
 
-作成日時: 2024年12月12日 13:33
+作成日時: 2024年12月15日 20:17
 
 ---
 
@@ -157,6 +157,7 @@ Regional Scrum Gathering Tokyo 2024 is a 13th annual Regional Gathering held in 
 そのために私たちは、ソフトウェアの技術的なプラクティスやチームのあり方、組織との関わり方など、様々な視点を必要としています。​
 
 Scrum Fest Nisekoでは、日常から離れ新しい仲間や新しい視点と出会うことで、明日からの新しい一歩を踏み出すきっかけを作ります。
+- Webサイト: https://www.scrumfestsapporo.org/
 
 ---
 
@@ -359,6 +360,7 @@ Regional Scrum Gathering Tokyo 2024は、東京で行われるRegional Gathering
 そのために私たちは、ソフトウェアの技術的なプラクティスやチームのあり方、組織との関わり方など、様々な視点を必要としています。​
 
 Scrum Fest Nisekoでは、日常から離れ新しい仲間や新しい視点と出会うことで、明日からの新しい一歩を踏み出すきっかけを作ります。
+- Webサイト: https://www.scrumfestsapporo.org/2023
 
 ---
 
