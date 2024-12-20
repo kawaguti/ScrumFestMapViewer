@@ -4,13 +4,21 @@ class EventParser {
         const response = await fetch(`all-events.md?t=${timestamp}`);
         let text = await response.text();
 
+        // デバッグ用：マークダウンの内容を確認
+        console.log('Loaded markdown:', text);
+
         // 改行コードを LF に統一
         text = text.replace(/\r\n/g, '\n');
 
-        return {
+        const result = {
             title: this.parseTitle(text),
             events: this.parseMarkdown(text)
         };
+
+        // デバッグ用：パース結果を確認
+        console.log('Parsed events:', result);
+
+        return result;
     }
 
     static parseTitle(markdown) {
@@ -35,6 +43,9 @@ class EventParser {
         // Split by horizontal rule and filter out empty sections
         const sections = markdown.split('---').map(section => section.trim()).filter(Boolean);
 
+        // デバッグ用：セクション数を確認
+        console.log('Number of sections:', sections.length);
+
         // Skip the first section (metadata) and process the rest
         for (let i = 1; i < sections.length; i++) {
             const section = sections[i];
@@ -44,6 +55,8 @@ class EventParser {
             const titleLine = lines.find(line => line.trim().startsWith('## '));
             if (titleLine) {
                 const event = this.parseEventSection(section);
+                // デバッグ用：各イベントのパース結果を確認
+                console.log('Parsed event:', event);
                 if (event && event.title && event.coordinates && event.location && event.date) {
                     events.push(event);
                 }
@@ -56,6 +69,9 @@ class EventParser {
     static parseEventSection(section) {
         const lines = section.trim().split('\n');
         let title = '';
+
+        // デバッグ用：セクションの内容を確認
+        console.log('Parsing section:', section);
 
         // Find the event title (line starting with '## ')
         const titleLine = lines.find(line => line.startsWith('## '));
@@ -83,20 +99,22 @@ class EventParser {
         let isProcessingDescription = false;
         let summaryLines = [];
         let descriptionLines = [];
-
-        // 前の行が空行だったかどうかを追跡
         let previousLineWasEmpty = false;
+
+        // デバッグ用：各行の処理を確認
+        console.log('Processing lines for event:', title);
 
         for (let i = 1; i < lines.length; i++) {
             const line = lines[i].trim();
+            console.log('Processing line:', line, 
+                       'isProcessingSummary:', isProcessingSummary, 
+                       'isProcessingDescription:', isProcessingDescription);
 
-            // 空行の処理
             if (line === '') {
                 previousLineWasEmpty = true;
                 continue;
             }
 
-            // リスト項目の開始を検出
             if (line.startsWith('- ')) {
                 isProcessingSummary = false;
                 isProcessingDescription = false;
@@ -130,20 +148,15 @@ class EventParser {
                     continue;
                 }
             } else if (line !== '') {
-                // 概要またはステートメントの内容を処理
                 if (isProcessingSummary) {
-                    // 空行の後の新しい段落の場合は、改行を追加
                     if (previousLineWasEmpty && summaryLines.length > 0) {
                         summaryLines.push('');
                     }
-                    // インデントを削除して追加（先頭の2スペースを削除）
                     summaryLines.push(line.replace(/^\s{2}/, ''));
                 } else if (isProcessingDescription) {
-                    // 空行の後の新しい段落の場合は、改行を追加
                     if (previousLineWasEmpty && descriptionLines.length > 0) {
                         descriptionLines.push('');
                     }
-                    // インデントを削除して追加（先頭の2スペースを削除）
                     descriptionLines.push(line.replace(/^\s{2}/, ''));
                 }
             }
@@ -152,6 +165,9 @@ class EventParser {
 
         event.summary = summaryLines.join('\n').trim();
         event.description = descriptionLines.join('\n').trim();
+
+        // デバッグ用：最終的なイベントオブジェクトを確認
+        console.log('Final event object:', event);
 
         return event;
     }
