@@ -10,7 +10,7 @@ class ListView {
 
     addEvent(event) {
         if (!event || !event.title || !event.location || !event.date) return;
-        
+
         const row = document.createElement('tr');
         const dateStr = event.date.toLocaleDateString('ja-JP', {
             year: 'numeric',
@@ -18,7 +18,7 @@ class ListView {
             day: '2-digit',
             weekday: 'short'
         });
-        
+
         row.innerHTML = `
             <td>${event.title}</td>
             <td>${event.location || ''}</td>
@@ -42,14 +42,24 @@ class ListView {
             const content = document.getElementById('listEventContent');
             const modalTitle = document.getElementById('eventDetailModalLabel');
             modalTitle.textContent = event.title;
-            
+
             let html = `
                 <p><strong>開催地:</strong> ${event.location || ''}</p>
                 <p><strong>開催日:</strong> ${dateStr}</p>
             `;
 
+            if (event.summary) {
+                html += `<div class="mt-3">
+                    <h5>概要</h5>
+                    ${marked.parse(event.summary)}
+                </div>`;
+            }
+
             if (event.description) {
-                html += `<p><strong>説明:</strong><br>${marked.parse(event.description)}</p>`;
+                html += `<div class="mt-3">
+                    <h5>説明</h5>
+                    ${marked.parse(event.description)}
+                </div>`;
             }
 
             if (event.website) {
@@ -61,7 +71,7 @@ class ListView {
             }
 
             content.innerHTML = html;
-            
+
             const modal = new bootstrap.Modal(document.getElementById('eventDetailModal'));
             modal.show();
         });
