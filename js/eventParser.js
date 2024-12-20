@@ -84,8 +84,17 @@ class EventParser {
         let summaryLines = [];
         let descriptionLines = [];
 
+        // 前の行が空行だったかどうかを追跡
+        let previousLineWasEmpty = false;
+
         for (let i = 1; i < lines.length; i++) {
             const line = lines[i].trim();
+
+            // 空行の処理
+            if (line === '') {
+                previousLineWasEmpty = true;
+                continue;
+            }
 
             // リスト項目の開始を検出
             if (line.startsWith('- ')) {
@@ -123,17 +132,27 @@ class EventParser {
             } else if (line !== '') {
                 // 概要またはステートメントの内容を処理
                 if (isProcessingSummary) {
+                    // 空行の後の新しい段落の場合は、改行を追加
+                    if (previousLineWasEmpty && summaryLines.length > 0) {
+                        summaryLines.push('');
+                    }
                     // インデントを削除して追加（先頭の2スペースを削除）
                     summaryLines.push(line.replace(/^\s{2}/, ''));
                 } else if (isProcessingDescription) {
+                    // 空行の後の新しい段落の場合は、改行を追加
+                    if (previousLineWasEmpty && descriptionLines.length > 0) {
+                        descriptionLines.push('');
+                    }
                     // インデントを削除して追加（先頭の2スペースを削除）
                     descriptionLines.push(line.replace(/^\s{2}/, ''));
                 }
             }
+            previousLineWasEmpty = false;
         }
 
         event.summary = summaryLines.join('\n').trim();
         event.description = descriptionLines.join('\n').trim();
+
         return event;
     }
 }
