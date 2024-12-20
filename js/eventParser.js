@@ -73,62 +73,67 @@ class EventParser {
             location: '',
             coordinates: '',
             date: '',
-            summary: '', // 新しい概要フィールドを追加
+            summary: '',
             description: '',
             website: '',
             recordingUrl: ''
         };
 
+        let isProcessingSummary = false;
+        let isProcessingDescription = false;
+        let summaryLines = [];
         let descriptionLines = [];
-        let summaryLines = []; // 概要用の配列を追加
-        let isInSummary = false; // 概要セクション内かどうかのフラグ
 
         for (let i = 1; i < lines.length; i++) {
             const line = lines[i].trim();
-            if (line.startsWith('- 開催地:')) {
-                event.location = line.replace('- 開催地:', '').trim();
-            } else if (line.startsWith('- 座標:')) {
-                const coordStr = line.match(/\[(.*?)\]/);
-                if (coordStr) {
-                    const [lng, lat] = coordStr[1].split(',').map(n => parseFloat(n.trim()));
-                    event.coordinates = [lat, lng];
-                }
-            } else if (line.startsWith('- 開催日:')) {
-                const dateStr = line.replace('- 開催日:', '').trim();
-                const match = dateStr.match(/(\d{4})年(\d{2})月(\d{2})日/);
-                if (match) {
-                    const [_, year, month, day] = match;
-                    event.date = new Date(year, month - 1, day);
-                }
-            } else if (line.startsWith('- Webサイト:')) {
-                event.website = line.replace('- Webサイト:', '').trim();
-            } else if (line.startsWith('- 録画一覧:')) {
-                event.recordingUrl = line.replace('- 録画一覧:', '').trim();
-            } else if (line.startsWith('- 概要:')) { // 概要セクションの開始
-                isInSummary = true;
-                i++;
-                while (i < lines.length && !lines[i].trim().startsWith('-')) {
-                    if (lines[i].trim()) {
-                        summaryLines.push(lines[i].trim());
+
+            // リスト項目の開始を検出
+            if (line.startsWith('- ')) {
+                isProcessingSummary = false;
+                isProcessingDescription = false;
+
+                if (line.startsWith('- 開催地:')) {
+                    event.location = line.replace('- 開催地:', '').trim();
+                } else if (line.startsWith('- 座標:')) {
+                    const coordStr = line.match(/\[(.*?)\]/);
+                    if (coordStr) {
+                        const [lng, lat] = coordStr[1].split(',').map(n => parseFloat(n.trim()));
+                        event.coordinates = [lat, lng];
                     }
-                    i++;
-                }
-                i--;
-                isInSummary = false;
-            } else if (line.startsWith('- 説明:')) {
-                i++;
-                while (i < lines.length && !lines[i].trim().startsWith('-')) {
-                    if (lines[i].trim()) {
-                        descriptionLines.push(lines[i].trim());
+                } else if (line.startsWith('- 開催日:')) {
+                    const dateStr = line.replace('- 開催日:', '').trim();
+                    const match = dateStr.match(/(\d{4})年(\d{2})月(\d{2})日/);
+                    if (match) {
+                        const [_, year, month, day] = match;
+                        event.date = new Date(year, month - 1, day);
                     }
-                    i++;
+                } else if (line.startsWith('- Webサイト:')) {
+                    event.website = line.replace('- Webサイト:', '').trim();
+                } else if (line.startsWith('- 録画一覧:')) {
+                    event.recordingUrl = line.replace('- 録画一覧:', '').trim();
+                } else if (line.startsWith('- 概要:')) {
+                    isProcessingSummary = true;
+                    isProcessingDescription = false;
+                    continue;
+                } else if (line.startsWith('- 説明:')) {
+                    isProcessingDescription = true;
+                    isProcessingSummary = false;
+                    continue;
                 }
-                i--;
+            } else if (line !== '') {
+                // 概要またはステートメントの内容を処理
+                if (isProcessingSummary) {
+                    // インデントを削除して追加（先頭の2スペースを削除）
+                    summaryLines.push(line.replace(/^\s{2}/, ''));
+                } else if (isProcessingDescription) {
+                    // インデントを削除して追加（先頭の2スペースを削除）
+                    descriptionLines.push(line.replace(/^\s{2}/, ''));
+                }
             }
         }
 
-        event.summary = summaryLines.join('\n');
-        event.description = descriptionLines.join('\n');
+        event.summary = summaryLines.join('\n').trim();
+        event.description = descriptionLines.join('\n').trim();
         return event;
     }
 }
