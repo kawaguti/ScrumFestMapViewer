@@ -138,26 +138,27 @@ class EventParser {
                     event.website = line.replace('- Webサイト:', '').trim();
                 } else if (line.startsWith('- 録画一覧:')) {
                     event.recordingUrl = line.replace('- 録画一覧:', '').trim();
-                } else if (line.startsWith('- 概要:')) {
+                } else if (line === '- 概要:') {
                     isProcessingSummary = true;
                     isProcessingDescription = false;
-                    continue;
-                } else if (line.startsWith('- 説明:')) {
+                } else if (line === '- 説明:') {
                     isProcessingDescription = true;
                     isProcessingSummary = false;
-                    continue;
                 }
             } else if (line !== '') {
-                if (isProcessingSummary) {
+                // インデントされたテキストの処理（概要または説明）
+                const textContent = line.replace(/^\s{2}/, ''); // 先頭の2スペースを削除
+
+                if (isProcessingSummary && !line.startsWith('- ')) {
                     if (previousLineWasEmpty && summaryLines.length > 0) {
                         summaryLines.push('');
                     }
-                    summaryLines.push(line.replace(/^\s{2}/, ''));
-                } else if (isProcessingDescription) {
+                    summaryLines.push(textContent);
+                } else if (isProcessingDescription && !line.startsWith('- ')) {
                     if (previousLineWasEmpty && descriptionLines.length > 0) {
                         descriptionLines.push('');
                     }
-                    descriptionLines.push(line.replace(/^\s{2}/, ''));
+                    descriptionLines.push(textContent);
                 }
             }
             previousLineWasEmpty = false;
