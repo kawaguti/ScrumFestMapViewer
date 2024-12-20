@@ -159,6 +159,9 @@ class EventParser {
                         descriptionLines.push('');
                     }
                     descriptionLines.push(textContent);
+                } else if (!isProcessingSummary && !isProcessingDescription && !line.startsWith('- ')) {
+                    // 概要セクションのマーカーがない場合は、開催日と Webサイト の間のテキストを概要として扱う
+                    summaryLines.push(textContent);
                 }
             }
             previousLineWasEmpty = false;
