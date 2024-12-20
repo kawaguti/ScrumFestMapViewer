@@ -48,17 +48,17 @@ class ListView {
                 <p><strong>開催日:</strong> ${dateStr}</p>
             `;
 
-            if (event.summary) {
+            if (event.summary && event.summary.trim()) {
                 html += `<div class="mt-3">
                     <h5>概要</h5>
-                    ${marked.parse(event.summary)}
+                    <div class="summary-content">${marked.parse(event.summary)}</div>
                 </div>`;
             }
 
-            if (event.description) {
+            if (event.description && event.description.trim()) {
                 html += `<div class="mt-3">
                     <h5>説明</h5>
-                    ${marked.parse(event.description)}
+                    <div class="description-content">${marked.parse(event.description)}</div>
                 </div>`;
             }
 
