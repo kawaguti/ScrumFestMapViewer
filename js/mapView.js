@@ -15,11 +15,11 @@ class MapView {
     isSameOrFutureDate(date) {
         const today = new Date();
         const eventDate = new Date(date);
-        
+
         // 年月日のみを比較するため、時刻をリセット
         today.setHours(0, 0, 0, 0);
         eventDate.setHours(0, 0, 0, 0);
-        
+
         // 当日または未来の日付の場合はtrue
         return eventDate >= today;
     }
@@ -66,8 +66,8 @@ class MapView {
         if (this.eventGroups.get(coordKey).length === 1) {
             const count = this.eventGroups.get(coordKey).length;
             const isFutureOrToday = this.isSameOrFutureDate(event.date);
-            
-            const markerObj = L.marker(event.coordinates, { 
+
+            const markerObj = L.marker(event.coordinates, {
                 icon: this.createMarkerIcon(count, isFutureOrToday)
             }).on('click', () => {
                 this.showGroupedEvents(coordKey);
@@ -85,8 +85,8 @@ class MapView {
 
     updateMarkerCount(coordKey) {
         const markers = this.markers.getLayers();
-        const marker = markers.find(m => m.getLatLng().lat === parseFloat(coordKey.split(',')[0]) && 
-                                    m.getLatLng().lng === parseFloat(coordKey.split(',')[1]));
+        const marker = markers.find(m => m.getLatLng().lat === parseFloat(coordKey.split(',')[0]) &&
+            m.getLatLng().lng === parseFloat(coordKey.split(',')[1]));
         if (marker) {
             const count = this.eventGroups.get(coordKey).length;
             const isFutureOrToday = this.isSameOrFutureDate(this.eventGroups.get(coordKey)[0].date);
@@ -106,7 +106,7 @@ class MapView {
         events.forEach((event, index) => {
             const eventId = `${coordKey}-${index}`;
             window.eventDetailsMap.set(eventId, event);
-            
+
             content += `
                 <a href="javascript:void(0)" class="list-group-item list-group-item-action" data-event-id="${eventId}">
                     <div class="mb-1">
@@ -121,7 +121,7 @@ class MapView {
         content += '</div>';
 
         const markerLatLng = L.latLng(events[0].coordinates);
-        
+
         const popup = L.popup({
             closeButton: true,
             offset: L.point(0, -24),
@@ -152,17 +152,27 @@ class MapView {
             <p>${event.location}</p>
             <p>${event.date.toLocaleDateString('ja-JP')}</p>
             <div class="mt-2">
-                ${event.website ? 
-                    `<a href="${event.website}" target="_blank" class="btn btn-sm btn-outline-primary me-2">サイト</a>` : 
+                ${event.website ?
+                    `<a href="${event.website}" target="_blank" class="btn btn-sm btn-outline-primary me-2">サイト</a>` :
                     ''}
-                ${event.recordingUrl ? 
-                    `<a href="${event.recordingUrl}" target="_blank" class="btn btn-sm btn-outline-success">録画</a>` : 
+                ${event.recordingUrl ?
+                    `<a href="${event.recordingUrl}" target="_blank" class="btn btn-sm btn-outline-success">録画</a>` :
                     ''}
             </div>
         `;
 
+        if (event.summary) {
+            html += `<div class="mt-3">
+                <h5>概要</h5>
+                <p>${marked.parse(event.summary)}</p>
+            </div>`;
+        }
+
         if (event.description) {
-            html += `<p class="mt-3">${marked.parse(event.description)}</p>`;
+            html += `<div class="mt-3">
+                <h5>説明</h5>
+                <p>${marked.parse(event.description)}</p>
+            </div>`;
         }
 
         content.innerHTML = html;

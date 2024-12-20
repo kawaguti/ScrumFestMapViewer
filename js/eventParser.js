@@ -3,10 +3,10 @@ class EventParser {
         const timestamp = new Date().getTime();
         const response = await fetch(`all-events.md?t=${timestamp}`);
         let text = await response.text();
-        
+
         // 改行コードを LF に統一
         text = text.replace(/\r\n/g, '\n');
-        
+
         return {
             title: this.parseTitle(text),
             events: this.parseMarkdown(text)
@@ -16,30 +16,30 @@ class EventParser {
     static parseTitle(markdown) {
         // Split the markdown into sections and get the first section
         const sections = markdown.split('---').map(section => section.trim()).filter(Boolean);
-        
+
         if (sections.length === 0) {
             return 'イベント一覧';
         }
-        
+
         // Get the first section and look for the title
         const firstSection = sections[0];
         const lines = firstSection.split('\n');
         const titleLine = lines.find(line => line.startsWith('# '));
-        
+
         return titleLine ? titleLine.replace('# ', '').trim() : 'イベント一覧';
     }
 
     static parseMarkdown(markdown) {
         const events = [];
-        
+
         // Split by horizontal rule and filter out empty sections
         const sections = markdown.split('---').map(section => section.trim()).filter(Boolean);
-        
+
         // Skip the first section (metadata) and process the rest
         for (let i = 1; i < sections.length; i++) {
             const section = sections[i];
             const lines = section.split('\n');
-            
+
             // Check if this is an event section (starts with ## )
             const titleLine = lines.find(line => line.trim().startsWith('## '));
             if (titleLine) {
@@ -49,37 +49,40 @@ class EventParser {
                 }
             }
         }
-        
+
         return events;
     }
 
     static parseEventSection(section) {
         const lines = section.trim().split('\n');
         let title = '';
-        
+
         // Find the event title (line starting with '## ')
         const titleLine = lines.find(line => line.startsWith('## '));
         if (!titleLine) {
             return null; // Skip sections without a proper title
         }
-        
+
         title = titleLine.replace('## ', '').trim();
         if (!title) {
             return null; // Skip if title is empty after trimming
         }
-        
+
         const event = {
             title: title,
             location: '',
             coordinates: '',
             date: '',
+            summary: '', // 新しい概要フィールドを追加
             description: '',
             website: '',
             recordingUrl: ''
         };
 
         let descriptionLines = [];
-        
+        let summaryLines = []; // 概要用の配列を追加
+        let isInSummary = false; // 概要セクション内かどうかのフラグ
+
         for (let i = 1; i < lines.length; i++) {
             const line = lines[i].trim();
             if (line.startsWith('- 開催地:')) {
@@ -101,6 +104,17 @@ class EventParser {
                 event.website = line.replace('- Webサイト:', '').trim();
             } else if (line.startsWith('- 録画一覧:')) {
                 event.recordingUrl = line.replace('- 録画一覧:', '').trim();
+            } else if (line.startsWith('- 概要:')) { // 概要セクションの開始
+                isInSummary = true;
+                i++;
+                while (i < lines.length && !lines[i].trim().startsWith('-')) {
+                    if (lines[i].trim()) {
+                        summaryLines.push(lines[i].trim());
+                    }
+                    i++;
+                }
+                i--;
+                isInSummary = false;
             } else if (line.startsWith('- 説明:')) {
                 i++;
                 while (i < lines.length && !lines[i].trim().startsWith('-')) {
@@ -113,6 +127,7 @@ class EventParser {
             }
         }
 
+        event.summary = summaryLines.join('\n');
         event.description = descriptionLines.join('\n');
         return event;
     }
