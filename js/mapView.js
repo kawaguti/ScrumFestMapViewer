@@ -161,17 +161,17 @@ class MapView {
             </div>
         `;
 
-        if (event.summary) {
+        if (event.summary && event.summary.trim()) {
             html += `<div class="mt-3">
                 <h5>概要</h5>
-                <p>${marked.parse(event.summary)}</p>
+                <div class="summary-content">${marked.parse(event.summary)}</div>
             </div>`;
         }
 
-        if (event.description) {
+        if (event.description && event.description.trim()) {
             html += `<div class="mt-3">
                 <h5>説明</h5>
-                <p>${marked.parse(event.description)}</p>
+                <div class="description-content">${marked.parse(event.description)}</div>
             </div>`;
         }
 
