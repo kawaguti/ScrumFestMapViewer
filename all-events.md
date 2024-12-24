@@ -8,6 +8,7 @@
 
 - 開催日: 2025/5/8
 - 開催地: 新潟県
+- 座標: [139.0200, 37.9300]
 - Webサイト: https://www.scrumfestniigata.org/
 
 スクラムフェス新潟はアジャイルコミュニティの祭典です。
@@ -27,6 +28,7 @@
 
 - 開催日: 2025/3/15
 - 開催地: 神奈川県
+- 座標: [139.6275, 35.4500]  <!-- Approximate coordinates for Kanagawa -->
 - Webサイト: https://www.scrumfestkanagawa.org/
 
 天成園 小田原駅 別館に1泊2日する宿泊型イベント！
@@ -39,19 +41,10 @@ OSTやLT、交流タイムでわいわい盛り上がりましょう。
 
 - 開催日: 2025/3/7
 - 開催地: 福岡県
+- 座標: [130.4017, 33.5902]
 - Webサイト: https://www.scrumfestfukuoka.org/
 
 スクラムフェス福岡はアジャイルコミュニティの祭典です。
-
-この祭典は、プロダクト開発における技術や開発プロセスだけでなく、
-そこで働く人やチーム、組織にも価値をおきます。
-エンジニア、デザイナー、QA、SM、POなどのロールに関係なく、
-アジャイルに興味・関心のある全ての人が楽しむことができます。
-金融、行政など大規模な組織からスタートアップなどの小規模な組織の運営のノウハウがシェアされます。
-その中で活躍する方々と生々しい話題を共有し、相談することもできます。
-
-スクラムフェス福岡はオンサイトとオンラインでの同時開催です。
-セッションは​会場よりオンライン配信します。
 
 ---
 
@@ -59,10 +52,10 @@ OSTやLT、交流タイムでわいわい盛り上がりましょう。
 
 - 開催日: 2025/2/4
 - 開催地: 東京都
+- 座標: [139.7673, 35.6809]
 - Webサイト: https://www.wiajapan.org/
 
-Women in Agile Tokyo Conferenceは、企業でアジャイルを実践し、普及を支援する「アジャイルリーダー」のためのイベントです。
-Womenと冠していますが女性限定の活動ではなく、あらゆる多様性を尊重できる安全で健全な職場作りを自分たちの手で作るため、実践的なノウハウや、うまくいったこと、うまくいかなかったこと、温めているアイデアを共有し、仲間やメンターを見つけ、悩みがあれば相談してみましょう。
+Women in Agile Tokyo Conferenceは、企業でアジャイルを実践し、普及を支援する「アジャイルリーダー」のためのイベントです。Womenと冠していますが女性限定の活動ではなく、あらゆる多様性を尊重できる安全で健全な職場作りを自分たちの手で作るため、実践的なノウハウや、うまくいったこと、うまくいかなかったこと、温めているアイデアを共有し、仲間やメンターを見つけ、悩みがあれば相談してみましょう。
 
 ---
 
@@ -70,11 +63,10 @@ Womenと冠していますが女性限定の活動ではなく、あらゆる多
 
 - 開催日: 2025/1/8
 - 開催地: 東京都
+- 座標: [139.7673, 35.6809]
 - Webサイト: https://2025.scrumgatheringtokyo.org/
 
 Regional Scrum Gathering Tokyo 2025は、東京で行われるRegional Gatheringとして14回目になります。運営母体である一般社団法人スクラムギャザリング東京実行委員会は、スクラムを実践する人が集い垣根を超えて語り合う場を提供するという目的によりコミットしています。
-
-Regional Scrum Gathering Tokyo 2024 is a 13th annual Regional Gathering held in Tokyo, organized by a non profit organization "Scrum Tokyo". Our purpose is to provide a "Ba" (place) where practitioners share ideas among Scrum practitioners having a great diversity.
 
 ---
 
@@ -82,6 +74,7 @@ Regional Scrum Gathering Tokyo 2024 is a 13th annual Regional Gathering held in 
 
 - 開催日: 2024/12/13
 - 開催地: 沖縄県
+- 座標: [127.6809, 26.2124]
 - Webサイト: https://www.scrumfestokinawa.org/
 
 スクラムフェス沖縄はアジャイルコミュニティの祭典です。
@@ -100,6 +93,7 @@ Regional Scrum Gathering Tokyo 2024 is a 13th annual Regional Gathering held in 
 
 - 開催日: 2024/12/11
 - 開催地: 東京都
+- 座標: [139.7673, 35.6809]
 - Webサイト: https://peatix.com/event/4225510/view
 - 録画一覧: https://youtu.be/jak-thlSx9w
 
@@ -126,6 +120,7 @@ Regional Scrum Gathering Tokyo 2024 is a 13th annual Regional Gathering held in 
 
 - 開催日: 2024/12/6
 - 開催地: 宮城県
+- 座標: [140.87, 38.27]
 - Webサイト: https://lets-go-developer.connpass.com/event/337114/
 
 2011年の震災をきっかけに始まった「レッツゴーデベロッパー」。「共有と交流」をメインテーマに掲げ、東北と首都圏をはじめとした東北以外のエンジニアとの共有と交流を目的としたイベントです。
@@ -140,6 +135,7 @@ Regional Scrum Gathering Tokyo 2024 is a 13th annual Regional Gathering held in 
 
 - 開催日: 2024/11/1
 - 開催地: 北海道
+- 座標: [140.57, 42.97]
 - Webサイト: https://www.scrumfestsapporo.org/
 
 Scrum Fest Nisekoは、北海道内外のソフトウェア開発に携わる人々と未来を語り合う場です。
@@ -156,6 +152,7 @@ Scrum Fest Nisekoでは、日常から離れ新しい仲間や新しい視点と
 
 - 開催日: 2024/9/27
 - 開催地: 東京都
+- 座標: [139.7673, 35.6809]
 - Webサイト: https://xpjug.com/
 
 今年のXP祭り2024は、牛尾剛さんにご講演いただきます！
@@ -170,6 +167,7 @@ XPが登場してから20年以上の年月が経ちました。2000年当初に
 
 - 開催日: 2024/9/13
 - 開催地: 愛知県
+- 座標: [137.10, 34.97]
 - Webサイト: https://www.scrumfestmikawa.org/
 - 録画一覧: https://www.youtube.com/playlist?list=PL-bvtmk0kdw7TR2Ok5t8-uKU_jp1Wyovq
 
@@ -187,6 +185,7 @@ XPが登場してから20年以上の年月が経ちました。2000年当初に
 
 - 開催日: 2024/8/23
 - 開催地: 宮城県
+- 座標: [140.87, 38.27]
 - Webサイト: https://www.scrumfestsendai.org/
 - 録画一覧: https://www.youtube.com/playlist?list=PL-bvtmk0kdw5Ban60__jYteEPIu5GOfVt
 
@@ -202,6 +201,7 @@ XPが登場してから20年以上の年月が経ちました。2000年当初に
 
 - 開催日: 2024/7/19
 - 開催地: 石川県
+- 座標: [136.62, 36.59]
 - Webサイト: https://www.scrumfestkanazawa.org/
 - 録画一覧: https://www.youtube.com/playlist?list=PL-bvtmk0kdw59hy21i-Ou8L6ayko6k2Td
 
@@ -215,12 +215,12 @@ XPが登場してから20年以上の年月が経ちました。2000年当初に
 
 - 開催日: 2024/6/20
 - 開催地: 大阪府
+- 座標: [135.50, 34.69]
 - Webサイト: https://www.scrumosaka.org/2024
 - 録画一覧: https://www.youtube.com/playlist?list=PL-bvtmk0kdw58kHd4gG5HARtAzyTr7nah
 
 Scrum Fest Osakaはスクラムの初心者からエキスパート、ユーザー企業から開発企業、立場の異なる様々な人々が集まる学びの場です。この2日間を通じ、参加者同士でスクラムやアジャイルプラクティスについての知識やパッションをシェアするだけでなく、ここで出会ったエキスパートに困りごとを相談することもできます。
 
-​
 
 ---
 
@@ -228,6 +228,7 @@ Scrum Fest Osakaはスクラムの初心者からエキスパート、ユーザ�
 
 - 開催日: 2024/5/9
 - 開催地: 新潟県
+- 座標: [139.0200, 37.9300]
 - 録画一覧: https://www.youtube.com/playlist?list=PL-bvtmk0kdw77zLCljTkXiiuE2icyl7g-
 
 スクラムフェス新潟はアジャイルコミュニティの祭典です。
@@ -235,7 +236,7 @@ Scrum Fest Osakaはスクラムの初心者からエキスパート、ユーザ�
 また新潟の地場エンジニアコミュニティと、全国のエンジニアコミュニティを繋ぎ、活性化する「場」でもあります。
 参加者同士でアジャイルやテストのプラクティスについての知識や情熱を共有し合いましょう。出会ったエキスパートに困りごとを相談し、明日への活力にしましょう。
 
-​特に以下のようなテーマに興味を持ちます。
+特に以下のようなテーマに興味を持ちます。
 テストエンジニアリング、テストオートメーション、モダンテストマネジメント、アジャイルトランスフォーメーション、メンタルヘルス、アジャイルリーダーシップ、生成AI、コミュニケーションと関係性
 
 スクラムフェス新潟はオンサイトとオンラインでの同時開催です。
@@ -247,6 +248,7 @@ Scrum Fest Osakaはスクラムの初心者からエキスパート、ユーザ�
 
 - 開催日: 2024/4/15
 - 開催地: 東京都
+- 座標: [139.7673, 35.6809]
 - Webサイト: https://www.devopsdaystokyo.org/2024
 - 録画一覧: https://www.youtube.com/playlist?list=PL-bvtmk0kdw4V1cCQenaevEp0iMZtn5Br
 
@@ -264,6 +266,7 @@ IT技術を駆使して変化に強いビジネスインフラを実現するス
 
 - 開催日: 2024/3/7
 - 開催地: 福岡県
+- 座標: [130.4017, 33.5902]
 - Webサイト: https://www.scrumfestfukuoka.org/2024
 - 録画一覧: https://www.youtube.com/playlist?list=PL-bvtmk0kdw4LmMh4iiK8zpEQkGXBG_p3
 
@@ -277,8 +280,6 @@ IT技術を駆使して変化に強いビジネスインフラを実現するス
 
 その中で活躍する方々と生々しい話題を共有し、相談することもできます。
 
-​
-
 スクラムフェス福岡はオンサイトとオンラインでの同時開催です。
 
 セッションは​会場よりオンライン配信します。
@@ -289,6 +290,7 @@ IT技術を駆使して変化に強いビジネスインフラを実現するス
 
 - 開催日: 2024/2/5
 - 開催地: 東京都
+- 座標: [139.7673, 35.6809]
 - Webサイト: https://www.wiajapan.org/2024
 - 録画一覧: https://www.youtube.com/playlist?list=PL-bvtmk0kdw42UZlNAJvLY-B7hf7_5R30
 
@@ -297,13 +299,13 @@ IT技術を駆使して変化に強いビジネスインフラを実現するス
 Women in Agile Tokyo Conferenceは、企業でアジャイルを実践し、普及を支援する「アジャイルリーダー」のためのイベントです。Womenと冠していますが女性限定の活動ではなく、あらゆる多様性を尊重できる安全で健全な職場作りを自分たちの手で作るため、実践的なノウハウや、うまくいったこと、うまくいかなかったこと、温めているアイデアを共有し、仲間やメンターを見つけ、悩みがあれば相談してみましょう。
 基調講演の後、オープンスペーステクノロジー(OST)の形式を使って、 参加者自身で、トピックを当日提案し、議論を行います。それと並行して、公募で採択されたトークセッションを行います。基調講演とトークセッションはオンライン配信を行います。
 
-
 ---
 
 ## Regional Scrum Gathering Tokyo 2024
 
 - 開催日: 2024/1/9
 - 開催地: 東京都
+- 座標: [139.7673, 35.6809]
 - Webサイト: https://2024.scrumgatheringtokyo.org/
 - 録画一覧: https://www.youtube.com/playlist?list=PL-bvtmk0kdw6V8nQEPoBPwhtVBHCJqCoR
 
@@ -316,6 +318,7 @@ Regional Scrum Gathering Tokyo 2024は、東京で行われるRegional Gathering
 
 - 開催日: 2023/12/7
 - 開催地: 沖縄県
+- 座標: [127.6809, 26.2124]
 - Webサイト: https://www.scrumfestokinawa.org/2023
 
 スクラムフェス沖縄はアジャイルコミュニティの祭典です。
@@ -333,6 +336,7 @@ Regional Scrum Gathering Tokyo 2024は、東京で行われるRegional Gathering
 
 - 開催日: 2023/11/1
 - 開催地: 北海道
+- 座標: [140.57, 42.97]
 - Webサイト: https://www.scrumfestsapporo.org/2023
 
 Scrum Fest Nisekoは、北海道内外のソフトウェア開発に携わる人々と未来を語り合う場です。
@@ -347,6 +351,7 @@ Scrum Fest Nisekoでは、日常から離れ新しい仲間や新しい視点と
 
 - 開催日: 2023/9/27
 - 開催地: 東京都
+- 座標: [139.7673, 35.6809]
 - Webサイト: https://xpjug.com/xp2023/
 - 録画一覧: https://www.youtube.com/playlist?list=PL-bvtmk0kdw6HgvUt1XVTXKoXI5dbkjv4
 
@@ -361,6 +366,7 @@ Scrum Fest Nisekoでは、日常から離れ新しい仲間や新しい視点と
 
 - 開催日: 2023/9/14
 - 開催地: 愛知県
+- 座標: [137.10, 34.97]
 - Webサイト: https://www.scrumfestmikawa.org/2023
 - 録画一覧: https://www.youtube.com/playlist?list=PL-bvtmk0kdw5s3_q6dbaKCHbtF4ZJWkS1
 
@@ -371,7 +377,7 @@ Scrum Fest Nisekoでは、日常から離れ新しい仲間や新しい視点と
 
 2023は三河会場とオンラインでの同時開催です。今年はこれまで開催してきましたCLUEに加えて、新たにemCAMPUS STUDIOよりオンライン配信します。
 
-​さらに、Day2 はもう一つの製造業のメッカ、栃木にもオンサイト会場を用意します。
+さらに、Day2 はもう一つの製造業のメッカ、栃木にもオンサイト会場を用意します。
 
 ---
 
@@ -379,6 +385,7 @@ Scrum Fest Nisekoでは、日常から離れ新しい仲間や新しい視点と
 
 - 開催日: 2023/8/24
 - 開催地: 宮城県
+- 座標: [140.87, 38.27]
 - Webサイト: https://www.scrumfestsendai.org/2023
 - 録画一覧: https://www.youtube.com/playlist?list=PL-bvtmk0kdw6cg1znHIXMZ2rDuWddtjxM
 
@@ -395,6 +402,7 @@ Scrum Fest Nisekoでは、日常から離れ新しい仲間や新しい視点と
 
 - 開催日: 2023/6/29
 - 開催地: 大阪府
+- 座標: [135.50, 34.69]
 - Webサイト: https://www.scrumosaka.org/2023
 - 録画一覧: https://www.youtube.com/playlist?list=PL-bvtmk0kdw4mWI4Mq7s7-YAYvntfuclC
 
@@ -406,6 +414,7 @@ Scrum Fest Osakaはスクラムの初心者からエキスパート、ユーザ�
 
 - 開催日: 2023/5/9
 - 開催地: 新潟県
+- 座標: [139.0200, 37.9300]
 - Webサイト: https://www.scrumfestniigata.org/2023
 - 録画一覧: https://www.youtube.com/playlist?list=PL-bvtmk0kdw4CpvY5SAVCEwD2BYYuNf5V
 
@@ -425,6 +434,7 @@ Test Engineering、Test Automation、Modern Test Management、Agile Transformati
 
 - 開催日: 2023/4/17
 - 開催地: 東京都
+- 座標: [139.7673, 35.6809]
 - Webサイト: https://www.devopsdaystokyo.org/2023
 - 録画一覧: https://www.youtube.com/playlist?list=PL-bvtmk0kdw5JSayDScD7Y6XMdyANyQmB
 
@@ -442,6 +452,7 @@ IT技術を駆使して変化に強いビジネスインフラを実現するス
 
 - 開催日: 2022/11/28
 - 開催地: 宮城県
+- 座標: [140.87, 38.27]
 - Webサイト: https://lets-go-developer.connpass.com/event/266367/
 
 10回記念のレッツゴーデベロッパー！「全てを破壊し、全てを繋げ！」
@@ -461,6 +472,7 @@ Let's Go！デベロッパー！
 
 - 開催日: 2021/12/10
 - 開催地: 宮城県
+- 座標: [140.87, 38.27]
 - Webサイト: https://lets-go-developer.connpass.com/event/232183/
 
 2年ぶりオンサイト開催のレッツゴーデベロッパー！
@@ -473,4 +485,3 @@ Let's Go！デベロッパー！
 Let's Go！デベロッパー！
 
 ---
-
