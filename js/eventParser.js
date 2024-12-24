@@ -87,8 +87,8 @@ class EventParser {
         const event = {
             title: title,
             location: '',
-            coordinates: '',
-            date: '',
+            coordinates: null,
+            date: null,
             summary: '',
             description: '',
             website: '',
@@ -122,17 +122,21 @@ class EventParser {
                 if (line.startsWith('- 開催地:')) {
                     event.location = line.replace('- 開催地:', '').trim();
                 } else if (line.startsWith('- 座標:')) {
-                    const coordStr = line.match(/\[(.*?)\]/);
-                    if (coordStr) {
-                        const [lng, lat] = coordStr[1].split(',').map(n => parseFloat(n.trim()));
-                        event.coordinates = [lat, lng];
+                    // 座標の処理を改善
+                    const coordMatch = line.match(/\[([-\d.,\s]+)\]/);
+                    if (coordMatch) {
+                        const [lng, lat] = coordMatch[1].split(',').map(n => parseFloat(n.trim()));
+                        if (!isNaN(lat) && !isNaN(lng)) {
+                            event.coordinates = [lat, lng];
+                        }
                     }
                 } else if (line.startsWith('- 開催日:')) {
+                    // 日付の処理を改善
                     const dateStr = line.replace('- 開催日:', '').trim();
-                    const match = dateStr.match(/(\d{4})年(\d{2})月(\d{2})日/);
+                    const match = dateStr.match(/(\d{4})\/(\d{1,2})\/(\d{1,2})/);
                     if (match) {
                         const [_, year, month, day] = match;
-                        event.date = new Date(year, month - 1, day);
+                        event.date = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
                     }
                 } else if (line.startsWith('- Webサイト:')) {
                     event.website = line.replace('- Webサイト:', '').trim();
