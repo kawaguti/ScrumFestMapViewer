@@ -1,5 +1,7 @@
 # スクラムフェスマップ
 
+作成日時: 2024年12月25日 07:04
+
 - マップ: https://scrumfestmap.kawaguti.dev
 
 ---
