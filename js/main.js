@@ -19,25 +19,24 @@ class EventApp {
             const path = window.location.pathname;
             const match = path.match(/event\/(\d+)/);
             if (match) {
-                const eventId = match[1];
-                const event = this.events.find(e => e.id === parseInt(eventId));
+                const eventId = parseInt(match[1]);
+                const event = this.events.find(e => e.id === eventId);
                 if (event) {
+                    // これからのイベントタブに切り替え
+                    document.getElementById('viewYear').click();
+                    this.updateView();
+                    // イベントを選択
                     this.mapView.showEventDetails(event);
                     this.mapView.selectEventMarker(event);
-                    // 該当イベントに応じてタブを切り替え
-                    const now = new Date();
-                    const eventDate = new Date(event.date);
-                    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-                    if (eventDate >= today) {
-                        document.getElementById('viewYear').click();
-                    } else {
-                        document.getElementById('viewAll').click();
-                    }
                     return;
                 }
             }
             
+            // デフォルトビューを更新
+            document.getElementById('viewYear').click();
             this.updateView();
+            // 最も近い未来のイベントを選択
+            this.selectUpcomingEvent();
         } catch (error) {
             console.error('イベントの読み込みに失敗しました:', error);
         }
