@@ -27,9 +27,9 @@ class MapView {
     createMarkerIcon(count, isFutureOrToday) {
         const eventClass = isFutureOrToday ? 'future-event' : 'past-event';
         return L.divIcon({
-            className: `marker-container ${eventClass}`,
+            className: 'marker-container',
             html: `
-                <div class="marker-pin-google">
+                <div class="marker-pin-google ${eventClass}">
                     <div class="marker-head">${count > 1 ? count : ''}</div>
                     <div class="marker-tail"></div>
                 </div>`,
