@@ -14,29 +14,21 @@ class EventApp {
             this.events = data.events;
             document.querySelector('.navbar-brand').textContent = data.title;
             document.title = data.title;
-
-            // デフォルトビューを設定
-            document.getElementById('viewYear').click();
-
-            // URLからイベントIDを取得して選択
-            const path = window.location.pathname;
-            const match = path.match(/event\/(\d+)/);
-
-            // まずビューを更新
             this.updateView();
-
+            
+            // URLからイベントIDを取得
+            const path = window.location.pathname;
+            const match = path.match(/event\/(.+)/);
             if (match) {
                 const eventId = match[1];
-                const event = this.events.find(e => e.id && e.id.toString() === eventId);
+                const event = this.events.find(e => e.id === eventId);
                 if (event) {
                     this.mapView.showEventDetails(event);
-                    this.mapView.selectEventMarker(event);
-                    document.getElementById('currentEventId').textContent = eventId;
                     return;
                 }
             }
-
-            // IDが指定されていない場合は最も近い未来のイベントを選択
+            
+            // イベントIDがない場合は直近の未来イベントを表示
             this.selectUpcomingEvent();
         } catch (error) {
             console.error('イベントの読み込みに失敗しました:', error);
