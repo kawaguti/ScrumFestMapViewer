@@ -46,19 +46,9 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.future-event .marker-head,
-.future-event .marker-tail {
+.marker-container.future-event .marker-pin-google .marker-head,
+.marker-container.future-event .marker-pin-google .marker-tail {
     background-color: #FF9800;
-}
-
-.marker-pin-google.future-event .marker-head,
-.marker-pin-google.future-event .marker-tail {
-    background-color: #FF9800 !important;
-}
-
-.past-event .marker-head,
-.past-event .marker-tail {
-    background-color: #757575;
 }
 
 .marker-pin-google:hover {
