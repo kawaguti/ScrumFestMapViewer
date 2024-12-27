@@ -85,7 +85,7 @@ class EventParser {
         }
 
         const event = {
-            id: '',
+            id: undefined,
             title: title,
             location: '',
             coordinates: '',
@@ -95,6 +95,9 @@ class EventParser {
             website: '',
             recordingUrl: ''
         };
+
+        // デバッグ用：イベントオブジェクトの初期化を確認
+        console.log('Initialized event object:', event);
 
         let isProcessingSummary = false;
         let isProcessingDescription = false;
