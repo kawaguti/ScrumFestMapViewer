@@ -24,12 +24,11 @@ class MapView {
         return eventDate >= today;
     }
 
-    createMarkerIcon(count, isSelected = false) {
-        const eventClass = isSelected ? 'selected' : '';
+    createMarkerIcon(count) {
         return L.divIcon({
             className: `marker-container`,
             html: `
-                <div class="marker-pin-google ${eventClass}">
+                <div class="marker-pin-google">
                     <div class="marker-head">${count > 1 ? count : ''}</div>
                     <div class="marker-tail"></div>
                 </div>`,
@@ -67,8 +66,9 @@ class MapView {
             const isFutureOrToday = this.isSameOrFutureDate(event.date);
 
             const markerObj = L.marker(event.coordinates, {
-                icon: this.createMarkerIcon(count, isFutureOrToday),
-                event: event // Add event data to marker options
+                icon: this.createMarkerIcon(count),
+                isFuture: isFutureOrToday,
+                event: event
             }).on('click', () => {
                 this.showGroupedEvents(coordKey);
                 if (this.eventGroups.get(coordKey).length === 1) {
