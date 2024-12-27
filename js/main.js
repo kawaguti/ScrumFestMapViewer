@@ -34,9 +34,13 @@ class EventApp {
                         document.getElementById('viewYear').classList.add('active');
                     }
                     this.updateView();
+                    // マーカーが配置されるのを待ってから表示位置を調整
                     setTimeout(() => {
                         this.mapView.showEventDetails(event);
-                    }, 100);
+                        if (event.coordinates && Array.isArray(event.coordinates)) {
+                            this.mapView.map.setView(event.coordinates, 6);
+                        }
+                    }, 300);
                     return;
                 }
             }

@@ -177,10 +177,6 @@ class MapView {
         }
 
         content.innerHTML = html;
-
-        if (event.coordinates && Array.isArray(event.coordinates)) {
-            this.map.setView(event.coordinates, 6);
-        }
     }
 
     show() {
