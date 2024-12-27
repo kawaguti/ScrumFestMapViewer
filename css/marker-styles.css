@@ -24,7 +24,7 @@
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background-color: #4285F4;
+    background-color: #FF9800;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -41,7 +41,7 @@
     transform: translateX(-50%);
     width: 12px;
     height: 27px;
-    background-color: #4285F4;
+    background-color: #FF9800;
     clip-path: polygon(50% 100%, 0 0, 100% 0);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
