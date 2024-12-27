@@ -145,19 +145,24 @@ class MapView {
     }
 
     showEventDetails(event) {
-        // 全てのマーカーを非選択状態に
+        // マーカーの状態を更新
         this.markers.getLayers().forEach(marker => {
-            marker.getElement().querySelector('.marker-pin-google').classList.remove('selected');
+            const markerElement = marker.getElement();
+            if (markerElement) {
+                const pinElement = markerElement.querySelector('.marker-pin-google');
+                if (pinElement) {
+                    if (marker.getLatLng().lat === event.coordinates[0] && 
+                        marker.getLatLng().lng === event.coordinates[1]) {
+                        pinElement.classList.add('selected');
+                        // マーカーを最前面に
+                        marker.setZIndexOffset(1000);
+                    } else {
+                        pinElement.classList.remove('selected');
+                        marker.setZIndexOffset(0);
+                    }
+                }
+            }
         });
-        
-        // クリックされたマーカーを選択状態に
-        const selectedMarker = this.markers.getLayers().find(m => 
-            m.getLatLng().lat === event.coordinates[0] && 
-            m.getLatLng().lng === event.coordinates[1]
-        );
-        if (selectedMarker) {
-            selectedMarker.getElement().querySelector('.marker-pin-google').classList.add('selected');
-        }
 
         const content = document.getElementById('eventContent');
         let html = `

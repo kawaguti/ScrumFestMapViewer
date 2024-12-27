@@ -46,7 +46,8 @@
 
 .marker-pin-google.selected .marker-head,
 .marker-pin-google.selected .marker-tail {
-    background-color: #FF9800;
+    background-color: #FF9800 !important;
+    transition: background-color 0.3s ease;
 }
 
 .marker-pin-google .marker-head,
