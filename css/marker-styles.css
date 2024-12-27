@@ -44,10 +44,14 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.marker-pin-google.selected .marker-head,
-.marker-pin-google.selected .marker-tail {
-    background-color: #FF9800 !important;
+.marker-pin-google .marker-head,
+.marker-pin-google .marker-tail {
     transition: background-color 0.3s ease;
+}
+
+.marker-pin-google:hover .marker-head,
+.marker-pin-google:hover .marker-tail {
+    background-color: #FF9800;
 }
 
 .marker-pin-google .marker-head,

@@ -67,7 +67,8 @@ class MapView {
             const isFutureOrToday = this.isSameOrFutureDate(event.date);
 
             const markerObj = L.marker(event.coordinates, {
-                icon: this.createMarkerIcon(count, isFutureOrToday)
+                icon: this.createMarkerIcon(count, isFutureOrToday),
+                event: event // Add event data to marker options
             }).on('click', () => {
                 this.showGroupedEvents(coordKey);
                 if (this.eventGroups.get(coordKey).length === 1) {
@@ -152,19 +153,19 @@ class MapView {
 
         // マーカーの状態を更新
         this.markers.getLayers().forEach(marker => {
-            const markerElement = marker.getElement();
-            if (markerElement) {
-                const pinElement = markerElement.querySelector('.marker-pin-google');
-                if (pinElement) {
-                    if (marker.getLatLng().lat === event.coordinates[0] && 
-                        marker.getLatLng().lng === event.coordinates[1]) {
-                        pinElement.classList.add('selected');
-                        // マーカーを最前面に
-                        marker.setZIndexOffset(1000);
-                    } else {
-                        pinElement.classList.remove('selected');
-                        marker.setZIndexOffset(0);
-                    }
+            if (marker.options.event && marker.options.event.id === event.id) {
+                const element = marker.getElement();
+                if (element) {
+                    element.querySelector('.marker-head').style.backgroundColor = '#FF9800';
+                    element.querySelector('.marker-tail').style.backgroundColor = '#FF9800';
+                    marker.setZIndexOffset(1000);
+                }
+            } else {
+                const element = marker.getElement();
+                if (element) {
+                    element.querySelector('.marker-head').style.backgroundColor = '';
+                    element.querySelector('.marker-tail').style.backgroundColor = '';
+                    marker.setZIndexOffset(0);
                 }
             }
         });
