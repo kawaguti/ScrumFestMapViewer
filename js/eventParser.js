@@ -121,7 +121,9 @@ class EventParser {
                 isProcessingDescription = false;
 
                 if (line.startsWith('- ID:')) {
+                    console.log('Found ID line:', line);
                     event.id = line.replace('- ID:', '').trim();
+                    console.log('Parsed ID:', event.id);
                 } else if (line.startsWith('- 開催地:')) {
                     event.location = line.replace('- 開催地:', '').trim();
                 } else if (line.startsWith('- 座標:')) {
