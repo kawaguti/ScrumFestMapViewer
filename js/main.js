@@ -26,9 +26,10 @@ class EventApp {
                 const eventId = parseInt(match[1]);
                 const event = this.events.find(e => e.id === eventId);
                 if (event) {
-                    // イベントを選択
-                    this.mapView.showEventDetails(event);
-                    this.mapView.selectEventMarker(event);
+                    setTimeout(() => {
+                        this.mapView.showEventDetails(event);
+                        this.mapView.selectEventMarker(event);
+                    }, 100);
                     return;
                 }
             }
