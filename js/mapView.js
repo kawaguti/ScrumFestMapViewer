@@ -65,10 +65,19 @@ class MapView {
             const count = this.eventGroups.get(coordKey).length;
             const isFutureOrToday = this.isSameOrFutureDate(event.date);
 
+            const icon = this.createMarkerIcon(count);
             const markerObj = L.marker(event.coordinates, {
-                icon: this.createMarkerIcon(count),
+                icon: icon,
                 isFuture: isFutureOrToday,
                 event: event
+            });
+            
+            // DOMエレメントが作成された後にdata属性を設定
+            markerObj.on('add', function(e) {
+                const element = e.target.getElement();
+                if (element) {
+                    element.setAttribute('data-future', isFutureOrToday);
+                }
             }).on('click', () => {
                 this.showGroupedEvents(coordKey);
                 if (this.eventGroups.get(coordKey).length === 1) {

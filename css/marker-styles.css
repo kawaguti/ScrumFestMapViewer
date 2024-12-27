@@ -60,9 +60,9 @@
 }
 
 /* 未来のイベントのマーカー */
-[data-future="true"] .marker-head,
-[data-future="true"] .marker-tail {
-    background-color: #0d6efd;
+[data-future="true"] .marker-pin-google .marker-head,
+[data-future="true"] .marker-pin-google .marker-tail {
+    background-color: #0d6efd !important;
 }
 
 .marker-pin-google:hover {
