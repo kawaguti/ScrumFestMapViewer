@@ -20,6 +20,7 @@ class ListView {
         });
 
         row.innerHTML = `
+            <td>${event.id}</td>
             <td>${event.title}</td>
             <td>${event.location || ''}</td>
             <td>${dateStr}</td>
