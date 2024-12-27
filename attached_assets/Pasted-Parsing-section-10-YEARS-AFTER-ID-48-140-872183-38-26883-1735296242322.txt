@@ -1,0 +1,38 @@
+Parsing section: ## レッツゴーデベロッパー 10 YEARS AFTER
+
+- ID: 48
+- 開催地: 宮城県
+- 座標: `[140.872183, 38.268837]` (都道府県座標)
+- 開催日: 2021年12月11日(土)
+
+2年ぶりオンサイト開催のレッツゴーデベロッパー！  
+2011年の震災をきっかけに始まった「レッツゴーデベロッパー」  
+「共有と交流」をメインテーマに掲げ、東北と首都圏をはじめとした東北以外のエンジニアとの共有と交流を目的に開催してきました。
+
+あれから10年が経った今、2011年の登壇者、スタッフ、参加者がそれぞれの視点で当時を振り返りつつ、現在と未来への思いを語ります。
+
+これまで参加していた方も、一度も参加したことがない方も、ぜひご参加ください。 Let's Go！デベロッパー！
+
+- Webサイト: https://lets-go-developer.connpass.com/event/232183/
+Processing lines for event: レッツゴーデベロッパー 10 YEARS AFTER
+Processing line:  isProcessingSummary: false isProcessingDescription: false
+Processing line: - ID: 48 isProcessingSummary: false isProcessingDescription: false
+Processing line: - 開催地: 宮城県 isProcessingSummary: false isProcessingDescription: false
+Processing line: - 座標: `[140.872183, 38.268837]` (都道府県座標) isProcessingSummary: false isProcessingDescription: false
+Processing line: - 開催日: 2021年12月11日(土) isProcessingSummary: false isProcessingDescription: false
+Processing line:  isProcessingSummary: false isProcessingDescription: false
+Processing line: 2年ぶりオンサイト開催のレッツゴーデベロッパー！ isProcessingSummary: false isProcessingDescription: false
+Processing line: 2011年の震災をきっかけに始まった「レッツゴーデベロッパー」 isProcessingSummary: false isProcessingDescription: false
+Processing line: 「共有と交流」をメインテーマに掲げ、東北と首都圏をはじめとした東北以外のエンジニアとの共有と交流を目的に開催してきました。 isProcessingSummary: false isProcessingDescription: false
+Processing line:  isProcessingSummary: false isProcessingDescription: false
+Processing line: あれから10年が経った今、2011年の登壇者、スタッフ、参加者がそれぞれの視点で当時を振り返りつつ、現在と未来への思いを語ります。 isProcessingSummary: false isProcessingDescription: false
+Processing line:  isProcessingSummary: false isProcessingDescription: false
+Processing line: これまで参加していた方も、一度も参加したことがない方も、ぜひご参加ください。 Let's Go！デベロッパー！ isProcessingSummary: false isProcessingDescription: false
+Processing line:  isProcessingSummary: false isProcessingDescription: false
+Processing line: - Webサイト: https://lets-go-developer.connpass.com/event/232183/ isProcessingSummary: false isProcessingDescription: false
+Final event object: 
+Object {title: "レッツゴーデベロッパー 10 YEARS AFTER", location: "宮城県", coordinates: Array(2), date: Date, summary: "2年ぶりオンサイト開催のレッツゴーデベロッパー！↵2011年の震災をきっかけに始まった「レッツゴーデベロッパー」↵「共有と交流」をメインテーマに掲げ、東北と首都圏をはじめとした東北以外のエンジニ…", …}
+Parsed event: 
+Object {title: "レッツゴーデベロッパー 10 YEARS AFTER", location: "宮城県", coordinates: Array(2), date: Date, summary: "2年ぶりオンサイト開催のレッツゴーデベロッパー！↵2011年の震災をきっかけに始まった「レッツゴーデベロッパー」↵「共有と交流」をメインテーマに掲げ、東北と首都圏をはじめとした東北以外のエンジニ…", …}
+Parsed events: 
+Object {title: "スクラムフェスマップ", events: Array(32)}
