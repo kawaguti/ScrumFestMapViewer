@@ -13,7 +13,7 @@
     height: 42px;
     position: relative;
     transform-origin: bottom;
-    transition: all 0.2s ease-out;
+    transition: transform 0.2s ease-out;
 }
 
 .marker-head {
@@ -24,7 +24,6 @@
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background-color: #757575;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -32,7 +31,6 @@
     font-size: 12px;
     border: 2px solid #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
 }
 
 .marker-tail {
@@ -42,25 +40,17 @@
     transform: translateX(-50%);
     width: 12px;
     height: 27px;
-    background-color: #757575;
     clip-path: polygon(50% 100%, 0 0, 100% 0);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
 }
 
-.future-event .marker-head {
+.marker-pin-google.future-event .marker-head,
+.marker-pin-google.future-event .marker-tail {
     background-color: #FF9800;
 }
 
-.future-event .marker-tail {
-    background-color: #FF9800;
-}
-
-.past-event .marker-head {
-    background-color: #757575;
-}
-
-.past-event .marker-tail {
+.marker-pin-google.past-event .marker-head,
+.marker-pin-google.past-event .marker-tail {
     background-color: #757575;
 }
 
