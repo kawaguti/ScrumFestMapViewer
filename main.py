@@ -7,6 +7,10 @@ class ClientSideRoutingHandler(SimpleHTTPRequestHandler):
         # If path starts with /event/, serve index.html
         if self.path.startswith('/event/'):
             self.path = '/index.html'
+        self.send_response(200)
+        self.send_header('Cache-Control', 'no-cache, no-store, must-revalidate')
+        self.send_header('Pragma', 'no-cache')
+        self.send_header('Expires', '0')
         return SimpleHTTPRequestHandler.do_GET(self)
 
 if __name__ == '__main__':
