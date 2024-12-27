@@ -85,6 +85,7 @@ class EventParser {
         }
 
         const event = {
+            id: '',
             title: title,
             location: '',
             coordinates: '',
@@ -119,7 +120,9 @@ class EventParser {
                 isProcessingSummary = false;
                 isProcessingDescription = false;
 
-                if (line.startsWith('- 開催地:')) {
+                if (line.startsWith('- ID:')) {
+                    event.id = line.replace('- ID:', '').trim();
+                } else if (line.startsWith('- 開催地:')) {
                     event.location = line.replace('- 開催地:', '').trim();
                 } else if (line.startsWith('- 座標:')) {
                     const coordStr = line.match(/\[(.*?)\]/);
