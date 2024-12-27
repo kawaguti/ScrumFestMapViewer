@@ -149,9 +149,8 @@ class MapView {
         const content = document.getElementById('eventContent');
         let html = `
             <h4>${event.title}</h4>
-            <p><strong>ID:</strong> ${event.id}</p>
-            <p>${event.location}</p>
-            <p>${event.date.toLocaleDateString('ja-JP')}</p>
+            <p><strong>開催地:</strong> ${event.location}</p>
+            <p><strong>開催日:</strong> ${event.date.toLocaleDateString('ja-JP')}</p>
             <div class="mt-2">
                 ${event.website ?
                     `<a href="${event.website}" target="_blank" class="btn btn-sm btn-outline-primary me-2">サイト</a>` :
