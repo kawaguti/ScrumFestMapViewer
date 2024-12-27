@@ -145,6 +145,11 @@ class MapView {
     }
 
     showEventDetails(event) {
+        // URLを更新
+        const url = new URL(window.location);
+        url.searchParams.set('event', event.id);
+        window.history.pushState({}, '', url);
+
         // マーカーの状態を更新
         this.markers.getLayers().forEach(marker => {
             const markerElement = marker.getElement();
