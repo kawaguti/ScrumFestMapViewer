@@ -77,6 +77,10 @@ class MapView {
                 const element = e.target.getElement();
                 if (element) {
                     element.setAttribute('data-future', isFutureOrToday);
+                    // 初期色を設定
+                    const color = isFutureOrToday ? '#0d6efd' : '#757575';
+                    element.querySelector('.marker-head').style.backgroundColor = color;
+                    element.querySelector('.marker-tail').style.backgroundColor = color;
                 }
             }).on('click', () => {
                 this.showGroupedEvents(coordKey);
