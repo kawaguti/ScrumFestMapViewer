@@ -73,7 +73,8 @@ class MapView {
             const markerObj = L.marker(this.eventGroups.get(locationKey).coordinates, {
                 icon: icon,
                 isFuture: isFutureOrToday,
-                event: event
+                event: event,
+                location: locationKey
             });
             
             // DOMエレメントが作成された後にdata属性を設定
@@ -115,7 +116,7 @@ class MapView {
 
     showGroupedEvents(locationKey) {
         const groupData = this.eventGroups.get(locationKey);
-        if (!groupData || groupData.events.length === 0) return;
+        if (!groupData || !groupData.events || groupData.events.length === 0) return;
 
         // すべてのマーカーを元の色に戻す
         this.markers.getLayers().forEach(marker => {
@@ -130,8 +131,7 @@ class MapView {
 
         // 選択されたマーカーをオレンジ色に変更
         const selectedMarker = this.markers.getLayers().find(m => 
-            m.getLatLng().lat === parseFloat(coordKey.split(',')[0]) &&
-            m.getLatLng().lng === parseFloat(coordKey.split(',')[1])
+            m.options.location === locationKey
         );
         if (selectedMarker) {
             const element = selectedMarker.getElement();
@@ -163,7 +163,7 @@ class MapView {
         });
         content += '</div>';
 
-        const markerLatLng = L.latLng(events[0].coordinates);
+        const markerLatLng = L.latLng(groupData.coordinates);
 
         const popup = L.popup({
             closeButton: true,
