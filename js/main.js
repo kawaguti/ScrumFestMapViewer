@@ -17,20 +17,21 @@ class EventApp {
 
             // デフォルトビューを設定
             document.getElementById('viewYear').click();
-            this.updateView();
 
             // URLからイベントIDを取得して選択
             const path = window.location.pathname;
             const match = path.match(/event\/(\d+)/);
+
+            // まずビューを更新
+            this.updateView();
+
             if (match) {
                 const eventId = match[1];
                 const event = this.events.find(e => e.id && e.id.toString() === eventId);
                 if (event) {
-                    setTimeout(() => {
-                        this.mapView.showEventDetails(event);
-                        this.mapView.selectEventMarker(event);
-                        document.getElementById('currentEventId').textContent = eventId;
-                    }, 500);
+                    this.mapView.showEventDetails(event);
+                    this.mapView.selectEventMarker(event);
+                    document.getElementById('currentEventId').textContent = eventId;
                     return;
                 }
             }
