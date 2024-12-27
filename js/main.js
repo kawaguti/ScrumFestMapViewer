@@ -27,11 +27,16 @@ class EventApp {
                     const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
                     const eventDate = new Date(event.date.getFullYear(), event.date.getMonth(), event.date.getDate());
                     if (eventDate < today) {
+                        document.getElementById('viewYear').classList.remove('active');
+                        document.getElementById('viewAll').classList.add('active');
+                    } else {
                         document.getElementById('viewAll').classList.remove('active');
                         document.getElementById('viewYear').classList.add('active');
                     }
                     this.updateView();
-                    this.mapView.showEventDetails(event);
+                    setTimeout(() => {
+                        this.mapView.showEventDetails(event);
+                    }, 100);
                     return;
                 }
             }
