@@ -26,13 +26,12 @@ class MapView {
 
     createMarkerIcon(count, isFutureOrToday) {
         const eventClass = isFutureOrToday ? 'future-event' : 'past-event';
-        const markerColor = isFutureOrToday ? '#FF9800' : '#757575';
         return L.divIcon({
-            className: 'marker-container',
+            className: `marker-container ${eventClass}`,
             html: `
-                <div class="marker-pin-google ${eventClass}">
-                    <div class="marker-head" style="background-color: ${markerColor}">${count > 1 ? count : ''}</div>
-                    <div class="marker-tail" style="background-color: ${markerColor}"></div>
+                <div class="marker-pin-google">
+                    <div class="marker-head">${count > 1 ? count : ''}</div>
+                    <div class="marker-tail"></div>
                 </div>`,
             iconSize: [30, 31],
             iconAnchor: [15, 31],

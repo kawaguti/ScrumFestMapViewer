@@ -24,7 +24,7 @@
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background-color: #FF9800;
+    background-color: #757575;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -41,9 +41,14 @@
     transform: translateX(-50%);
     width: 12px;
     height: 27px;
-    background-color: #FF9800;
+    background-color: #757575;
     clip-path: polygon(50% 100%, 0 0, 100% 0);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.future-event .marker-head,
+.future-event .marker-tail {
+    background-color: #FF9800;
 }
 
 .marker-pin-google.future-event .marker-head,
