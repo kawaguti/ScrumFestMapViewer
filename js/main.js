@@ -14,7 +14,6 @@ class EventApp {
             this.events = data.events;
             document.querySelector('.navbar-brand').textContent = data.title;
             document.title = data.title;
-            this.updateView();
             
             // URLからイベントIDを取得
             const path = window.location.pathname;
@@ -24,12 +23,12 @@ class EventApp {
                 const event = this.events.find(e => e.id === parseInt(eventId));
                 if (event) {
                     this.mapView.showEventDetails(event);
-                    // イベントの位置にズームして選択状態にする
                     this.mapView.selectEventMarker(event);
                     // 該当イベントに応じてタブを切り替え
                     const now = new Date();
                     const eventDate = new Date(event.date);
-                    if (eventDate >= now) {
+                    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+                    if (eventDate >= today) {
                         document.getElementById('viewYear').click();
                     } else {
                         document.getElementById('viewAll').click();
@@ -38,8 +37,7 @@ class EventApp {
                 }
             }
             
-            // イベントIDがない場合は直近の未来イベントを表示
-            this.selectUpcomingEvent();
+            this.updateView();
         } catch (error) {
             console.error('イベントの読み込みに失敗しました:', error);
         }
