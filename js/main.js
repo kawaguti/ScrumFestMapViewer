@@ -18,7 +18,7 @@ class EventApp {
             
             // URLからイベントIDを取得
             const path = window.location.pathname;
-            const match = path.match(/event\/(.+)/);
+            const match = path.match(/event\/(\d+)/);
             if (match) {
                 const eventId = match[1];
                 const event = this.events.find(e => e.id === eventId);
