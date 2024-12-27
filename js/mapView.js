@@ -53,28 +53,23 @@ class MapView {
 
     addMarker(event) {
         if (!Array.isArray(event.coordinates)) return;
-        
-        // 都道府県名をキーとして使用
-        const locationKey = event.location;
-        if (!this.eventGroups.has(locationKey)) {
-            this.eventGroups.set(locationKey, {
-                events: [],
-                coordinates: event.coordinates // 最初のイベントの座標を代表値として使用
-            });
-        }
-        this.eventGroups.get(locationKey).events.push(event);
 
-        // 同じ都道府県のイベントが既にマーカーとして存在する場合はスキップ
-        if (this.eventGroups.get(locationKey).events.length === 1) {
-            const count = this.eventGroups.get(locationKey).events.length;
+        const coordKey = event.coordinates.join(',');
+        if (!this.eventGroups.has(coordKey)) {
+            this.eventGroups.set(coordKey, []);
+        }
+        this.eventGroups.get(coordKey).push(event);
+
+        // 同じ座標のイベントが既にマーカーとして存在する場合はスキップ
+        if (this.eventGroups.get(coordKey).length === 1) {
+            const count = this.eventGroups.get(coordKey).length;
             const isFutureOrToday = this.isSameOrFutureDate(event.date);
 
             const icon = this.createMarkerIcon(count);
-            const markerObj = L.marker(this.eventGroups.get(locationKey).coordinates, {
+            const markerObj = L.marker(event.coordinates, {
                 icon: icon,
                 isFuture: isFutureOrToday,
-                event: event,
-                location: locationKey
+                event: event
             });
             
             // DOMエレメントが作成された後にdata属性を設定
@@ -101,22 +96,20 @@ class MapView {
         }
     }
 
-    updateMarkerCount(locationKey) {
+    updateMarkerCount(coordKey) {
         const markers = this.markers.getLayers();
-        const groupData = this.eventGroups.get(locationKey);
-        const marker = markers.find(m => 
-            m.getLatLng().lat === groupData.coordinates[0] &&
-            m.getLatLng().lng === groupData.coordinates[1]);
+        const marker = markers.find(m => m.getLatLng().lat === parseFloat(coordKey.split(',')[0]) &&
+            m.getLatLng().lng === parseFloat(coordKey.split(',')[1]));
         if (marker) {
-            const count = groupData.events.length;
-            const isFutureOrToday = this.isSameOrFutureDate(groupData.events[0].date);
+            const count = this.eventGroups.get(coordKey).length;
+            const isFutureOrToday = this.isSameOrFutureDate(this.eventGroups.get(coordKey)[0].date);
             marker.setIcon(this.createMarkerIcon(count, isFutureOrToday));
         }
     }
 
-    showGroupedEvents(locationKey) {
-        const groupData = this.eventGroups.get(locationKey);
-        if (!groupData || !groupData.events || groupData.events.length === 0) return;
+    showGroupedEvents(coordKey) {
+        const events = this.eventGroups.get(coordKey);
+        if (!events || events.length === 0) return;
 
         // すべてのマーカーを元の色に戻す
         this.markers.getLayers().forEach(marker => {
@@ -131,7 +124,8 @@ class MapView {
 
         // 選択されたマーカーをオレンジ色に変更
         const selectedMarker = this.markers.getLayers().find(m => 
-            m.options.location === locationKey
+            m.getLatLng().lat === parseFloat(coordKey.split(',')[0]) &&
+            m.getLatLng().lng === parseFloat(coordKey.split(',')[1])
         );
         if (selectedMarker) {
             const element = selectedMarker.getElement();
@@ -146,8 +140,8 @@ class MapView {
         }
 
         let content = '<div class="list-group">';
-        groupData.events.forEach((event, index) => {
-            const eventId = `${locationKey}-${index}`;
+        events.forEach((event, index) => {
+            const eventId = `${coordKey}-${index}`;
             window.eventDetailsMap.set(eventId, event);
 
             content += `
@@ -163,7 +157,7 @@ class MapView {
         });
         content += '</div>';
 
-        const markerLatLng = L.latLng(groupData.coordinates);
+        const markerLatLng = L.latLng(events[0].coordinates);
 
         const popup = L.popup({
             closeButton: true,
