@@ -146,6 +146,7 @@ class MapView {
     }
 
     showEventDetails(event) {
+        document.getElementById('eventHeader').classList.remove('d-none');
         const content = document.getElementById('eventContent');
         let html = `
             <h4>${event.title}</h4>
