@@ -46,9 +46,16 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* 未来のイベント用マーカー */
 .marker-container.future-event .marker-pin-google .marker-head,
 .marker-container.future-event .marker-pin-google .marker-tail {
-    background-color: #FF9800;
+    background-color: #FF9800 !important;
+}
+
+/* 過去のイベント用マーカー */
+.marker-container.past-event .marker-pin-google .marker-head,
+.marker-container.past-event .marker-pin-google .marker-tail {
+    background-color: #757575 !important;
 }
 
 .marker-pin-google:hover {
