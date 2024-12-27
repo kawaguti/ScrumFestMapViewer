@@ -23,13 +23,14 @@ class EventApp {
             const path = window.location.pathname;
             const match = path.match(/event\/(\d+)/);
             if (match) {
-                const eventId = parseInt(match[1]);
-                const event = this.events.find(e => e.id === eventId);
+                const eventId = match[1];
+                const event = this.events.find(e => e.id && e.id.toString() === eventId);
                 if (event) {
                     setTimeout(() => {
                         this.mapView.showEventDetails(event);
                         this.mapView.selectEventMarker(event);
-                    }, 100);
+                        document.getElementById('currentEventId').textContent = eventId;
+                    }, 500);
                     return;
                 }
             }
