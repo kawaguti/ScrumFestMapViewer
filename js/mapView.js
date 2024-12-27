@@ -182,6 +182,21 @@ class MapView {
         }
     }
 
+    selectEventMarker(event) {
+        if (event.coordinates && Array.isArray(event.coordinates)) {
+            this.map.setView(event.coordinates, 8);
+            // マーカーを探して選択状態にする
+            const markers = this.markers.getLayers();
+            const marker = markers.find(m => 
+                m.getLatLng().lat === event.coordinates[0] && 
+                m.getLatLng().lng === event.coordinates[1]
+            );
+            if (marker) {
+                marker.fire('click');
+            }
+        }
+    }
+
     show() {
         document.getElementById('mapView').classList.remove('d-none');
         document.getElementById('listView').classList.add('d-none');

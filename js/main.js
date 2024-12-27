@@ -24,6 +24,16 @@ class EventApp {
                 const event = this.events.find(e => e.id === parseInt(eventId));
                 if (event) {
                     this.mapView.showEventDetails(event);
+                    // イベントの位置にズームして選択状態にする
+                    this.mapView.selectEventMarker(event);
+                    // 該当イベントに応じてタブを切り替え
+                    const now = new Date();
+                    const eventDate = new Date(event.date);
+                    if (eventDate >= now) {
+                        document.getElementById('viewYear').click();
+                    } else {
+                        document.getElementById('viewAll').click();
+                    }
                     return;
                 }
             }
