@@ -53,20 +53,24 @@ class MapView {
 
     addMarker(event) {
         if (!Array.isArray(event.coordinates)) return;
-
-        const coordKey = event.coordinates.join(',');
-        if (!this.eventGroups.has(coordKey)) {
-            this.eventGroups.set(coordKey, []);
+        
+        // 都道府県名をキーとして使用
+        const locationKey = event.location;
+        if (!this.eventGroups.has(locationKey)) {
+            this.eventGroups.set(locationKey, {
+                events: [],
+                coordinates: event.coordinates // 最初のイベントの座標を代表値として使用
+            });
         }
-        this.eventGroups.get(coordKey).push(event);
+        this.eventGroups.get(locationKey).events.push(event);
 
-        // 同じ座標のイベントが既にマーカーとして存在する場合はスキップ
-        if (this.eventGroups.get(coordKey).length === 1) {
-            const count = this.eventGroups.get(coordKey).length;
+        // 同じ都道府県のイベントが既にマーカーとして存在する場合はスキップ
+        if (this.eventGroups.get(locationKey).events.length === 1) {
+            const count = this.eventGroups.get(locationKey).events.length;
             const isFutureOrToday = this.isSameOrFutureDate(event.date);
 
             const icon = this.createMarkerIcon(count);
-            const markerObj = L.marker(event.coordinates, {
+            const markerObj = L.marker(this.eventGroups.get(locationKey).coordinates, {
                 icon: icon,
                 isFuture: isFutureOrToday,
                 event: event
@@ -96,20 +100,22 @@ class MapView {
         }
     }
 
-    updateMarkerCount(coordKey) {
+    updateMarkerCount(locationKey) {
         const markers = this.markers.getLayers();
-        const marker = markers.find(m => m.getLatLng().lat === parseFloat(coordKey.split(',')[0]) &&
-            m.getLatLng().lng === parseFloat(coordKey.split(',')[1]));
+        const groupData = this.eventGroups.get(locationKey);
+        const marker = markers.find(m => 
+            m.getLatLng().lat === groupData.coordinates[0] &&
+            m.getLatLng().lng === groupData.coordinates[1]);
         if (marker) {
-            const count = this.eventGroups.get(coordKey).length;
-            const isFutureOrToday = this.isSameOrFutureDate(this.eventGroups.get(coordKey)[0].date);
+            const count = groupData.events.length;
+            const isFutureOrToday = this.isSameOrFutureDate(groupData.events[0].date);
             marker.setIcon(this.createMarkerIcon(count, isFutureOrToday));
         }
     }
 
-    showGroupedEvents(coordKey) {
-        const events = this.eventGroups.get(coordKey);
-        if (!events || events.length === 0) return;
+    showGroupedEvents(locationKey) {
+        const groupData = this.eventGroups.get(locationKey);
+        if (!groupData || groupData.events.length === 0) return;
 
         // すべてのマーカーを元の色に戻す
         this.markers.getLayers().forEach(marker => {
@@ -140,8 +146,8 @@ class MapView {
         }
 
         let content = '<div class="list-group">';
-        events.forEach((event, index) => {
-            const eventId = `${coordKey}-${index}`;
+        groupData.events.forEach((event, index) => {
+            const eventId = `${locationKey}-${index}`;
             window.eventDetailsMap.set(eventId, event);
 
             content += `
