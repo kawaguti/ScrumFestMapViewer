@@ -49,11 +49,21 @@
 .future-event .marker-head,
 .future-event .marker-tail {
     background-color: #FF9800 !important;
+    transition: all 0.3s ease;
 }
 
 .past-event .marker-head,
 .past-event .marker-tail {
     background-color: #757575 !important;
+    transition: all 0.3s ease;
+}
+
+.marker-pin-google:hover {
+    transform: scale(1.1);
+}
+
+.marker-pin-google:active {
+    transform: scale(0.95);
 }
 
 .marker-pin-google:hover {
