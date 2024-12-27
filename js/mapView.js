@@ -149,7 +149,7 @@ class MapView {
         const content = document.getElementById('eventContent');
         let html = `
             <h4>${event.title}</h4>
-            <p><strong>ID:</strong> ${event.id || ''}</p>
+            <p><strong>ID:</strong> ${event.id}</p>
             <p>${event.location}</p>
             <p>${event.date.toLocaleDateString('ja-JP')}</p>
             <div class="mt-2">

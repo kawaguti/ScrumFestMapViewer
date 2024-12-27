@@ -44,7 +44,7 @@ class ListView {
             modalTitle.textContent = event.title;
 
             let html = `
-                <p><strong>ID:</strong> ${event.id || ''}</p>
+                <p><strong>ID:</strong> ${event.id}</p>
                 <p><strong>開催地:</strong> ${event.location || ''}</p>
                 <p><strong>開催日:</strong> ${dateStr}</p>
             `;
