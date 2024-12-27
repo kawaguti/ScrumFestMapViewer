@@ -16,12 +16,10 @@ class EventApp {
             document.title = data.title;
             this.updateView();
             
-            // URLからイベントIDを取得
-            const path = window.location.pathname;
-            const match = path.match(/event\/(.+)/);
-            if (match) {
-                const eventId = match[1];
-                // イベントIDが数値の場合は文字列に変換して検索
+            // URLクエリパラメータからイベントIDを取得
+            const urlParams = new URLSearchParams(window.location.search);
+            const eventId = urlParams.get('event');
+            if (eventId) {
                 const event = this.events.find(e => e.id === (isNaN(eventId) ? eventId : String(eventId)));
                 if (event) {
                     this.mapView.showEventDetails(event);
