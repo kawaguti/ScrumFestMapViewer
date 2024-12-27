@@ -16,7 +16,19 @@ class EventApp {
             document.title = data.title;
             this.updateView();
             
-            // 直近の未来イベントを自動選択
+            // URLからイベントIDを取得
+            const path = window.location.pathname;
+            const match = path.match(/event\/(.+)/);
+            if (match) {
+                const eventId = match[1];
+                const event = this.events.find(e => e.id === eventId);
+                if (event) {
+                    this.mapView.showEventDetails(event);
+                    return;
+                }
+            }
+            
+            // イベントIDがない場合は直近の未来イベントを表示
             this.selectUpcomingEvent();
         } catch (error) {
             console.error('イベントの読み込みに失敗しました:', error);
