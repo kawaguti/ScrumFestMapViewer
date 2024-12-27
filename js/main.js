@@ -21,7 +21,8 @@ class EventApp {
             const match = path.match(/event\/(.+)/);
             if (match) {
                 const eventId = match[1];
-                const event = this.events.find(e => e.id === eventId);
+                // イベントIDが数値の場合は文字列に変換して検索
+                const event = this.events.find(e => e.id === (isNaN(eventId) ? eventId : String(eventId)));
                 if (event) {
                     this.mapView.showEventDetails(event);
                     return;
