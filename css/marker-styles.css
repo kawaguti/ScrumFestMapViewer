@@ -44,13 +44,13 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.marker-pin-google.future-event .marker-head,
-.marker-pin-google.future-event .marker-tail {
+.marker-pin-google.selected .marker-head,
+.marker-pin-google.selected .marker-tail {
     background-color: #FF9800;
 }
 
-.marker-pin-google.past-event .marker-head,
-.marker-pin-google.past-event .marker-tail {
+.marker-pin-google .marker-head,
+.marker-pin-google .marker-tail {
     background-color: #757575;
 }
 

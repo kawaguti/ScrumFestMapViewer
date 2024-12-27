@@ -24,8 +24,8 @@ class MapView {
         return eventDate >= today;
     }
 
-    createMarkerIcon(count, isFutureOrToday) {
-        const eventClass = isFutureOrToday ? 'future-event' : 'past-event';
+    createMarkerIcon(count, isSelected = false) {
+        const eventClass = isSelected ? 'selected' : '';
         return L.divIcon({
             className: `marker-container`,
             html: `
@@ -145,6 +145,20 @@ class MapView {
     }
 
     showEventDetails(event) {
+        // 全てのマーカーを非選択状態に
+        this.markers.getLayers().forEach(marker => {
+            marker.getElement().querySelector('.marker-pin-google').classList.remove('selected');
+        });
+        
+        // クリックされたマーカーを選択状態に
+        const selectedMarker = this.markers.getLayers().find(m => 
+            m.getLatLng().lat === event.coordinates[0] && 
+            m.getLatLng().lng === event.coordinates[1]
+        );
+        if (selectedMarker) {
+            selectedMarker.getElement().querySelector('.marker-pin-google').classList.add('selected');
+        }
+
         const content = document.getElementById('eventContent');
         let html = `
             <h4>${event.title}</h4>
