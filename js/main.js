@@ -21,7 +21,7 @@ class EventApp {
             const match = path.match(/event\/(\d+)/);
             if (match) {
                 const eventId = match[1];
-                const event = this.events.find(e => e.id === eventId);
+                const event = this.events.find(e => e.id === parseInt(eventId));
                 if (event) {
                     this.mapView.showEventDetails(event);
                     return;
