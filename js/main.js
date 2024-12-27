@@ -22,6 +22,15 @@ class EventApp {
             if (eventId) {
                 const event = this.events.find(e => e.id === (isNaN(eventId) ? eventId : String(eventId)));
                 if (event) {
+                    // イベントの日付が過去の場合は「これまで」タブを選択
+                    const now = new Date();
+                    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+                    const eventDate = new Date(event.date.getFullYear(), event.date.getMonth(), event.date.getDate());
+                    if (eventDate < today) {
+                        document.getElementById('viewAll').classList.remove('active');
+                        document.getElementById('viewYear').classList.add('active');
+                    }
+                    this.updateView();
                     this.mapView.showEventDetails(event);
                     return;
                 }
