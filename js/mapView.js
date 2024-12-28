@@ -226,12 +226,18 @@ class MapView {
     }
 
     updateView() {
-        // 既存のポップアップをクリア
+        // 既存のポップアップを完全にクリア
         this.map.closePopup();
         this.map._popup = null;
+        if (window.eventDetailsMap) {
+            window.eventDetailsMap.clear();
+        }
         
         // タブ切り替え時はURLパラメータをクリア
         window.history.replaceState({}, '', '/');
+        
+        // イベント詳細をクリア
+        document.getElementById('eventContent').innerHTML = 'イベントを選択してください';
         
         // 全マーカーのスタイルをリセット
         this.markers.getLayers().forEach(marker => {
