@@ -61,9 +61,7 @@ class MapView {
             }).on('mouseout', function(e) {
                 const icon = e.target._icon;
                 if (icon) {
-                    if (icon.classList.contains('selected-marker')) {
-                        icon.style.filter = 'brightness(0) saturate(100%) invert(77%) sepia(41%) saturate(5043%) hue-rotate(339deg) brightness(101%) contrast(101%)';
-                    } else {
+                    if (!icon.classList.contains('selected-marker')) {
                         icon.style.removeProperty('filter');
                     }
                 }
