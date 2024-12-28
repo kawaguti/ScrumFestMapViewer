@@ -60,8 +60,8 @@ class MapView {
                     if (icon.classList.contains('selected-marker')) {
                         icon.style.filter = 'brightness(0) saturate(100%) invert(77%) sepia(41%) saturate(5043%) hue-rotate(339deg) brightness(101%) contrast(101%)';
                     } else {
-                        icon.style.filter = 'none';
-                        icon.style.opacity = '1';
+                        icon.style.filter = '';
+                        icon.style.removeProperty('filter');
                     }
                 }
             }).on('click', (e) => {
