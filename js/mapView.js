@@ -25,17 +25,7 @@ class MapView {
     }
 
     createMarkerIcon(count) {
-        return L.divIcon({
-            className: `marker-container`,
-            html: `
-                <div class="marker-pin-google">
-                    <div class="marker-head">${count > 1 ? count : ''}</div>
-                    <div class="marker-tail"></div>
-                </div>`,
-            iconSize: [30, 31],
-            iconAnchor: [15, 31],
-            popupAnchor: [0, -24]
-        });
+        return new L.Icon.Default();
     }
 
     fitMapToMarkers() {
