@@ -193,4 +193,12 @@ class MapView {
     hide() {
         document.getElementById('mapView').classList.add('d-none');
     }
+
+    isSameOrFutureDate(date) {
+        if (!date) return false;
+        const now = new Date();
+        const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        const eventDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+        return eventDate >= today;
+    }
 }
