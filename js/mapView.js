@@ -12,18 +12,9 @@ class MapView {
         this.map.setView([37.0, 137.0], 5);
     }
 
-    isUpcomingEvent(date) {
-        const now = new Date();
-        const eventDate = new Date(date);
-        return eventDate > now;
-    }
-
-    createMarkerIcon(count, isFuture) {
+    createMarkerIcon(count) {
         const icon = new L.Icon.Default();
         icon.options.shadowSize = [41, 41];
-        if (!isFuture) {
-            icon.options.className = 'past-event-marker';
-        }
         return icon;
     }
 
@@ -51,12 +42,9 @@ class MapView {
 
         if (this.eventGroups.get(coordKey).length === 1) {
             const count = this.eventGroups.get(coordKey).length;
-            const isUpcoming = this.isUpcomingEvent(event.date);
-
-            const icon = this.createMarkerIcon(count, isUpcoming);
+            const icon = this.createMarkerIcon(count);
             const markerObj = L.marker(event.coordinates, {
                 icon: icon,
-                isUpcoming: isUpcoming,
                 event: event
             });
 
