@@ -1,2 +1,74 @@
 
-/* このファイルは削除されました */
+.marker-container {
+    position: relative;
+    width: 30px;
+    height: 42px;
+    transform-origin: center bottom;
+    margin-left: -15px;
+    margin-top: -42px;
+}
+
+.marker-pin-google {
+    width: 30px;
+    height: 42px;
+    position: relative;
+    transform-origin: bottom;
+    transition: transform 0.2s ease-out;
+}
+
+.marker-head {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 12px;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.marker-tail {
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 27px;
+    clip-path: polygon(50% 100%, 0 0, 100% 0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.marker-pin-google .marker-head,
+.marker-pin-google .marker-tail {
+    transition: background-color 0.3s ease;
+}
+
+.marker-pin-google:hover .marker-head,
+.marker-pin-google:hover .marker-tail {
+    background-color: #FF9800;
+}
+
+.marker-pin-google .marker-head,
+.marker-pin-google .marker-tail {
+    background-color: #757575;
+}
+
+/* 未来のイベントのマーカー */
+[data-future="true"] .marker-pin-google .marker-head,
+[data-future="true"] .marker-pin-google .marker-tail {
+    background-color: #0d6efd !important;
+}
+
+.marker-pin-google:hover {
+    transform: scale(1.1) translateY(-2px);
+}
+
+.marker-pin-google:active {
+    transform: scale(0.95) translateY(1px);
+}

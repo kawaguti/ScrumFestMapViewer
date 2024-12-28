@@ -25,17 +25,17 @@ class MapView {
     }
 
     createMarkerIcon(count) {
-        return new L.Icon.Default();
-    }
-
-    updateMarkerCount(coordKey) {
-        const markers = this.markers.getLayers();
-        const marker = markers.find(m => m.getLatLng().lat === parseFloat(coordKey.split(',')[0]) &&
-            m.getLatLng().lng === parseFloat(coordKey.split(',')[1]));
-        if (marker) {
-            const count = this.eventGroups.get(coordKey).length;
-            marker.setIcon(this.createMarkerIcon(count));
-        }
+        return L.divIcon({
+            className: `marker-container`,
+            html: `
+                <div class="marker-pin-google">
+                    <div class="marker-head">${count > 1 ? count : ''}</div>
+                    <div class="marker-tail"></div>
+                </div>`,
+            iconSize: [30, 31],
+            iconAnchor: [15, 31],
+            popupAnchor: [0, -24]
+        });
     }
 
     fitMapToMarkers() {
