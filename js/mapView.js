@@ -24,9 +24,12 @@ class MapView {
         return eventDate >= today;
     }
 
-    createMarkerIcon(count) {
+    createMarkerIcon(count, isFuture) {
         const icon = new L.Icon.Default();
         icon.options.shadowSize = [41, 41];
+        if (!isFuture) {
+            icon.options.className = 'past-event-marker';
+        }
         return icon;
     }
 
@@ -56,7 +59,7 @@ class MapView {
             const count = this.eventGroups.get(coordKey).length;
             const isFutureOrToday = this.isSameOrFutureDate(event.date);
 
-            const icon = this.createMarkerIcon(count);
+            const icon = this.createMarkerIcon(count, isFutureOrToday);
             const markerObj = L.marker(event.coordinates, {
                 icon: icon,
                 isFuture: isFutureOrToday,
@@ -158,8 +161,10 @@ class MapView {
         // マーカーの状態を更新（デフォルトマーカー用）
         this.markers.getLayers().forEach(marker => {
             if (marker.options.event && marker.options.event.id === event.id) {
+                marker._icon.classList.add('selected-marker');
                 marker.setZIndexOffset(1000);
             } else {
+                marker._icon.classList.remove('selected-marker');
                 marker.setZIndexOffset(0);
             }
         });
