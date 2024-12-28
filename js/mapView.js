@@ -38,7 +38,11 @@ class MapView {
         if (!this.eventGroups.has(coordKey)) {
             this.eventGroups.set(coordKey, []);
         }
-        this.eventGroups.get(coordKey).push(event);
+        
+        // 既存のイベントがある場合は追加しない
+        if (!this.eventGroups.get(coordKey).some(e => e.id === event.id)) {
+            this.eventGroups.get(coordKey).push(event);
+        }
 
         if (this.eventGroups.get(coordKey).length === 1) {
             const count = this.eventGroups.get(coordKey).length;
