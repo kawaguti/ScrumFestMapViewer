@@ -228,6 +228,11 @@ class MapView {
         this.map.closePopup();
         this.map._popup = null;
         
+        // URLパラメータをクリア
+        const url = new URL(window.location);
+        url.searchParams.delete('event');
+        history.replaceState({}, '', url);
+        
         // 全マーカーのスタイルをリセット
         this.markers.getLayers().forEach(marker => {
             if (marker._icon) {
