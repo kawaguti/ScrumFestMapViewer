@@ -89,6 +89,11 @@ class EventApp {
     }
 
     updateView() {
+        // URLパラメータをクリア
+        const url = new URL(window.location);
+        url.searchParams.delete('event');
+        window.history.pushState({}, '', url);
+
         const isFutureEvents = document.getElementById('viewYear').classList.contains('active');
         const now = new Date();
         let filteredEvents = this.events;
