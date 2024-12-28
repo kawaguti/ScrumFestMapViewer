@@ -165,11 +165,9 @@ class MapView {
         this.markers.getLayers().forEach(marker => {
             if (marker.options.event && marker.options.event.id === event.id) {
                 marker._icon.classList.add('selected-marker');
-                marker._icon.style.filter = 'brightness(0) saturate(100%) invert(77%) sepia(41%) saturate(5043%) hue-rotate(339deg) brightness(101%) contrast(101%)';
                 marker.setZIndexOffset(1000);
             } else {
                 marker._icon.classList.remove('selected-marker');
-                marker._icon.style.removeProperty('filter');
                 marker.setZIndexOffset(0);
             }
         });
