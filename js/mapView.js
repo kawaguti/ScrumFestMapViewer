@@ -180,21 +180,12 @@ class MapView {
         window.history.pushState({}, '', url);
 
         // マーカーの状態を更新
+        // マーカーの状態を更新（デフォルトマーカー用）
         this.markers.getLayers().forEach(marker => {
             if (marker.options.event && marker.options.event.id === event.id) {
-                const element = marker.getElement();
-                if (element) {
-                    element.querySelector('.marker-head').style.backgroundColor = '#FF9800';
-                    element.querySelector('.marker-tail').style.backgroundColor = '#FF9800';
-                    marker.setZIndexOffset(1000);
-                }
+                marker.setZIndexOffset(1000);
             } else {
-                const element = marker.getElement();
-                if (element) {
-                    element.querySelector('.marker-head').style.backgroundColor = '';
-                    element.querySelector('.marker-tail').style.backgroundColor = '';
-                    marker.setZIndexOffset(0);
-                }
+                marker.setZIndexOffset(0);
             }
         });
 
