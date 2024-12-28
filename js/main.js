@@ -135,26 +135,30 @@ class EventApp {
     selectUpcomingEvent() {
         const now = new Date();
         
-        // 未来のイベントをフィルタリング
-        const futureEvents = this.events.filter(event => {
-            if (!event.date) return false;
-            // 当日は「これから」に分類されるように、日付の開始時刻で比較
-            const eventDate = new Date(event.date.getFullYear(), event.date.getMonth(), event.date.getDate());
-            const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-            return eventDate >= today;
-        });
-        
-        // 日付で昇順ソート（過去が先）で、現在日時に最も近い未来のイベントを選択
-        futureEvents.sort((a, b) => {
-            if (!a.date) return 1;
-            if (!b.date) return -1;
-            return a.date.getTime() - b.date.getTime();
-        });
-        
-        // 最も近い未来のイベントを選択
-        if (futureEvents.length > 0) {
-            const nextEvent = futureEvents[0];
-            this.mapView.showEventDetails(nextEvent);
+        // URLパラメータがない場合のみ最新イベントを選択
+        const urlParams = new URLSearchParams(window.location.search);
+        if (!urlParams.get('event')) {
+            // 未来のイベントをフィルタリング
+            const futureEvents = this.events.filter(event => {
+                if (!event.date) return false;
+                // 当日は「これから」に分類されるように、日付の開始時刻で比較
+                const eventDate = new Date(event.date.getFullYear(), event.date.getMonth(), event.date.getDate());
+                const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+                return eventDate >= today;
+            });
+            
+            // 日付で昇順ソート（過去が先）で、現在日時に最も近い未来のイベントを選択
+            futureEvents.sort((a, b) => {
+                if (!a.date) return 1;
+                if (!b.date) return -1;
+                return a.date.getTime() - b.date.getTime();
+            });
+            
+            // 最も近い未来のイベントを選択
+            if (futureEvents.length > 0) {
+                const nextEvent = futureEvents[0];
+                this.mapView.showEventDetails(nextEvent);
+            }
         }
     }
 }
