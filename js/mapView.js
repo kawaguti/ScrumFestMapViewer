@@ -12,16 +12,10 @@ class MapView {
         this.map.setView([37.0, 137.0], 5);
     }
 
-    isSameOrFutureDate(date) {
-        const today = new Date();
+    isUpcomingEvent(date) {
+        const now = new Date();
         const eventDate = new Date(date);
-
-        // 年月日のみを比較するため、時刻をリセット
-        today.setHours(0, 0, 0, 0);
-        eventDate.setHours(0, 0, 0, 0);
-
-        // 当日または未来の日付の場合はtrue
-        return eventDate >= today;
+        return eventDate > now;
     }
 
     createMarkerIcon(count, isFuture) {
@@ -57,12 +51,12 @@ class MapView {
 
         if (this.eventGroups.get(coordKey).length === 1) {
             const count = this.eventGroups.get(coordKey).length;
-            const isFutureOrToday = this.isSameOrFutureDate(event.date);
+            const isUpcoming = this.isUpcomingEvent(event.date);
 
-            const icon = this.createMarkerIcon(count, isFutureOrToday);
+            const icon = this.createMarkerIcon(count, isUpcoming);
             const markerObj = L.marker(event.coordinates, {
                 icon: icon,
-                isFuture: isFutureOrToday,
+                isUpcoming: isUpcoming,
                 event: event
             });
 
