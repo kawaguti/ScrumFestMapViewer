@@ -103,29 +103,27 @@ class MapView {
         const events = this.eventGroups.get(coordKey);
         if (!events || events.length === 0) return;
 
-        // すべてのマーカーを元の色に戻す
-        this.markers.getLayers().forEach(marker => {
-            const element = marker.getElement();
-            if (element) {
-                const isFuture = element.getAttribute('data-future') === 'true';
-                const color = isFuture ? '#0d6efd' : '#757575';
-                element.querySelector('.marker-head').style.backgroundColor = color;
-                element.querySelector('.marker-tail').style.backgroundColor = color;
-            }
-        });
-
-        // 選択されたマーカーをオレンジ色に変更
-        const selectedMarker = this.markers.getLayers().find(m => 
-            m.getLatLng().lat === parseFloat(coordKey.split(',')[0]) &&
-            m.getLatLng().lng === parseFloat(coordKey.split(',')[1])
-        );
-        if (selectedMarker) {
-            const element = selectedMarker.getElement();
-            if (element) {
-                element.querySelector('.marker-head').style.backgroundColor = '#FF9800';
-                element.querySelector('.marker-tail').style.backgroundColor = '#FF9800';
-            }
+        if (!window.eventDetailsMap) {
+            window.eventDetailsMap = new Map();
         }
+
+        let content = '<div class="list-group">';
+        events.forEach((event, index) => {
+            const eventId = `${coordKey}-${index}`;
+            window.eventDetailsMap.set(eventId, event);
+
+            content += `
+                <a href="javascript:void(0)" class="list-group-item list-group-item-action" data-event-id="${eventId}">
+                    <div class="mb-1">
+                        <h6 class="mb-0">${event.title}</h6>
+                        <div class="mt-1">
+                            <small class="me-2">${event.date ? new Date(event.date).toLocaleDateString('ja-JP') : ''}</small>
+                            <small>${event.location}</small>
+                        </div>
+                    </div>
+                </a>`;
+        });
+        content += '</div>';
 
         if (!window.eventDetailsMap) {
             window.eventDetailsMap = new Map();
