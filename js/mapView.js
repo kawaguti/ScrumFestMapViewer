@@ -57,7 +57,10 @@ class MapView {
             }).on('mouseout', function(e) {
                 const icon = e.target._icon;
                 if (icon) {
-                    icon.style.filter = '';
+                    // クラスに基づいて適切なフィルターを設定
+                    icon.style.filter = icon.classList.contains('selected-marker') ? 
+                        'brightness(0) saturate(100%) invert(77%) sepia(41%) saturate(5043%) hue-rotate(339deg) brightness(101%) contrast(101%)' : 
+                        '';
                 }
             }).on('click', (e) => {
                 const latlng = e.latlng || e.target.getLatLng();
