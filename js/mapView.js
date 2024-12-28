@@ -227,8 +227,34 @@ class MapView {
         // 既存のポップアップをクリア
         this.map.closePopup();
         
+        // 全マーカーのスタイルをリセット
+        this.markers.getLayers().forEach(marker => {
+            if (marker._icon) {
+                marker._icon.classList.remove('selected-marker');
+                marker._icon.style.removeProperty('filter');
+                marker.setZIndexOffset(0);
+            }
+        });
+
         const isFutureEvents = document.getElementById('viewYear').classList.contains('active');
         const now = new Date();
-        let filteredEvents = this.events;
+        const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+        // マーカーの表示を更新
+        this.markers.getLayers().forEach(marker => {
+            const event = marker.options.event;
+            if (event && event.date) {
+                const eventDate = new Date(event.date);
+                const isEventVisible = isFutureEvents ? 
+                    eventDate >= today : 
+                    eventDate < today;
+                
+                if (isEventVisible) {
+                    marker.getElement().style.display = '';
+                } else {
+                    marker.getElement().style.display = 'none';
+                }
+            }
+        });
     }
 }
