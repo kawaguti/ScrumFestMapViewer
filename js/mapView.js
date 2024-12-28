@@ -98,6 +98,14 @@ class MapView {
         const events = this.eventGroups.get(coordKey);
         if (!events || events.length === 0) return;
 
+        // ポップアップ表示前に全マーカーのスタイルをリセット
+        this.markers.getLayers().forEach(marker => {
+            if (marker._icon) {
+                marker._icon.classList.remove('selected-marker');
+                marker._icon.style.removeProperty('filter');
+            }
+        });
+
         if (!window.eventDetailsMap) {
             window.eventDetailsMap = new Map();
         }
@@ -149,8 +157,15 @@ class MapView {
         url.searchParams.set('event', event.id);
         window.history.pushState({}, '', url);
 
-        // マーカーの状態を更新
-        // マーカーの状態を更新（デフォルトマーカー用）
+        // 全マーカーのスタイルをリセット
+        this.markers.getLayers().forEach(marker => {
+            if (marker._icon) {
+                marker._icon.classList.remove('selected-marker');
+                marker._icon.style.removeProperty('filter');
+            }
+        });
+
+        // 選択されたマーカーの状態を更新
         this.markers.getLayers().forEach(marker => {
             if (marker.options.event && marker.options.event.id === event.id) {
                 marker._icon.classList.add('selected-marker');
