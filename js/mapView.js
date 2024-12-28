@@ -225,11 +225,8 @@ class MapView {
 
     updateView() {
         // 既存のポップアップをクリア
-        this.map.eachLayer((layer) => {
-            if (layer instanceof L.Popup) {
-                this.map.removeLayer(layer);
-            }
-        });
+        this.map.closePopup();
+        this.map._popup = null;
         
         // 全マーカーのスタイルをリセット
         this.markers.getLayers().forEach(marker => {
