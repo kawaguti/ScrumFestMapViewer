@@ -147,11 +147,13 @@ class MapView {
         }, 0);
     }
 
-    showEventDetails(event) {
-        // URLを更新
-        const url = new URL(window.location);
-        url.searchParams.set('event', event.id);
-        window.history.pushState({}, '', url);
+    showEventDetails(event, updateUrl = true) {
+        // URLの更新（オプション）
+        if (updateUrl) {
+            const url = new URL(window.location);
+            url.searchParams.set('event', event.id);
+            window.history.pushState({}, '', url);
+        }
 
         // 全マーカーのスタイルをリセット
         this.markers.getLayers().forEach(marker => {

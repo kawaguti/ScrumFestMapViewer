@@ -157,7 +157,7 @@ class EventApp {
             // 最も近い未来のイベントを選択
             if (futureEvents.length > 0) {
                 const nextEvent = futureEvents[0];
-                this.mapView.showEventDetails(nextEvent);
+                this.mapView.showEventDetails(nextEvent, false);
             }
         }
     }
