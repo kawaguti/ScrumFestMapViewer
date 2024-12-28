@@ -57,10 +57,12 @@ class MapView {
             }).on('mouseout', function(e) {
                 const icon = e.target._icon;
                 if (icon) {
-                    // クラスに基づいて適切なフィルターを設定
-                    icon.style.filter = icon.classList.contains('selected-marker') ? 
-                        'brightness(0) saturate(100%) invert(77%) sepia(41%) saturate(5043%) hue-rotate(339deg) brightness(101%) contrast(101%)' : 
-                        '';
+                    if (icon.classList.contains('selected-marker')) {
+                        icon.style.filter = 'brightness(0) saturate(100%) invert(77%) sepia(41%) saturate(5043%) hue-rotate(339deg) brightness(101%) contrast(101%)';
+                    } else {
+                        icon.style.filter = 'none';
+                        icon.style.opacity = '1';
+                    }
                 }
             }).on('click', (e) => {
                 const latlng = e.latlng || e.target.getLatLng();
