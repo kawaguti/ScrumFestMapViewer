@@ -25,17 +25,9 @@ class MapView {
     }
 
     createMarkerIcon(count) {
-        return L.divIcon({
-            className: `marker-container`,
-            html: `
-                <div class="marker-pin-google">
-                    <div class="marker-head">${count > 1 ? count : ''}</div>
-                    <div class="marker-tail"></div>
-                </div>`,
-            iconSize: [30, 31],
-            iconAnchor: [15, 31],
-            popupAnchor: [0, -24]
-        });
+        const icon = new L.Icon.Default();
+        icon.options.shadowSize = [41, 41];
+        return icon;
     }
 
     fitMapToMarkers() {
@@ -60,7 +52,6 @@ class MapView {
         }
         this.eventGroups.get(coordKey).push(event);
 
-        // 同じ座標のイベントが既にマーカーとして存在する場合はスキップ
         if (this.eventGroups.get(coordKey).length === 1) {
             const count = this.eventGroups.get(coordKey).length;
             const isFutureOrToday = this.isSameOrFutureDate(event.date);
@@ -71,16 +62,17 @@ class MapView {
                 isFuture: isFutureOrToday,
                 event: event
             });
-            
-            // DOMエレメントが作成された後にdata属性を設定
-            markerObj.on('add', function(e) {
-                const element = e.target.getElement();
-                if (element) {
-                    element.setAttribute('data-future', isFutureOrToday);
-                    // 初期色を設定
-                    const color = isFutureOrToday ? '#0d6efd' : '#757575';
-                    element.querySelector('.marker-head').style.backgroundColor = color;
-                    element.querySelector('.marker-tail').style.backgroundColor = color;
+
+            // マーカーのホバー動作を追加
+            markerObj.on('mouseover', function(e) {
+                const icon = e.target._icon;
+                if (icon) {
+                    icon.style.filter = 'hue-rotate(180deg) brightness(1.2)';
+                }
+            }).on('mouseout', function(e) {
+                const icon = e.target._icon;
+                if (icon) {
+                    icon.style.filter = '';
                 }
             }).on('click', () => {
                 this.showGroupedEvents(coordKey);
@@ -91,7 +83,6 @@ class MapView {
 
             this.markers.addLayer(markerObj);
         } else {
-            // マーカーの数字を更新
             this.updateMarkerCount(coordKey);
         }
     }
