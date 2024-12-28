@@ -222,4 +222,13 @@ class MapView {
         const eventDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
         return eventDate >= today;
     }
+
+    updateView() {
+        // 既存のポップアップをクリア
+        this.map.closePopup();
+        
+        const isFutureEvents = document.getElementById('viewYear').classList.contains('active');
+        const now = new Date();
+        let filteredEvents = this.events;
+    }
 }
