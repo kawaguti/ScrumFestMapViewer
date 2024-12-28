@@ -54,15 +54,19 @@ class EventApp {
 
     setupEventListeners() {
         document.getElementById('viewAll').addEventListener('click', (e) => {
-            document.getElementById('viewYear').classList.remove('active');
-            e.target.classList.add('active');
-            this.updateView();
+            if (!e.target.classList.contains('active')) {
+                document.getElementById('viewYear').classList.remove('active');
+                e.target.classList.add('active');
+                this.updateView();
+            }
         });
 
         document.getElementById('viewYear').addEventListener('click', (e) => {
-            document.getElementById('viewAll').classList.remove('active');
-            e.target.classList.add('active');
-            this.updateView();
+            if (!e.target.classList.contains('active')) {
+                document.getElementById('viewAll').classList.remove('active');
+                e.target.classList.add('active');
+                this.updateView();
+            }
         });
 
         document.getElementById('viewMap').addEventListener('click', (e) => {
