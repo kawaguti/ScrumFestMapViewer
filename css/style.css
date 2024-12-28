@@ -1,15 +1,15 @@
 
 /* マーカーの色設定 */
 .leaflet-marker-icon {
-    filter: hue-rotate(0deg);  /* デフォルトカラー（青） */
+    filter: hue-rotate(0deg);  /* デフォルトカラー（青） - これからのイベント用 */
 }
 
 .past-event-marker {
-    filter: grayscale(100%) brightness(0.7);  /* グレー */
+    filter: brightness(0) saturate(100%) invert(46%) sepia(0%) saturate(13%) hue-rotate(229deg) brightness(97%) contrast(92%);  /* #757575 */
 }
 
 .selected-marker {
-    filter: hue-rotate(20deg) saturate(150%);  /* オレンジ */
+    filter: brightness(0) saturate(100%) invert(77%) sepia(41%) saturate(5043%) hue-rotate(339deg) brightness(101%) contrast(101%);  /* オレンジ */
 }
 
 #map {
