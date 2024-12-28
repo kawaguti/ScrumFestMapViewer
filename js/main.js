@@ -129,26 +129,18 @@ class EventApp {
 
     selectUpcomingEvent() {
         const now = new Date();
+        const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
         
-        // 未来のイベントをフィルタリング
-        const futureEvents = this.events.filter(event => {
-            if (!event.date) return false;
-            // 当日は「これから」に分類されるように、日付の開始時刻で比較
-            const eventDate = new Date(event.date.getFullYear(), event.date.getMonth(), event.date.getDate());
-            const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-            return eventDate >= today;
-        });
-        
-        // 日付で昇順ソート（過去が先）で、現在日時に最も近い未来のイベントを選択
-        futureEvents.sort((a, b) => {
-            if (!a.date) return 1;
-            if (!b.date) return -1;
-            return a.date.getTime() - b.date.getTime();
-        });
-        
-        // 最も近い未来のイベントを選択（URLパラメータは更新しない）
-        if (futureEvents.length > 0) {
-            const nextEvent = futureEvents[0];
+        // 未来のイベントを選択して表示
+        const nextEvent = this.events
+            .filter(event => {
+                if (!event.date) return false;
+                const eventDate = new Date(event.date.getFullYear(), event.date.getMonth(), event.date.getDate());
+                return eventDate >= today;
+            })
+            .sort((a, b) => a.date.getTime() - b.date.getTime())[0];
+
+        if (nextEvent) {
             this.mapView.showEventDetails(nextEvent, false);
         }
     }
