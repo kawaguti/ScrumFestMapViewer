@@ -74,10 +74,11 @@ class MapView {
                 if (icon) {
                     icon.style.filter = '';
                 }
-            }).on('click', (e) => {
-                const latlng = e.latlng || e.target.getLatLng();
-                this.showGroupedEvents(coordKey, latlng);
+            }).on('click', () => {
                 if (this.eventGroups.get(coordKey).length === 1) {
+                    this.showEventDetails(this.eventGroups.get(coordKey)[0]);
+                } else {
+                    // 複数イベントがある場合は最初のイベントを表示
                     this.showEventDetails(this.eventGroups.get(coordKey)[0]);
                 }
             });
