@@ -47,22 +47,18 @@
 .marker-pin-google .marker-head,
 .marker-pin-google .marker-tail {
     transition: background-color 0.3s ease;
+    background-color: #0d6efd;  /* デフォルト色（未来のイベント） */
+}
+
+/* 過去のイベントのマーカー */
+[data-future="false"] .marker-pin-google .marker-head,
+[data-future="false"] .marker-pin-google .marker-tail {
+    background-color: #757575 !important;  /* 過去のイベント用の灰色 */
 }
 
 .marker-pin-google:hover .marker-head,
 .marker-pin-google:hover .marker-tail {
-    background-color: #FF9800;
-}
-
-.marker-pin-google .marker-head,
-.marker-pin-google .marker-tail {
-    background-color: #757575;
-}
-
-/* 未来のイベントのマーカー */
-[data-future="true"] .marker-pin-google .marker-head,
-[data-future="true"] .marker-pin-google .marker-tail {
-    background-color: #0d6efd !important;
+    background-color: #FF9800;  /* ホバー時のオレンジ色 */
 }
 
 .marker-pin-google:hover {
