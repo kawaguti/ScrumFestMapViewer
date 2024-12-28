@@ -125,28 +125,6 @@ class MapView {
         });
         content += '</div>';
 
-        if (!window.eventDetailsMap) {
-            window.eventDetailsMap = new Map();
-        }
-
-        let content = '<div class="list-group">';
-        events.forEach((event, index) => {
-            const eventId = `${coordKey}-${index}`;
-            window.eventDetailsMap.set(eventId, event);
-
-            content += `
-                <a href="javascript:void(0)" class="list-group-item list-group-item-action" data-event-id="${eventId}">
-                    <div class="mb-1">
-                        <h6 class="mb-0">${event.title}</h6>
-                        <div class="mt-1">
-                            <small class="me-2">${event.date ? new Date(event.date).toLocaleDateString('ja-JP') : ''}</small>
-                            <small>${event.location}</small>
-                        </div>
-                    </div>
-                </a>`;
-        });
-        content += '</div>';
-
         const popup = L.popup({
             closeButton: true,
             offset: L.point(0, -24),
