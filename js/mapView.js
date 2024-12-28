@@ -230,10 +230,8 @@ class MapView {
         this.map.closePopup();
         this.map._popup = null;
         
-        // URLパラメータをクリア
-        const url = new URL(window.location);
-        url.searchParams.delete('event');
-        history.replaceState({}, '', url);
+        // タブ切り替え時はURLパラメータをクリア
+        window.history.replaceState({}, '', '/');
         
         // 全マーカーのスタイルをリセット
         this.markers.getLayers().forEach(marker => {
