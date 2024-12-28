@@ -57,9 +57,8 @@ class EventApp {
             if (!e.target.classList.contains('active')) {
                 document.getElementById('viewYear').classList.remove('active');
                 e.target.classList.add('active');
-                const url = new URL(window.location);
-                url.searchParams.delete('event');
-                window.history.pushState({}, '', url);
+                // URLパラメータをクリアして基本パスに戻す
+                window.history.pushState({}, '', '/');
                 this.updateView();
             }
         });
@@ -68,9 +67,8 @@ class EventApp {
             if (!e.target.classList.contains('active')) {
                 document.getElementById('viewAll').classList.remove('active');
                 e.target.classList.add('active');
-                const url = new URL(window.location);
-                url.searchParams.delete('event');
-                window.history.pushState({}, '', url);
+                // URLパラメータをクリアして基本パスに戻す
+                window.history.pushState({}, '', '/');
                 this.updateView();
             }
         });
