@@ -225,13 +225,18 @@ class MapView {
 
     updateView() {
         // 既存のポップアップをクリア
-        this.map.closePopup();
+        this.map.eachLayer((layer) => {
+            if (layer instanceof L.Popup) {
+                this.map.removeLayer(layer);
+            }
+        });
         
         // 全マーカーのスタイルをリセット
         this.markers.getLayers().forEach(marker => {
             if (marker._icon) {
                 marker._icon.classList.remove('selected-marker');
                 marker._icon.style.removeProperty('filter');
+                marker._icon.style.backgroundColor = '';
                 marker.setZIndexOffset(0);
             }
         });
