@@ -84,6 +84,10 @@ class EventApp {
         });
     }
 
+    isSameOrFutureDate(date1, date2) {
+        return date1.getTime() >= date2.getTime();
+    }
+
     updateView() {
         const isFutureEvents = document.getElementById('viewYear').classList.contains('active');
         const now = new Date();
@@ -95,7 +99,7 @@ class EventApp {
             // 当日は「これから」に分類されるように、日付の開始時刻で比較
             const eventDate = new Date(event.date.getFullYear(), event.date.getMonth(), event.date.getDate());
             const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-            return isFutureEvents ? eventDate >= today : eventDate < today;
+            return isFutureEvents ? this.isSameOrFutureDate(eventDate, today) : !this.isSameOrFutureDate(eventDate, today);
         });
 
         // Sort events by date
