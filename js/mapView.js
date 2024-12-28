@@ -28,6 +28,16 @@ class MapView {
         return new L.Icon.Default();
     }
 
+    updateMarkerCount(coordKey) {
+        const markers = this.markers.getLayers();
+        const marker = markers.find(m => m.getLatLng().lat === parseFloat(coordKey.split(',')[0]) &&
+            m.getLatLng().lng === parseFloat(coordKey.split(',')[1]));
+        if (marker) {
+            const count = this.eventGroups.get(coordKey).length;
+            marker.setIcon(this.createMarkerIcon(count));
+        }
+    }
+
     fitMapToMarkers() {
         const markers = this.markers.getLayers();
         if (markers.length > 0) {
