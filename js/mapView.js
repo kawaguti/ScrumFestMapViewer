@@ -74,8 +74,9 @@ class MapView {
                 if (icon) {
                     icon.style.filter = '';
                 }
-            }).on('click', () => {
-                this.showGroupedEvents(coordKey);
+            }).on('click', (e) => {
+                const latlng = e.latlng || e.target.getLatLng();
+                this.showGroupedEvents(coordKey, latlng);
                 if (this.eventGroups.get(coordKey).length === 1) {
                     this.showEventDetails(this.eventGroups.get(coordKey)[0]);
                 }
@@ -98,7 +99,7 @@ class MapView {
         }
     }
 
-    showGroupedEvents(coordKey) {
+    showGroupedEvents(coordKey, latlng) {
         const events = this.eventGroups.get(coordKey);
         if (!events || events.length === 0) return;
 
@@ -148,14 +149,12 @@ class MapView {
         });
         content += '</div>';
 
-        const markerLatLng = L.latLng(events[0].coordinates);
-
         const popup = L.popup({
             closeButton: true,
             offset: L.point(0, -24),
             className: events.length > 1 ? 'multi-event-popup' : 'single-event-popup'
         })
-            .setLatLng(markerLatLng)
+            .setLatLng(latlng)
             .setContent(content)
             .openOn(this.map);
 
