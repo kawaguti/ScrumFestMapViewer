@@ -58,7 +58,7 @@ class EventApp {
                 document.getElementById('viewYear').classList.remove('active');
                 e.target.classList.add('active');
                 // URLパラメータをクリアして基本パスに戻す
-                window.history.pushState({}, '', '/');
+                window.history.pushState({}, '', window.location.pathname);
                 this.updateView();
             }
         });
@@ -68,7 +68,7 @@ class EventApp {
                 document.getElementById('viewAll').classList.remove('active');
                 e.target.classList.add('active');
                 // URLパラメータをクリアして基本パスに戻す
-                window.history.pushState({}, '', '/');
+                window.history.pushState({}, '', window.location.pathname);
                 this.updateView();
             }
         });
