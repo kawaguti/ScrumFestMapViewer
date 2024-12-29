@@ -150,7 +150,8 @@ class MapView {
     showEventDetails(event, updateUrl = true) {
         // URLの更新（オプション）
         if (updateUrl) {
-            const url = new URL(window.location);
+            const currentPath = window.location.pathname;
+            const url = new URL(currentPath, window.location.origin);
             url.searchParams.set('event', event.id);
             window.history.pushState({}, '', url);
         }
