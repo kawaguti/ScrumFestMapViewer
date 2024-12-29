@@ -605,6 +605,7 @@ IT技術を駆使して変化に強いビジネスインフラを実現するス
 これまで参加していた方も、一度も参加したことがない方も、ぜひご参加ください。 Let's Go！デベロッパー！
 
 - Webサイト: https://lets-go-developer.connpass.com/event/232183/
+- 録画一覧: https://www.youtube.com/live/KTK9s-Kcppw?si=42R6gDNBxkiWlLKU
 
 ---
 
