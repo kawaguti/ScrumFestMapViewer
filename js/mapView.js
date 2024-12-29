@@ -233,8 +233,9 @@ class MapView {
             window.eventDetailsMap.clear();
         }
         
-        // タブ切り替え時はURLパラメータをクリア
-        window.history.replaceState({}, '', '/');
+        // タブ切り替え時はURLパラメータをクリアしつつ現在のパスを維持
+        const currentPath = window.location.pathname;
+        window.history.replaceState({}, '', currentPath);
         
         // イベント詳細をクリア
         document.getElementById('eventContent').innerHTML = 'イベントを選択してください';
