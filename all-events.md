@@ -630,6 +630,7 @@ IT技術を駆使して変化に強いビジネスインフラを実現するス
 
 
 - Webサイト: https://2022.scrumgatheringtokyo.org/
+- 録画一覧: https://youtube.com/playlist?list=PL-bvtmk0kdw6WVGnbo4HHbNhA9CAfR6B4&si=mWPHCwaPlTLrqNaD
 
 ---
 
