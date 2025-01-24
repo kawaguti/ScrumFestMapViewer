@@ -621,6 +621,18 @@ IT技術を駆使して変化に強いビジネスインフラを実現するス
 
 ---
 
+## Regional Scrum Gathering Tokyo 2022
+
+- ID: 57
+- 開催地: 東京都
+- 座標: `[139.691706, 35.689488]` (都道府県座標)
+- 開催日: 2022年01月05日(水)
+
+
+- Webサイト: https://2022.scrumgatheringtokyo.org/
+
+---
+
 ## レッツゴーデベロッパー 10 YEARS AFTER
 
 - ID: 48
