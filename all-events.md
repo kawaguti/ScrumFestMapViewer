@@ -621,6 +621,45 @@ IT技術を駆使して変化に強いビジネスインフラを実現するス
 
 ---
 
+## スクラムフェス札幌 | Scrum Fest Sapporo 2022
+
+- ID: 60
+- 開催地: 北海道
+- 座標: `[141.346807, 43.064615]` (都道府県座標)
+- 開催日: 2022年11月03日(木)
+
+
+- Webサイト: https://confengine.com/conferences/scrum-fest-sapporo-2022
+- 録画一覧: https://www.youtube.com/playlist?list=PL-bvtmk0kdw7i6kNAs3CIBj350hJSvckT
+
+---
+
+## スクラムフェス仙台 | Scrum Fest Sendai 2022
+
+- ID: 58
+- 開催地: 宮城県
+- 座標: `[140.872183, 38.268837]` (都道府県座標)
+- 開催日: 2022年08月26日(金)
+
+
+- Webサイト: https://www.scrumfestsendai.org/2022
+- 録画一覧: https://www.youtube.com/playlist?list=PL-bvtmk0kdw5djlCj6IEdA7UzkzE9-2aa
+
+---
+
+## スクラム新潟 | Scrum Fest Niigata 2022
+
+- ID: 59
+- 開催地: 新潟県
+- 座標: `[139.023095, 37.902552]` (都道府県座標)
+- 開催日: 2022年05月20日(金)
+
+
+- Webサイト: https://www.scrumfestniigata.org/2022
+- 録画一覧: https://www.youtube.com/playlist?list=PL-bvtmk0kdw4Cc1gYTxbBGtEiMS1a-KEh
+
+---
+
 ## Regional Scrum Gathering Tokyo 2022
 
 - ID: 57
